@@ -1,0 +1,113 @@
+body {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../images/background.png");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+}
+
+input {
+  outline: none;
+}
+
+h1 {
+  margin-top: 80px;
+  animation: type 3s steps(24);
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: 'VT323', monospace;
+  border-right: 4px solid white;
+  font-size: 57px;
+  width: 24ch;
+  color: white;
+  /* justify-self: center; */
+}
+
+@keyframes type {
+  0% {
+    width: 0ch;
+  }
+  100% {
+    width: 24ch;
+  }
+}
+
+.loginContainer {
+  display: grid;
+  grid-auto-flow: row;
+  padding: 0 50px 50px 50px;
+  align-self: center;
+  width: 500px;
+}
+
+.user {
+  width: 160px;
+  height: 150px;
+  justify-self: center;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.form {
+  display: grid;
+  grid-auto-flow: row;
+}
+
+.emailInput, .passwordInput{
+  height: 30px;
+  font-size: 30px;
+  width: 80%;
+  margin: 30px 30px 30px 10px;
+  border: none;
+  border-bottom: 2px solid #ADC0E0;
+  font-family: 'VT323', monospace;
+  background-color: Transparent;
+  justify-self: center;
+  color: #ADC0E0;
+}
+
+.passwordInput {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.emailInput::placeholder, .passwordInput::placeholder {
+  color: #ADC0E0;
+}
+
+.emailInput:focus, .passwordInput:focus {
+  border: none;
+  border-bottom: 2px solid white;
+  color: white;
+}
+
+.logInButton {
+  height: 50px;
+  width: 300px;
+  justify-self: center;
+  margin-top: 30px;
+  padding: 10px;
+  font-size: 30px;
+  border: 1px solid Transparent;
+  font-family: 'VT323', monospace;
+  background-color: white;
+  border-radius: 5px;
+  transition: 700ms;
+  background: linear-gradient(#02E50E 70%, #35AA3B);
+  color: white;
+}
+
+.logInButton:hover {
+  /* background: linear-gradient(#35AA3B, #35AA3B); */
+  cursor: pointer;
+}
+
+.forgotten {
+  /* justify-self: center; */
+  text-decoration: none;
+  color: red;
+  font-family: 'VT323', monospace;
+  text-align: right;
+  margin-right: 55px;
+}
