@@ -99,12 +99,10 @@ h1 {
 }
 
 .logInButton:hover {
-  /* background: linear-gradient(#35AA3B, #35AA3B); */
   cursor: pointer;
 }
 
 .forgotten {
-  /* justify-self: center; */
   text-decoration: none;
   color: red;
   font-family: 'VT323', monospace;
