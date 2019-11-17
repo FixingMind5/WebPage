@@ -13,13 +13,13 @@ input {
 
 h1 {
   margin-top: 80px;
-  animation: type 3s steps(24);
+  animation: type 3s steps(28);
   overflow: hidden;
   white-space: nowrap;
   font-family: 'VT323', monospace;
   border-right: 4px solid white;
   font-size: 57px;
-  width: 24ch;
+  width: 28ch;
   color: white;
   /* justify-self: center; */
 }
@@ -29,7 +29,7 @@ h1 {
     width: 0ch;
   }
   100% {
-    width: 24ch;
+    width: 28ch;
   }
 }
 
@@ -38,7 +38,7 @@ h1 {
   grid-auto-flow: row;
   padding: 0 50px 50px 50px;
   align-self: center;
-  width: 500px;
+  width: 600px;
 }
 
 .user {
@@ -94,7 +94,7 @@ h1 {
   background-color: white;
   border-radius: 5px;
   transition: 700ms;
-  background: linear-gradient(#02E50E 70%, #35AA3B);
+  background: linear-gradient(#02D40D 70%, #206623);
   color: white;
 }
 
@@ -109,5 +109,5 @@ h1 {
   color: red;
   font-family: 'VT323', monospace;
   text-align: right;
-  margin-right: 55px;
+  margin-right: 68px;
 }
