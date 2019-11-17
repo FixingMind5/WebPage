@@ -1,3 +1,7 @@
+* {
+  font-family: 'VT323', monospace;
+}
+
 body {
   margin: 0;
   display: grid;
@@ -13,11 +17,64 @@ body {
 }
 
 .main, .medals, .degrees, .pins{
+  display: grid;
+  justify-content: center;
   background-image: url("../images/player.jpg");
   background-size: 100vw 100vh;
   width: 100vw;
   height: 100vh;
   margin: 0;
+}
+
+.main h1, .medals h1, .degrees h1, .pins h1 {
+  animation: mainTitle 1s steps(9);
+  text-align: center;
+  font-family: 'VT323', monospace;
+  font-size: 75px;
+  margin: 10px 0 0 0;
+  color: white;
+  width: 9ch;
+  height: 75px;
+  border-right: 2px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.main h1 {
+  margin-left: 130px;
+}
+
+@keyframes mainTitle {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 9ch;
+  }
+}
+
+.profileData {
+  background-color: rgba(0, 0, 255, .7);
+  padding: 20px;
+  color: white;
+  font-size: 50px;
+  display: grid;
+  grid-template-columns: 120px repeat(2, 200px);
+  grid-template-rows: 50px 50px;
+  align-items: center;
+  height: 120px;
+  color: yellow;
+  border-radius: 15px;
+  justify-content: space-between;
+  margin-top: -70px;
+}
+
+.profileImage {
+  background-image: url("../images/avatarDefault.png");
+  background-size: cover;
+  width: 100px;
+  height: 100px;
+  grid-row: 1/-1;
 }
 
 .medals {
@@ -30,6 +87,20 @@ body {
 
 .pins {
   background-image: url("../images/pin.jpeg");
+}
+
+.pins h1 {
+  width: 6ch;
+  animation: pinsTitle 750ms steps(6);
+}
+
+@keyframes pinsTitle {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 6ch;
+  }
 }
 
 .previus, .next {
@@ -109,5 +180,5 @@ body {
 }
 
 .active, .dot:hover {
-  background-color: #ADC0E0;
+  background-color: #AE946F;
 }
