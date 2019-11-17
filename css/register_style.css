@@ -82,3 +82,12 @@ input:focus::-webkit-input-placeholder {
 .signInButton:hover {
   cursor: pointer;
 }
+
+.account {
+  text-decoration: none;
+  color: white;
+  font-family: 'VT323', monospace;
+  font-size: 35px;
+  text-align: center;
+  margin: 200px 0 0 100px;
+}
