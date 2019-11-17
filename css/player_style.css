@@ -1,39 +1,113 @@
 body {
+  margin: 0;
   display: grid;
+}
+
+.backgroundSlideShow {
+  position: relative;
+  display: grid;
+}
+
+.slide {
+  display: none;
+}
+
+.main, .medals, .degrees, .pins{
   background-image: url("../images/player.jpg");
   background-size: 100vw 100vh;
-  font-family: 'VT323', monospace;
-  color: rgb(255, 243, 15);
-  padding: 0px 200px;
-  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
 }
 
-.firstAttributes {
-  background-color: rgba(13, 0, 166, 1);
-  padding: 25px;
-  margin-top: 20px;
-  border-radius: 15px;
-  font-size: 50px;
+.medals {
+  background-image: url("../images/war.jpg");
+}
+
+.degrees {
+  background-image: url("../images/degrees.jpg");
+}
+
+.pins {
+  background-image: url("../images/pin.jpeg");
+}
+
+.previus, .next {
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+  width: auto;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 58px;
+  transition: 600ms ease;
+  border-radius: 0 10px 10px 0;
+  user-select: none;
+  text-decoration: none;
+  margin-top: -32px;
+}
+
+.next {
+  right: 0;
+  border-radius: 10px 0 0 10px;
+}
+
+.previus:hover, .next:hover {
+  background-color: rgba(0, 0, 0, .6)
+}
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1500ms;
+  animation-name: fade;
+  animation-duration: 1500ms
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: .4;
+  } to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: .4;
+  } to {
+    opacity: 1;
+  }
+}
+
+.circles {
   display: grid;
-  grid-template-columns: 150px 300px 300px;
-  grid-template-rows: repeat(2, 40px);
-  height: 100px;
   justify-content: center;
-  width: 100%;
-  align-items: flex-start;
   text-align: center;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(4, 45px);
+  width: 200px;
+  position: absolute;
+  z-index: 4;
+  justify-self: center;
+  bottom: 10px;
+  background-color: rgba(255, 255, 255, .6);
+  padding: 10px;
+  border-radius: 15px;
 }
 
-.firstAttributes p {
-  margin: 5px;
-  height: 50px;
+.dot {
+  /* cursor: pointer; */
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  bottom: 10px;
+  background-color: #808EA6;
+  margin: 0 15px;
+  transition: 600ms;
+  border: 1px solid white;
 }
 
-.avatar {
-  background-image: url("../images/avatarDefault.png");
-  width: 100px;
-  height: 100px;
-  background-size: cover;
-  grid-row: 1/-1;
-  align-self: flex-start;
+.active, .dot:hover {
+  background-color: #ADC0E0;
 }
