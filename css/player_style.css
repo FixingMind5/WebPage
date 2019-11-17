@@ -1,0 +1,39 @@
+body {
+  display: grid;
+  background-image: url("../images/player.jpg");
+  background-size: 100vw 100vh;
+  font-family: 'VT323', monospace;
+  color: rgb(255, 243, 15);
+  padding: 0px 200px;
+  justify-content: center;
+}
+
+.firstAttributes {
+  background-color: rgba(13, 0, 166, 1);
+  padding: 25px;
+  margin-top: 20px;
+  border-radius: 15px;
+  font-size: 50px;
+  display: grid;
+  grid-template-columns: 150px 300px 300px;
+  grid-template-rows: repeat(2, 40px);
+  height: 100px;
+  justify-content: center;
+  width: 100%;
+  align-items: flex-start;
+  text-align: center;
+}
+
+.firstAttributes p {
+  margin: 5px;
+  height: 50px;
+}
+
+.avatar {
+  background-image: url("../images/avatarDefault.png");
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  grid-row: 1/-1;
+  align-self: flex-start;
+}
