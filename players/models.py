@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
-from achievements.models import Medal, Pin, Degree
+
+# My models from achievements
+from achievements.models import Achievement
 
 class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -13,22 +15,11 @@ class Player(models.Model):
     grade = models.CharField(max_length=40)
 
     # Foreign Keys
-    medal = models.ForeignKey(
-        'achievements.Medal',
+    achievement = models.ForeignKey(
+        'achievements.Achievement',
         on_delete=models.CASCADE,
-        null = True
-    )
-
-    pin = models.ForeignKey(
-        'achievements.Pin',
-        on_delete = models.CASCADE,
-        null = True
-    )
-
-    degree = models.ForeignKey(
-        'achievements.Degree',
-        on_delete = models.CASCADE,
-        null = True
+        null = True,
+        blank = True
     )
 
     def __str__(self):
