@@ -4,6 +4,7 @@ from django.db import models
 # My models from achievements
 from achievements.models import Achievement
 
+
 class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
@@ -18,8 +19,8 @@ class Player(models.Model):
     achievement = models.ForeignKey(
         'achievements.Achievement',
         on_delete=models.CASCADE,
-        null = True,
-        blank = True
+        null=True,
+        blank=True
     )
 
     def __str__(self):

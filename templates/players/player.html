@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/player_style.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/player_style.css' %}">
     <title>Profile</title>
   </head>
   <body>
@@ -43,5 +44,5 @@
       </div>
     </div>
   </body>
-  <script src="scripts/player_script.js" charset="utf-8"></script>
+  <script src="../../static/scripts/player_script.js" charset="utf-8"></script>
 </html>
