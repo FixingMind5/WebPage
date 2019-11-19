@@ -2,8 +2,10 @@
 in the bussiness model, this things will represent the progress of our
 players"""
 from django.db import models
+from players.models import Player
 
 # Create your models here.
+
 
 class Achievement(models.Model):
     title = models.CharField(max_length=40, default='No Title')
@@ -15,6 +17,14 @@ class Achievement(models.Model):
         null = True
     )
     type = models.CharField(max_length=10)
+
+    # Foreign Keys
+    player = models.ForeignKey(
+        'players.Player',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return f"Medal named {self.title}"
