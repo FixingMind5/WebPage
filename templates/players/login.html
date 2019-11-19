@@ -12,8 +12,13 @@
     <div class="loginContainer">
       <img class="user" src="../../images/user.png" alt="">
       {% if error %}
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
           <script>
-            alert("{{ error }}")
+            Swal.fire({
+                icon: 'error',
+                title: 'SkyHack ☁️',
+                text: "{{ error }}️"
+            });
           </script>
       {% endif %}
       <form class="form" method="POST" action="{% url "login" %}">

@@ -9,7 +9,9 @@
   </head>
   <body>
     <div class="backgroundSlideShow">
-
+      {% include "players/gameLogic.html" %}
+      {% block gameButtonsContainer %}
+      {% endblock %}
       <div class="slide main fade">
         <h1> > Profile</h1>
         <div class="profileData">

@@ -9,5 +9,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('player/', players_app_views.return_user, name='player'),
     path('login/', players_app_views.return_login, name='login'),
-    path('signin/', players_app_views.return_signin),
+    path('signup/', players_app_views.return_signup, name='signup'),
+    path('logout/', players_app_views.log_out, name='logout')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
