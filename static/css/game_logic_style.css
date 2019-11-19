@@ -37,12 +37,10 @@
 }
 
 .logout-button, .play-button {
-  font-size: 35px;
+  font-size: 30px;
   display: block;
   width: 180px;
   height: 40px;
-  position: fixed;
-  z-index: 4;
   color: white;
   white-space: nowrap;
   text-decoration: none;
@@ -50,6 +48,9 @@
   border-radius: 15px;
   padding: 15px;
   top: 15px;
+  position: fixed;
+  z-index: 3;
+  box-shadow: -5px 5px 30px black;
 }
 
 .logout-button {
@@ -61,4 +62,29 @@
   background: linear-gradient(#02D40D 70%, #206623);
   right: 240px;
   width: 110px;
+}
+
+.gameButtonsContainer {
+  position: fixed;
+  z-index: 3;
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.logOut, .play {
+  color: white;
+  z-index: 4;
+  font-size: 45px;
+  margin: 0;
+  position: fixed;
+  top: 25px;
+  text-decoration: none;
+}
+
+.logOut {
+  right: 40px;
+}
+
+.play {
+  right: 255px;
 }

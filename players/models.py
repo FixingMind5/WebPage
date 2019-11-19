@@ -9,7 +9,7 @@ class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     age = models.IntegerField()
-    points = models.IntegerField()
+    points = models.IntegerField(blank=True, null=True)
 
     # Game Logic
     cluster = models.CharField(max_length=30)
