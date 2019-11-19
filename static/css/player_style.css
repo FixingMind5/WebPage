@@ -41,7 +41,7 @@ body {
 }
 
 .main h1 {
-  margin-left: 130px;
+  justify-self: center;
 }
 
 @keyframes mainTitle {
@@ -54,26 +54,31 @@ body {
 }
 
 .profileData {
+  width: 80vw;
   background-color: rgba(0, 0, 255, .7);
   padding: 20px;
-  color: white;
   font-size: 50px;
   display: grid;
-  grid-template-columns: 120px repeat(2, 200px);
-  grid-template-rows: 50px 50px;
+  grid-template-columns: 120px repeat(2, 500px);
+  grid-template-rows: repeat(2, 1fr);
   align-items: center;
-  height: 120px;
+  height: 220px;
   color: yellow;
   border-radius: 15px;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin-top: -70px;
+  text-align: right;
+}
+
+.profileData p {
+  margin: 10px;
 }
 
 .profileImage {
   background-image: url("../../images/avatarDefault.png");
   background-size: cover;
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   grid-row: 1/-1;
 }
 

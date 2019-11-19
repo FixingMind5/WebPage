@@ -10,7 +10,13 @@ from django.db.utils import IntegrityError
 
 @login_required
 def return_user(request):
-    return render(request, 'players/player.html', {'players': 'players'})
+    data = {
+        'username': request.user.username,
+        'points': request.user.player.points,
+        'cluster': request.user.player.cluster,
+        'grade': request.user.player.grade
+    }
+    return render(request, 'players/player.html', data)
 
 
 def return_login(request):

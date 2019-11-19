@@ -6,6 +6,7 @@ from django.contrib import admin
 # Importing my models
 from players.models import Player
 
+
 @admin.register(Player)
 class PlayerAdmin(admin.ModelAdmin):
     list_display = ['pk', 'user', 'points', 'cluster', 'grade']
@@ -27,6 +28,7 @@ class PlayerAdmin(admin.ModelAdmin):
         'user__is_active',
     )
 
+
 class PlayerInline(admin.StackedInline):
     model = Player
     can_delete = False
@@ -35,6 +37,7 @@ class PlayerInline(admin.StackedInline):
 
 class UserAdmin(BaseUserAdmin):
     inlines = (PlayerInline,)
+
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
