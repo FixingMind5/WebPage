@@ -1,0 +1,12 @@
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/mainHeader_style.css" %}">
+</head>
+<header id="header">
+  <div class="searchTextField">
+    <input class="search" type="text" placeholder="Buscar">
+  </div>
+    <a href="{% url "signup" %}" class="button mainSignUpButton" type="submit">Sign Up</a>
+    <a href="{% url "login" %}" class="button mainLogInButton" type="submit">Log In</a>
+</header>
+<script src="{% static "scripts/mainHeader.js" %}"></script>

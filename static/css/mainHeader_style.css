@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(4, 1fr) 100px 100px;
+    background-color: rgba(70, 99, 148, 1);
+    padding: 5px 20px;
+    margin: 0;
+    width: calc(100vw - 40px);
+    justify-content: flex-end;
+    transition: 500ms;
+}
+
+.sticky {
+    position: fixed;
+    z-index: 4;
+    background-color: rgba(70, 99, 148, .4);
+}
+
+.scrolled {
+    background-color: rgba(70, 99, 148, .4);
+}
+
+.miniLogo img {
+    width: 50px;
+    height: 50px;
+}
+
+.searchTextField {
+    grid-column: 1/2;
+    justify-self: flex-end;
+}
+
+.search {
+    display: grid;
+    background-color: transparent;
+    font-size: 20px;
+    border: 3px solid white;
+    outline: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    color: white;
+    width: 400px;
+    background-image: url("../../images/searchIcon.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+}
+
+.search::placeholder {
+    color: white;
+}
+
+.button {
+    border: none;
+    color: white;
+    background-color: transparent;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 500ms;
+    text-align: center;
+    align-items: center;
+}
+
+.button:hover {
+    background-color: white;
+    color: rgb(70, 99, 148);
+}
+
+.mainSignUpButton {
+    display: grid;
+    grid-column: 5;
+}
+
+.mainLogInButton {
+    display: grid;
+    grid-column: 6;
+    border: 2px solid white;
+}

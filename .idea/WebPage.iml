@@ -19,6 +19,7 @@
     <orderEntry type="library" name="R User Library" level="project" />
     <orderEntry type="library" name="R Skeletons" level="application" />
     <orderEntry type="library" name="sweetalert" level="application" />
+    <orderEntry type="library" name="scroll-out" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

@@ -69,3 +69,7 @@ def signup(request):
 
         return redirect('login')
     return render(request, 'players/register.html')
+
+
+def index(request):
+    return render(request, 'players/index.html')

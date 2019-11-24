@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SkyHack | Main Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/index_style.css" %}">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:400,900|Work+Sans:400,600&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% include "players/mainHeader.html" %}
+    {% block header %}
+    {% endblock %}
+  <section class="mainPage">
+    <div class="mainImageAlpha">
+      <div class="skyHackImage"></div>
+      <h1 class="mainTitle">Formamos e impulsamos el talento universitario en tecnología</h1>
+      <h3>Compartiendo entre nosotros el conocimiento y motivando el uso de nuevas tecnologías</h3>
+        <a href="{% url "signup" %}" class="startButton" type="submit">Comenzar</a>
+    </div>
+  </section>
+  <section class="students">
+      <div class="activity learn">
+          <div class="activityBackgroundAlpha">
+              <h3>Aprende</h3>
+              <p>
+                  Comienza tu carrera en tecnología inscribiéndote a alguno de nuestros
+                  cursos.
+                  <br>
+                  Son totalmente gratis, tenemos cursos sobre programación, marketing,
+                  publicidad y matemáticas
+              </p>
+              <input class="activityButton startCourseButton" type="button" value="Encuentra tu curso">
+          </div>
+      </div>
+       <div class="activity imagine">
+           <div class="activityBackgroundAlpha">
+               <h3>Imagina</h3>
+               <p>
+                   Comparte ideas con toda la comunidad para llegar a una sola
+                   que resuelva diversos tipos de problemas, te rete y finalmente te ayude
+                   a crecer en el proceso.
+               </p>
+               <input class="activityButton startCourseButton" type="button" value="Crea un proyecto">
+           </div>
+      </div>
+       <div class="activity create">
+           <div class="activityBackgroundAlpha">
+               <h3>Crea</h3>
+               <p>
+                   Emplea tu conocimiento para desarrollar esas ideas increíbles, también puedes
+                   resolver ejercicios para practicar lo aprendido.
+               </p>
+               <input class="activityButton startCourseButton" type="button" value="Únete a algún proyecto">
+           </div>
+      </div>
+       <div class="activity hack">
+          <div class="activityBackgroundAlpha">
+              <h3>Hackea</h3>
+              <p>
+                  Usa toda tu creatividad, tu conocimiento y tus habilidades para llevar esa idea a la vida
+                  cotidiana en un concurso donde demostrarás todo lo que has aprendido acerca de esta
+                  industria.
+              </p>
+              <input class="activityButton startCourseButton" type="button" value="Participa en un hackathon">
+          </div>
+      </div>
+  </section>
+  <section class="hiring">
+      <div class="hiringCarroussel">
+          <div class="photo firstPhoto fade">
+              <img src="../../images/richi.JPG">
+          </div>
+          <div class="photo secondPhoto fade">
+              <img src="../../images/graphDesigner.JPG">
+          </div>
+          <div class="photo thirdPhoto fade">
+              <img src="../../images/team.JPG">
+          </div>
+      </div>
+      <div class="hiringTextBox">
+          <h3>Encuentra talento</h3>
+          <h5>Se el primero en contratar a tu futuro mejor elemento </h5>
+          <p>
+              Sky Hack te ofrece un amplio catálogo de talento en el cuál se muestran
+              personas que han dedicado gran parte de su carrera universitaria a volverse
+              competitivos en la industria en una de las mejores universidades en latino américa
+          </p>
+          <input class="activityButton hiringButton" type="button" value="Encontrar talento">
+      </div>
+  </section>
+</body>
+<script src="{%  static "scripts/scroll-out.js" %}"></script>
+<script type="text/javascript">
+    ScrollOut({
+        targets: 'div,h3,p,input'
+    });
+</script>
+<script src="{% static "scripts/indexSlideShow.js" %}"></script>
+</html>

@@ -10,5 +10,6 @@ urlpatterns = [
     path('player/', players_app_views.return_user, name='player'),
     path('login/', players_app_views.return_login, name='login'),
     path('signup/', players_app_views.signup, name='signup'),
-    path('logout/', players_app_views.log_out, name='logout')
+    path('logout/', players_app_views.log_out, name='logout'),
+    path('index/', players_app_views.index, name="index")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

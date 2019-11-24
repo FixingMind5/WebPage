@@ -4,8 +4,6 @@ players"""
 from django.db import models
 from players.models import Player
 
-# Create your models here.
-
 
 class Achievement(models.Model):
     title = models.CharField(max_length=40, default='No Title')
