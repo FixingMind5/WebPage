@@ -10,18 +10,20 @@ header {
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: repeat(4, 1fr) 100px 100px;
-    background-color: rgba(70, 99, 148, 1);
     padding: 5px 20px;
     margin: 0;
     width: calc(100vw - 40px);
     justify-content: flex-end;
-    transition: 500ms;
+    transition: 1s;
+    background-position: 50% 80%;
+    background-color: rgba(77, 99, 148, 1);
 }
 
 .sticky {
     position: fixed;
     z-index: 4;
-    background-color: rgba(70, 99, 148, .4);
+    background-color: rgba(77, 99, 148, .5);
+    background-image: none;
 }
 
 .scrolled {

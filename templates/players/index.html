@@ -89,6 +89,18 @@
           <input class="activityButton hiringButton" type="button" value="Encontrar talento">
       </div>
   </section>
+  {% include "players/mainFooter.html" %}
+  {% block footer %}
+  {% endblock %}
+  <section class="powered">
+      <div class="poweredAlpha">
+          <p>Powered by</p>
+          <div class="logos">
+              <img class="poweredImages acatlan" src="../../images/logoAcatlan.png" alt="">
+              <img class="poweredImages unam" src="../../images/logoUnam.png" alt="">
+          </div>
+      </div>
+  </section>
 </body>
 <script src="{%  static "scripts/scroll-out.js" %}"></script>
 <script type="text/javascript">
