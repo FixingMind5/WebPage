@@ -2,6 +2,11 @@
   font-family: 'VT323', monospace;
 }
 
+a {
+  text-decoration: none;
+  font-family: 'VT323', monospace;
+}
+
 @font-face {
   font-family: 'icomoon';
   src:  url('fonts/icomoon.eot?l5sgwg');
@@ -9,6 +14,18 @@
     url('fonts/icomoon.ttf?l5sgwg') format('truetype'),
     url('fonts/icomoon.woff?l5sgwg') format('woff'),
     url('fonts/icomoon.svg?l5sgwg#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon-admin.eot?u8bcog');
+  src:  url('fonts/icomoon-admin.eot?u8bcog#iefix') format('embedded-opentype'),
+    url('fonts/icomoon-admin.ttf?u8bcog') format('truetype'),
+    url('fonts/icomoon-admin.woff?u8bcog') format('woff'),
+    url('fonts/icomoon-admin.svg?u8bcog#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -34,6 +51,10 @@
 }
 .icon-log-out:before {
   content: "\e900";
+}
+
+.icon-pacman:before {
+  content: "\e916";
 }
 
 .logout-button, .play-button {
@@ -87,7 +108,7 @@
   z-index: 3;
   display: grid;
   grid-auto-flow: column;
-  background: black;
+
 }
 
 .logOut, .play {
@@ -106,4 +127,38 @@
 
 .play {
   right: 255px;
+}
+
+.admin-button {
+  display: grid;
+  color: yellow;
+  padding: 0 20px 20px 20px;
+  border: 3px solid yellow;
+  border-radius: 20px;
+  margin: 10px;
+  transition: 500ms;
+  font-size: 40px;
+  text-align: left;
+  font-family: 'VT323', monospace;
+  align-items: center;
+  grid-auto-flow: column;
+  padding: 10px;
+}
+
+.admin {
+  display: grid;
+  font-size: 60px;
+  text-align: center;
+  font-family: 'VT323', monospace;
+  color: yellow;
+  align-content: center;
+  position: fixed;
+  left: 80px;
+  top: 8px;
+  line-height: 50px;
+}
+
+.admin-button:hover {
+  background-color: yellow;
+  color: black;
 }

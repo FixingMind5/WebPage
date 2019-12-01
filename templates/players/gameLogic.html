@@ -4,6 +4,9 @@
     <link rel="stylesheet" href="{% static 'css/game_logic_style.css' %}">
 </head>
 <nav class="gameButtonsContainer">
+  {% if staff %}
+  <a href="{% url 'staff' %}" class="icon-pacman admin-button"></a>
+  {% endif %}
   <a href="{% url 'logout' %}" class="icon-log-out logout-button">
     <!-- <a href="{% url 'logout' %}" class="logOut">Log Out</a> -->
   </a>
