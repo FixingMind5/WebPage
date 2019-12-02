@@ -10,4 +10,4 @@ class Course(models.Model):
     courseDescription = models.CharField(max_length=500)
     courseDocument = models.FileField(upload_to="temaries/", blank=True)
     courseBuilder = models.CharField(max_length=50, blank=True, null=True)
-    courseCategory = models.CharField(max_length=60)
+    courseCategory = models.CharField(max_length=60, blank=True)
