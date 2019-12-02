@@ -10,22 +10,36 @@
     <title>@{{ username }} | add course</title>
 </head>
 <body>
+    <a href="{% url 'player' %}" class="icon-arrow-left back-button"></a>
     <h1>Hola {{ username }} 🙂</h1>
     <h2>Es bueno tenerte en nuestro cluster {{ cluster }}</h4>
     <p>Rellena el formulario a continuación para registrar tu curso
         <br>
         y puedas apoyar a toda la comunidad.
     </p>
-    <form action="{% url 'add_course' %}" method="POST">
+    <form action="{% url 'add_course' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="text" placeholder="Título">
-        <input type="text" placeholder="Perfil de Ingreso">
-        <input type="text" placeholder="Perfil de Egreso">
-        <input type="text" placeholder="Horarios">
-        <input type="text" placeholder="Duración del curso">
-        <textarea name="" id="" cols="30" rows="10" placeholder="Descripción del curso"></textarea>
-        <input class="temary" type="file" placeholder="Temario">
+        <input type="hidden" name="courseBuilder" value="{{ first_name }}">
+        <input type="text" placeholder="Título" name="title">
+        <input type="text" placeholder="Perfil de Ingreso" name="admissionProfile">
+        <input type="text" placeholder="Perfil de Egreso" name="dischargeProfile">
+        <input type="text" placeholder="Horarios" name="schedules">
+        <input type="text" placeholder="Duración del curso" name="courseLength">
+        <textarea placeholder="Descripción del curso" name="courseDescription"></textarea>
+        <select class="categoryContainer" name="courseCategory">
+            <option value="">Select Category</option>
+            <option value="programming">Programación</option>
+            <option value="marketing">Marketing</option>
+            <option value="math">Matemáticas</option>
+            <option value="design">UI/UX</option>
+        </select>
+        <input class="temary" type="file" placeholder="Temario" name="courseDocument">
         <input class="registerCourseButton" type="submit" value="Register">
     </form>
 </body>
+{% for error in form.errors %}
+<script>
+    alert("{{ error }}");
+</script>
+{% endfor %}
 </html>

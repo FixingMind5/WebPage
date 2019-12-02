@@ -1,3 +1,54 @@
+@font-face {
+    font-family: 'icomoon';
+    src:  url('fonts/icomoon-back.eot?n6li6b');
+    src:  url('fonts/icomoon-back.eot?n6li6b#iefix') format('embedded-opentype'),
+      url('fonts/icomoon-back.ttf?n6li6b') format('truetype'),
+      url('fonts/icomoon-back.woff?n6li6b') format('woff'),
+      url('fonts/icomoon-back.svg?n6li6b#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.back-button {
+    font-size: 40px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    display: grid;
+    justify-self: flex-start;
+    width: 50px;
+    height: 50px;
+    transition: 500ms;
+    border-radius: 50%;
+    align-items: center;
+}
+
+.back-button:hover {
+    background-color: rgba(255, 255, 255, .7);
+}
+
+.icon-arrow-left:before {
+    content: "\ea40";
+}
+
 body {
     font-family: 'Alegreya Sans SC', sans-serif;
     text-align: center;
@@ -53,6 +104,7 @@ form input {
     align-content: center;
     grid-auto-flow: column;
     background-color: transparent;
+    color: gray;
 }
 
 form input:focus::-webkit-input-placeholder {
@@ -75,6 +127,7 @@ form textarea {
     outline: none;
     background-color: transparent;
     width: 800px;
+    color: gray;
 }
 
 form textarea:focus::-webkit-input-placeholder {
@@ -105,4 +158,33 @@ form textarea:focus {
     color: white;
     border: none;
     cursor: pointer;
+}
+
+.categoryContainer {
+    font-family: 'VT323', monospace;
+    width: 300px;
+    height: 60px;
+    justify-self: center;
+    font-size: 35px;
+    text-align: center;
+    background-color: transparent;
+    color: gray;
+    margin: 20px 0;
+    outline: none;
+    padding: 5px 10px;
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: 3.5px solid gray;
+    background-image: url("../../images/gray_arrow.png");
+    background-size: 10% 50%;
+    background-repeat: no-repeat;
+    background-position: 90% 50%;
+    border-radius: 15px;
+}
+
+.categoryContainer:focus {
+    color: white;
+    border: 3px solid white;
+    background-image: url("../../images/white_arrow.png");
+    background-size: 15% 55%;
 }
