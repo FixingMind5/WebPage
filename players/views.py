@@ -15,8 +15,9 @@ def return_user(request):
         'points': request.user.player.points,
         'cluster': request.user.player.cluster,
         'grade': request.user.player.grade,
-        'staff': request.user.is_staff
+        'staff': request.user.is_staff,
     }
+    print(data['grade'])
     # request.user.is_staff
     return render(request, 'players/player.html', data)
 
@@ -79,3 +80,11 @@ def index(request):
 @login_required
 def staff_panel(request):
     return render(request, 'players/staff_panel.html')
+
+@login_required
+def add_course(request):
+    data = {
+        'username': request.user.username,
+        'cluster': request.user.player.cluster
+    }
+    return render(request, 'players/add_course.html', data)

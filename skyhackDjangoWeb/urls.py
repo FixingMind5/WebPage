@@ -13,4 +13,5 @@ urlpatterns = [
     path('logout/', players_app_views.log_out, name='logout'),
     path('index/', players_app_views.index, name="index"),
     path('staff/', players_app_views.staff_panel, name="staff"),
+    path('senior/add/', players_app_views.add_course, name="add_course")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

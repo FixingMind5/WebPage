@@ -31,6 +31,18 @@ a {
   font-display: block;
 }
 
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon-add.eot?muilzb');
+  src:  url('fonts/icomoon-add.eot?muilzb#iefix') format('embedded-opentype'),
+    url('fonts/icomoon-add.ttf?muilzb') format('truetype'),
+    url('fonts/icomoon-add.woff?muilzb') format('woff'),
+    url('fonts/icomoon-add.svg?muilzb#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
@@ -55,6 +67,10 @@ a {
 
 .icon-pacman:before {
   content: "\e916";
+}
+
+.icon-plus:before {
+  content: "\ea0a";
 }
 
 .logout-button, .play-button {
@@ -145,20 +161,21 @@ a {
   padding: 10px;
 }
 
-.admin {
-  display: grid;
-  font-size: 60px;
-  text-align: center;
-  font-family: 'VT323', monospace;
-  color: yellow;
-  align-content: center;
-  position: fixed;
-  left: 80px;
-  top: 8px;
-  line-height: 50px;
-}
-
 .admin-button:hover {
   background-color: yellow;
   color: black;
+}
+
+.add-course-button {
+  color: #02D40D;
+  padding: 15px;
+  font-size: 40px;
+  margin: 5px;
+  transition: 500ms;
+  border-radius: 50%;
+}
+
+.add-course-button:hover {
+  color: white;
+  background-color: #02D40D;
 }

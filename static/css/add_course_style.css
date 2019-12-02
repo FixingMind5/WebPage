@@ -1,0 +1,108 @@
+body {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    margin: 0;
+    color: white;
+    background-image: url("../../images/add_course.jpg");
+    background-repeat: no-repeat;
+    background-size: cover ;
+    background-attachment: fixed;
+    /* background-position-y: 50% ; */
+}
+
+h1 {
+    margin: 0;
+    font-size: 60px;
+}
+
+h2 {
+    margin: 0;
+    font-size: 40px;
+}
+
+p {
+    font-size: 30px;
+}
+
+input {
+    outline: none;
+}
+
+form {
+    display: grid;
+    justify-content: center;
+    margin: 0;
+    background-color: rgba(0, 0, 0, .8);
+    margin: 25px 200px;
+    padding: 20px 0;
+    border-radius: 35px;
+}
+
+form input {
+    display: grid;
+    margin: 10px 0;
+    padding: 20px 20px 5px 20px;
+    border: none;
+    border-bottom: 3px solid gray;
+    font-size: 40px;
+    font-family: 'VT323', monospace;
+    text-align: center;
+    width: 400px;
+    justify-self: center;
+    align-content: center;
+    grid-auto-flow: column;
+    background-color: transparent;
+}
+
+form input:focus::-webkit-input-placeholder {
+    color: white;
+}
+
+form input:focus {
+    color: white;
+    border-bottom: 3px solid white;
+}
+
+form textarea {
+    border: 3px solid gray;
+    font-family: 'VT323', monospace;
+    font-size: 30px;
+    padding: 10px;
+    border-radius: 15px;
+    margin-top: 20px;
+    justify-self: flex-start;
+    outline: none;
+    background-color: transparent;
+    width: 800px;
+}
+
+form textarea:focus::-webkit-input-placeholder {
+    color: white;
+}
+
+form textarea:focus {
+    color: white;
+    border: 3px solid white;
+}
+
+.temary {
+    border-bottom: none;
+}
+
+.registerCourseButton {
+    height: 50px;
+    width: 300px;
+    justify-self: center;
+    margin-top: 30px;
+    padding: 10px;
+    font-size: 30px;
+    font-family: 'VT323', monospace;
+    background-color: white;
+    border-radius: 5px;
+    transition: 700ms;
+    background: linear-gradient(#02D40D 70%, #206623);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
