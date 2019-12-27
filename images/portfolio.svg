@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="47.05694516421772" width="47.113890328435446">
+  <defs>
+    <path id="path-2" opacity="1" fill-rule="evenodd" d="M8.556945164217723 12.939298105394244L38.55694516421772 12.939298105394244C41.31652028668772 12.939298105394244 43.55694516421772 15.179722982924243 43.55694516421772 17.939298105394244L43.55694516421772 42.056945164217744C43.55694516421772 44.81652028668775 41.31652028668772 47.056945164217744 38.55694516421772 47.056945164217744L8.556945164217723 47.056945164217744C5.797370041747723 47.056945164217744 3.5569451642177237 44.81652028668775 3.5569451642177228 42.056945164217744L3.5569451642177228 17.939298105394244C3.5569451642177228 15.179722982924243 5.797370041747722 12.939298105394244 8.556945164217723 12.939298105394244Z"/>
+    <mask id="mask-3" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0">
+      <rect opacity="1" x="0" y="0" width="47.113890328435446" height="47.05694516421772" fill="black"/>
+      <use xlink:href="#path-2" fill="white"/>
+    </mask>
+    <path id="path-6" opacity="1" fill-rule="evenodd" d="M21.556945164217723 22.35106281127662L26.556945164217723 22.35106281127662C27.108860188711724 22.35106281127662 27.556945164217723 22.79914778678262 27.556945164217723 23.35106281127662L27.556945164217723 30.76282751715926C27.556945164217723 31.31474254165326 27.108860188711724 31.76282751715926 26.556945164217723 31.76282751715926L21.556945164217723 31.76282751715926C21.005030139723722 31.76282751715926 20.556945164217723 31.31474254165326 20.556945164217723 30.76282751715926L20.556945164217723 23.35106281127662C20.556945164217723 22.79914778678262 21.005030139723722 22.35106281127662 21.556945164217723 22.35106281127662Z"/>
+    <mask id="mask-7" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0">
+      <rect opacity="1" x="0" y="0" width="47.113890328435446" height="47.05694516421772" fill="black"/>
+      <use xlink:href="#path-6" fill="white"/>
+    </mask>
+  </defs>
+  <g opacity="1">
+    <g opacity="1">
+      <path fill-opacity="0" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="3" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" fill-rule="evenodd" d="M10.556945164217723 15.292239281864695L14.344529206378953 11.57892159347122L16.556945164217723 9.409886340688047"/>
+    </g>
+    <g opacity="1">
+      <use xlink:href="#path-2" fill-opacity="0" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="6" stroke-linecap="butt" stroke-linejoin="miter" mask="url(#mask-3)"/>
+    </g>
+    <g opacity="1">
+      <path fill-opacity="0" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="3" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" fill-rule="evenodd" d="M7.056945164217723 17.056945164217723C7.056945164217723 17.056945164217723 11.78421789149045 29.156945164217653 13.556945164217723 26.736945164217666"/>
+    </g>
+    <g opacity="1">
+      <path fill-opacity="0" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="3" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" fill-rule="evenodd" d="M12.556945164217723 27.056945164217723L35.55694516421772 27.056945164217723"/>
+    </g>
+    <g opacity="1">
+      <use xlink:href="#path-6" fill="rgb(51,71,107)" fill-opacity="1"/>
+      <use xlink:href="#path-6" fill-opacity="0" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="4" stroke-linecap="butt" stroke-linejoin="miter" mask="url(#mask-7)"/>
+    </g>
+    <g opacity="1">
+      <path fill-opacity="0" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="3" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" fill-rule="evenodd" d="M40.05694516421772 16.46870987010027C40.05694516421772 16.46870987010027 36.05694516421772 29.28047457598246 34.55694516421772 26.71812163480602"/>
+    </g>
+    <g opacity="1">
+      <path fill-opacity="0" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="3" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" fill-rule="evenodd" d="M16.556945164217723 9.409886340688066C16.556945164217723 9.409886340688066 22.747421354693913 4.115768693629793 29.556945164217723 9.409886340688066"/>
+    </g>
+    <g opacity="1">
+      <path fill-opacity="0" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="3" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" fill-rule="evenodd" d="M29.556945164217723 9.409886340688047L34.55694516421772 14.704003987747333"/>
+    </g>
+  </g>
+</svg>

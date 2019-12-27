@@ -1,305 +1,315 @@
 body {
-    font-family: 'Alegreya Sans SC', sans-serif;
-    /*background-color: rgba(186, 197, 224, .4);*/
-    margin: 0;
+    margin: 0px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .mainPage {
-    background-image: url("../../images/mainImage.jpg");
-    display: grid;
-    grid-auto-flow: row;
-    background-size: 100% 100vh;
+    background-image: url("../../images/Hero_Background.svg");
+    background-size: cover;
     background-repeat: no-repeat;
-    height: calc(100vh - 48px);
-    grid-template-rows: 250px 140px 60px;
-    background-attachment: fixed;
-}
-
-.mainImageAlpha {
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .4));
-    display: grid;
-    padding: 0;
-    height: calc(100vh - 48px);
-}
-
-.skyHackImage {
-    background-image: url("../../images/SkyHack.png");
-    align-self: center;
-    justify-self: center;
-    height: 250px;
-    width: 450px;
-    background-size: 450px 250px;
-    margin: 0;
-}
-
-.mainTitle {
-    padding: 20px;
-    font-family: 'Alegreya Sans SC', sans-serif;
-    font-size: 70px;
-    color: white;
-    text-align: center;
-    margin: 0;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-
-.mainPage h3 {
-    color: white;
-    font-family: 'Alegreya Sans SC', sans-serif;
-    font-weight: 400;
-    font-size: 35px;
-    padding: 0 20px;
-    text-align: center;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    margin-top: 0;
-}
-
-.startButton {
-    display: grid;
-    background-color: transparent;
-    border: 3px solid white;
-    margin: 0 0 30px 0;
-    width: 400px;
-    height: 100px;
-    outline: none;
-    border-radius: 15px;
-    cursor: pointer;
-    color: white;
-    /*align-self: center;*/
-    justify-self: center;
-    font-size: 50px;
-    transition: 500ms;
-    text-align: center;
-    align-items: center;
-}
-
-.startButton:hover {
-    background-color: white;
-    color: black;
-}
-
-.students {
-    font-family: 'Work Sans', sans-serif;
+    background-position: 50% 50%;
+    height: 60vh;
     width: 100vw;
-    font-size: 40px;
-    font-weight: 400;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-
-.activity {
-    margin: 100px 200px;
-    box-shadow: -15px 15px 30px black;
-    /*padding: 25px 50px;*/
-    display: grid;
-    grid-template-rows: 70px 200px 100px;
-    height: 500px;
-    border-radius: 5px;
+    padding: 20px 0;
+    margin: 2px 0;
+    font-family: 'Open Sans', sans-serif;
     color: white;
-    /*color: rgb(70, 99, 148);*/
-}
-
-.activityBackgroundAlpha {
-    background-color: rgba(0, 0, 0, .6);
     display: grid;
-    height: 500px;
-    width: 940px;
-    margin: 0;
-    align-content: space-evenly;
-    padding: 0 50px;
-    border-radius: 35px;
+    grid-auto-flow: column;
+    z-index: 0;
+    justify-content: center;
 }
 
-.activity h3 {
-    margin: 0;
-    grid-row: 1;
-    transition: 600ms;
-    transform-origin: center;
-    transform: scaleX(0) scaleY(0);
-    text-align: center;
-    text-shadow: -1px 1px 5px black;
+.mainPage li {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    margin: 20px 0;
 }
 
-.activity h3[data-scroll="in"] {
-    transform: scaleX(1) scaleY(1);
-}
-
-.activity p {
-    font-size: 35px;
-    font-weight: bold;
-    grid-row: 2;
-    transform: scaleX(0) scaleY(0);
-    transform-origin: center;
-    transition: 600ms;
-    text-shadow: -1px 1px 2px black;
-    text-align: center;
-    margin: 0;
-    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
-}
-
-.activity p[data-scroll="in"] {
-    transform: scaleX(1) scaleY(1);
-}
-
-.activityButton {
-    width: 400px;
-    border: none;
-    background-color: limegreen;
-    font-size: 20px;
-    color: white;
-    border-radius: 15px;
-    cursor: pointer;
+.mainPage img {
     justify-self: center;
-    margin: 25px 0;
-    grid-row: 3;
-    transition: 600ms;
-    transform-origin: center;
-    height: 50px;
-    transform: scaleX(0) scaleY(0);
-    /*box-shadow: -5px 5px 10px black;*/
-}
-
-.activityButton[data-scroll="in"] {
-    transform: scaleX(1) scaleY(1);
-}
-
-.activityButton:hover {
-    background-color: white;
-    color: limegreen;
-}
-
-.learn, .imagine, .create, .hack {
-    /*background-image: url("https://picsum.photos/id/1010/height/width");*/
-    background-image: url("../../images/feymann.JPG");
-    background-repeat: no-repeat;
-    border-radius: 35px;
-    background-size: cover;
-    background-position: center center;
-}
-
-.imagine {
-    background-image: url("../../images/lennon.JPG");
-    background-position: center 40%;
-}
-
-.create {
-    background-image: url("../../images/jobs.JPG");
-
-}
-.hack {
-    background-image: url("../../images/turing.jpg");
-}
-
-.hiring {
     display: grid;
-    grid-template-columns: 600px 1fr;
-    padding: 50px 100px;
-    height: 50vh;
-    background-image: linear-gradient(rgba(70, 99, 148, 0), rgba(70, 99, 148, 1));
-    color: white;
+    width: 40px;
+    height: 40px;
+}
+
+.book {
+    width: 30px;
+    height: 30px;
+}
+
+.hero {
+    margin-left: 150px;
+}
+
+.hero h1 {
+    font-size: 30px;
     text-align: center;
 }
 
-.hiringCarroussel {
-    /*position: relative;*/
-}
-
-.hiringTextBox {
-    padding: 0 20px;
+.sign-up {
+    text-align: center;
+    margin-right: 150px;
+    margin-top: 30px;
     display: grid;
-    grid-template-rows: 55px 40px 100px 100px;
-    align-content: center;
-    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
-    text-shadow: none;
+    grid-template-columns: 250px 250px;
+    grid-template-rows: repeat(8, 45px);
+    outline: none;
+    width: 500px;
 }
 
-.hiringTextBox h3 {
-    font-size: 45px;
+.sign-up h1 {
     margin: 0;
+    grid-column: 1/-1;
+    grid-row: 1;
 }
 
-.hiringTextBox h5 {
-    font-size: 20px;
+.sign-up h3 {
     margin: 0;
+    grid-column: 1/-1;
+    grid-row: 2;
 }
 
-.hiringTextBox p {
-    font-size: 20px;
-    margin: 0;
+.sign-up .field {
+    background-color: #D7D9DF;
+    border: 1px solid #304366;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 15px;
+    margin: 2.5px 0;
+    outline: none;
 }
 
-.photo {
-    display: grid;
-    width: 600px;
-    height: 400px;
-    background-size: cover;
+.field {
+    margin-right: 10px;
 }
 
-.fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1s;
-    animation-name: fade;
-    animation-duration: 1s;
+.sign-up .field::placeholder {
+    color: #304366;
 }
 
-@-webkit-keyframes fade {
-    from {
-        opacity: .4;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fade {
-    from {
-        opacity: .4;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.photo img {
-    width: 600px;
-    height: 400px;
-    border-radius: 35px;
-}
-
-.hiringButton {
+.username {
+    grid-column: 1/-1;
     grid-row: 4;
 }
 
-.powered {
-    background-image: url("../../images/poweredBackground.jpg");
-    background-size: cover;
-    background-position: 50% 20%;
-    color: white;
-    font-size: 25px;
-    text-align: center;
-    padding: 0;
-    background-attachment: fixed;
+.signup-email {
+    grid-column: 1/-1;
+    grid-row: 5;
 }
 
-.poweredAlpha {
-    display: grid;
-    background-color: rgba(0, 0, 0, .5);
-    margin: 0;
-    height: 100%;
-}
-
-.logos {
+.birth-date-container {
+    grid-column: 1/-1;
+    grid-row: 6;
     display: grid;
     grid-auto-flow: column;
+    align-items: center;
+}
+
+.birth-date-container select {
+    background: none;
+    background-color: #D7D9DF;
+    color: #304366;
+    border: none;
+    height: 30px;
+}
+
+.form-button {
+    grid-column: 1/-1;
+    grid-row: 8;
+    background-color: #B99F7C;
+    border: none;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 500ms;
+}
+
+.form-button:hover {
+    background-color: #D2B58E;
+}
+
+.courses {
+    text-align: center;
+    display: grid;
     justify-content: center;
-    margin: 0 0 20px 0;
 }
 
-.poweredImages {
-    width: 300px;
-    height: 200px;
+.courses h1 {
+    margin: 0;
 }
 
-.acatlan {
+.courses h3 {
+    margin: 0;
+}
+
+.courses img {
+    width: 60vw;
+    margin: 10px 0;
+}
+
+.courses-button {
+    display: grid;
+    align-content: center;
+    background-color: #B99F7C;
+    text-decoration: none;
+    color: white;
+    width: 60vw;
+    height: 35px;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 25px;
+    transition: 500ms;
+    box-shadow: 0 2px 8px black;
+    margin-bottom: 30px;
+}
+
+.courses-button:hover {
+    background-color: #D2B58E;
+}
+
+.events {
+    background-image: linear-gradient(to right, #643DC8, #CC8A4B);
+    display: grid;
+    justify-content: center;
+    margin: 30px 0;
+    padding: 50px 400px;
+}
+
+.events-container {
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 70px 100px 70px 100px 35px 70px 70px 50px;
+    justify-content: space-evenly;
+    align-content: center;
+}
+
+.events h2 {
+    margin: 0;
+}
+
+.events h4 {
+    margin: 0;
+}
+
+.team-title {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.team-description {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.community-title {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.community-description {
+    grid-column: 2;
+    grid-row: 4;
+}
+
+.match-title {
+    grid-column: 1;
+    grid-row: 5;
+}
+
+.match-description {
+    grid-column: 1;
+    grid-row: 6;
+}
+
+.team {
     width: 200px;
+    grid-column: 2;
+    grid-row: 1/2;
+    display: grid;
+    justify-self: center;
+}
+
+.talk {
+    width: 200px;
+    grid-column: 1;
+    grid-row: 3/4;
+}
+
+.laderboard {
+    display: grid;
+    width: 150px;
+    grid-column: 2;
+    grid-row: 5/6;
+    justify-self: center;
+}
+
+.events a {
+    grid-row: 8;
+    grid-column: 1/-1;
+    width: 50vw;
+    text-decoration: none;
+    color: white;
+    background-color: #B99F7C;
+    text-align: center;
+    cursor: pointer;
+    align-content: center;
+    display: grid;
+    transition: 1s;
+    height: 35px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px black;
+    justify-self: center;
+    align-self: end;
+    font-size: 25px;
+}
+
+.events a:hover {
+    background-color: #D2B58E;
+}
+
+.hire {
+    display: grid;
+    grid-auto-flow: column;
+    padding: 30px 200px;
+}
+
+.talent {
+    border-right: 3px solid #32476C;
+}
+
+.talent, .enterprise {
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    padding: 0 50px;
+}
+
+.talent img, .enterprise img {
+    display: grid;
+    height: 150px;
+    width: 150px;
+    justify-self: center;
+    margin-bottom: 20px;
+}
+
+.talent a, .enterprise a {
+    text-decoration: none;
+    color: white;
+    background-color: #B99F7C;
+    transition: 500ms;
+    border-radius: 5px;
+    width: 300px;
+    height: 25px;
+    padding: 10px;
+    font-size: 20px;
+    box-shadow: 0px 2px 8px black;
+}
+
+.talent a:hover, .enterprise a:hover {
+    background-color: #D2B58E;
 }

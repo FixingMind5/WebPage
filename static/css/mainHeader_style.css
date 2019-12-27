@@ -1,89 +1,148 @@
-body {
-    margin: 0;
-}
-
-a {
-    text-decoration: none;
-}
-
 header {
+    background-image: linear-gradient(to right, #2E4061, #466394);
+    padding: 0 10px;
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: repeat(4, 1fr) 100px 100px;
-    padding: 5px 20px;
-    margin: 0;
-    width: calc(100vw - 40px);
-    justify-content: flex-end;
-    transition: 1s;
-    background-position: 50% 80%;
-    background-color: rgba(77, 99, 148, 1);
-}
-
-.sticky {
-    position: fixed;
+    grid-template-columns: 110px 515px 380px 400px;
+    animation: none;
+    box-shadow: 0 4px 8px black;
+    margin: 0px;
+    font-family: 'Open Sans', sans-serif;
     z-index: 4;
-    background-color: rgba(77, 99, 148, .5);
-    background-image: none;
 }
 
-.scrolled {
-    background-color: rgba(70, 99, 148, .4);
-}
-
-.miniLogo img {
-    width: 50px;
-    height: 50px;
-}
-
-.searchTextField {
-    grid-column: 1/2;
-    justify-self: flex-end;
-}
-
-.search {
-    display: grid;
-    background-color: transparent;
-    font-size: 20px;
-    border: 3px solid white;
-    outline: none;
-    padding: 5px 20px;
-    border-radius: 5px;
-    color: white;
-    width: 400px;
-    background-image: url("../../images/searchIcon.png");
-    background-size: 20px 20px;
+.skyhack-logo {
+    background-image: url("../../images/SkyHack.png");
+    background-size: cover;
     background-repeat: no-repeat;
-    background-position: 95% 50%;
+    background-position: 0 50%;
+    width: 110px;
+    height: 54px;
+    display: grid;
 }
 
-.search::placeholder {
-    color: white;
+.buscador {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 380px 60px;
+    align-content: center;
 }
 
-.button {
-    border: none;
-    color: white;
-    background-color: transparent;
-    font-size: 20px;
-    cursor: pointer;
+.buscador input {
+    height: 30px;
+    margin: 0 0 0 10px;
     border-radius: 5px;
-    transition: 500ms;
+    outline: none;
+    border: 1px solid #304366;
+    padding: 0 10px;
+    color: #304366;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+}
+
+.buscador a {
+    color: white;
+    background-color: #B99F7C;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 30px;
+    align-self: center;
+    border: 1px solid #304366;
+    font-size: 13px;
+    align-content: center;
+    display: grid;
     text-align: center;
-    align-items: center;
+    font-family: 'Open Sans', sans-serif;
 }
 
-.button:hover {
-    background-color: white;
-    color: rgb(70, 99, 148);
-}
-
-.mainSignUpButton {
+.links {
     display: grid;
-    grid-column: 5;
+    grid-auto-flow: column;
+    align-content: center;
+    font-family: 'Open Sans', sans-serif;
+    grid-template-columns: 75px 75px 100px 75px;
+    border-right: 1px solid white;
+    margin: 7.5px 10px;
+    text-align: center;
+    justify-content: end;
 }
 
-.mainLogInButton {
+.links a {
+    text-decoration: none;
+    color: white;
+    margin-right: 50px;
+}
+
+.links p {
+    transition: 500ms;
+}
+
+.links p:hover {
+    text-shadow: 0 0 2px white;
+}
+
+.login {
     display: grid;
-    grid-column: 6;
-    border: 2px solid white;
+    grid-auto-flow: column;
+    grid-template-columns: 150px 150px 100px;
+    grid-template-rows: 45px 25px;
+    justify-content: center;
+    align-content: center;
+    margin-left: 20px;
+}
+
+.login input {
+    margin: 10px 5px 0 0;
+    border: 1px solid #304366;
+    border-radius: 5px;
+    outline: none;
+    padding: 0 10px;
+}
+
+.login input::placeholder {
+    color: #304366;
+}
+
+.email {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 12px;
+}
+
+.password {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 12px;
+}
+
+.get-in {
+    grid-column: 3;
+    grid-row: 1;
+    color: white;
+    border: none;
+    cursor: pointer;
+    background: none;
+    background-color: #B99F7C;
+    text-decoration: none;
+    align-content: center;
+    margin: 10px 5px 0 0;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.forgotten {
+    grid-column: 2;
+    grid-row: 2/-1;
+    font-size: 10px;
+    color: #B9C1CE;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 5px 0;
 }

@@ -1,12 +1,28 @@
 <head>
     {% load static %}
     <link rel="stylesheet" href="{% static "css/mainHeader_style.css" %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <header id="header">
-  <div class="searchTextField">
-    <input class="search" type="text" placeholder="Buscar">
+  <div class="skyhack-logo">
   </div>
-    <a href="{% url "signup" %}" class="button mainSignUpButton" type="submit">Sign Up</a>
-    <a href="{% url "login" %}" class="button mainLogInButton" type="submit">Log In</a>
+  <div class="buscador">
+    <input type="text" placeholder="Busca en SkyHack">
+    <a href="">Buscar</a>
+  </div>
+  <div class="links">
+    <a href="#main">Inicio</a>
+    <a href="#courses">Cursos</a>
+    <a href="#events">Eventos</a>
+    <a href="#faq">FAQ</a>
+  </div>
+
+  <form class="login" method="POST" action="{% url "login" %}">
+    {% csrf_token %}
+    <input class="email" type="text" placeholder="Correo Electrónico" name="email">
+    <input class="password" type="password" placeholder="Contraseña" name="password">
+    <a class="forgotten" href="">Olvidé mi correo y contraseña</a>
+    <input type="submit" class="get-in" href="" value="Ingresar">
+  </form>
 </header>
 <script src="{% static "scripts/mainHeader.js" %}"></script>

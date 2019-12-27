@@ -4,22 +4,40 @@
     <link rel="stylesheet" href="../../static/css/mainFooter_style.css">
 </head>
 <footer>
-    <p>Made with ❤️ by Manu</p>
-    <div class="socialMedia">
-        <a href="">
-            <img src="../../images/gitHub.png" alt="">
-        </a>
-        <a href="">
-            <img src="../../images/facebook.png" alt="">
-        </a>
-        <a href="">
-            <img src="../../images/mail.png" alt="">
-        </a>
-        <a href="">
-            <img src="../../images/twitter.png" alt="">
-        </a>
-        <a href="">
-            <img src="../../images/youtube.png" alt="">
-        </a>
+    <div class="start">
+        <img class="logo" src="../../images/SkyHack.png" alt="">
+        <div class="bottom-links">
+            <a href="">Documentos</a>
+            <a href="">Inicio</a>
+            <a href="">Cursos</a>
+            <a href="">Eventos</a>
+            <a href="">FAQ</a>
+            <a href="">Acerca de nosotros</a>
+        </div>
+        <div class="social-media">
+            <a href=""><img src="../../images/Github.png" alt=""></a>
+            <a href=""><img src="../../images/Facebook.png" alt=""></a>
+            <a href=""><img src="../../images/Youtube.png" alt=""></a>
+            <a href=""><img src="../../images/Twitter.png" alt=""></a>
+            <a href=""><img src="../../images/Instagram.png" alt=""></a>
+        </div>
+    </div>
+    <div class="email-me">
+        <p>No te pierdas eventos increíbles</p>
+        <div class="footer-form">
+            {% csrf_token %}
+            <input type="email" placeholder="Registra tu e-mail">
+            <input type="submit" value="¡Notifícame!">
+        </div>
+    </div>
+    <div class="end">
+        <div class="powered-by">
+            <p>Powered by</p>
+            <img class="logo-unam" src="../../images/logoUnam.png" alt="">
+            <img class="stakeholders-logos" src="../../images/logoAcatlan.png" alt="">
+            <a href=""><img class="stakeholders-logos" src="../../images/Github_blanco.png" alt=""></a>
+            <a href=""><img class="stakeholders-logos" src="../../images/hack_club.png" alt=""></a>
+        </div>
+        <p>De MAC con 💙 para el mundo</p>
     </div>
 </footer>

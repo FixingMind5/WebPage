@@ -5,108 +5,97 @@
     <title>SkyHack | Main Page</title>
     {% load static %}
     <link rel="stylesheet" href="{% static "css/index_style.css" %}">
-    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:400,900|Work+Sans:400,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
     {% include "players/mainHeader.html" %}
     {% block header %}
     {% endblock %}
-  <section class="mainPage">
-    <div class="mainImageAlpha">
-      <div class="skyHackImage"></div>
-      <h1 class="mainTitle">Formamos e impulsamos el talento universitario en tecnología</h1>
-      <h3>Compartiendo entre nosotros el conocimiento y motivando el uso de nuevas tecnologías</h3>
-        <a href="{% url "signup" %}" class="startButton" type="submit">Comenzar</a>
-    </div>
-  </section>
-  <section class="students">
-      <div class="activity learn">
-          <div class="activityBackgroundAlpha">
-              <h3>Aprende</h3>
-              <p>
-                  Comienza tu carrera en tecnología inscribiéndote a alguno de nuestros
-                  cursos.
-                  <br>
-                  Son totalmente gratis, tenemos cursos sobre programación, marketing,
-                  publicidad y matemáticas
-              </p>
-              <input class="activityButton startCourseButton" type="button" value="Encuentra tu curso">
-          </div>
-      </div>
-       <div class="activity imagine">
-           <div class="activityBackgroundAlpha">
-               <h3>Imagina</h3>
-               <p>
-                   Comparte ideas con toda la comunidad para llegar a una sola
-                   que resuelva diversos tipos de problemas, te rete y finalmente te ayude
-                   a crecer en el proceso.
-               </p>
-               <input class="activityButton startCourseButton" type="button" value="Crea un proyecto">
-           </div>
-      </div>
-       <div class="activity create">
-           <div class="activityBackgroundAlpha">
-               <h3>Crea</h3>
-               <p>
-                   Emplea tu conocimiento para desarrollar esas ideas increíbles, también puedes
-                   resolver ejercicios para practicar lo aprendido.
-               </p>
-               <input class="activityButton startCourseButton" type="button" value="Únete a algún proyecto">
-           </div>
-      </div>
-       <div class="activity hack">
-          <div class="activityBackgroundAlpha">
-              <h3>Hackea</h3>
-              <p>
-                  Usa toda tu creatividad, tu conocimiento y tus habilidades para llevar esa idea a la vida
-                  cotidiana en un concurso donde demostrarás todo lo que has aprendido acerca de esta
-                  industria.
-              </p>
-              <input class="activityButton startCourseButton" type="button" value="Participa en un hackathon">
-          </div>
-      </div>
-  </section>
-  <section class="hiring">
-      <div class="hiringCarroussel">
-          <div class="photo firstPhoto fade">
-              <img src="../../images/richi.JPG">
-          </div>
-          <div class="photo secondPhoto fade">
-              <img src="../../images/graphDesigner.JPG">
-          </div>
-          <div class="photo thirdPhoto fade">
-              <img src="../../images/team.JPG">
-          </div>
-      </div>
-      <div class="hiringTextBox">
-          <h3>Encuentra talento</h3>
-          <h5>Se el primero en contratar a tu futuro mejor elemento </h5>
-          <p>
-              Sky Hack te ofrece un amplio catálogo de talento en el cuál se muestran
-              personas que han dedicado gran parte de su carrera universitaria a volverse
-              competitivos en la industria en una de las mejores universidades en latino américa
-          </p>
-          <input class="activityButton hiringButton" type="button" value="Encontrar talento">
-      </div>
-  </section>
-  {% include "players/mainFooter.html" %}
-  {% block footer %}
-  {% endblock %}
-  <section class="powered">
-      <div class="poweredAlpha">
-          <p>Powered by</p>
-          <div class="logos">
-              <img class="poweredImages acatlan" src="../../images/logoAcatlan.png" alt="">
-              <img class="poweredImages unam" src="../../images/logoUnam.png" alt="">
-          </div>
-      </div>
-  </section>
+    <section id="main" class="mainPage">
+        <div class="hero">
+            <h1>Entrena tu talento en tecnología <br> con SkyHack</h1>
+            <ul>
+                <li><img class="book" src="../../images/book.svg" alt=""><p>Domina nuevas tecnologias con un curso</p></li>
+                <li><img src="../../images/flag.svg" alt=""><p>Reta a tus amigos en un evento</p></li>
+                <li><img src="../../images/portfolio.svg" alt=""><p>Adquiere talento para tu empresa</p></li>
+            </ul>
+        </div>
+        <form class="sign-up">
+            <h1>Registrarme</h1>
+            <h3>Estás a unos pasos de una vida increíble</h3>
+            {% csrf_token %}
+            <input class="field" type="text" placeholder="Nombre" name="name">
+            <input class="field" type="text" placeholder="Apellidos" name="last_name">
+            <input class="field username" type="text" placeholder="Nombre de Usuario" name="username">
+            <input class="field signup-email" type="text" placeholder="Correo electrónico" name="email">
+            <input class="field" type="password" placeholder="Contraseña" name="password">
+            <input class="field" type="password" placeholder="Confirma contraseña" name="confirm_password">
+            <div class="birth-date-container">
+                <p class="birth-date">Fecha de nacimiento</p>
+                <select name="day">
+                    <option value="0">Day</option>
+                    {% for day in days %}
+                        <option value="{{ day }}">{{ day }}</option>
+                    {% endfor %}
+                </select>
+                <select name="month">
+                    <option value="Month">Month</option>
+                    <option value="Jan">Enero</option>
+                    <option value="Feb">Febrero</option>
+                    <option value="Mar">Marzo</option>
+                    <option value="April">Abril</option>
+                    <option value="May">Mayo</option>
+                    <option value="Jun">Junio</option>
+                    <option value="Jul">Julio</option>
+                    <option value="Aug">Agosto</option>
+                    <option value="Sep">Septiembre</option>
+                    <option value="Oct">Octubre</option>
+                    <option value="Nov">Noviembre</option>
+                    <option value="Dec">Diciembre</option>
+                </select>
+                <select name="year">
+                    {% for year in years %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <input class="form-button" type="submit" value="¡Inscríbeme!">
+        </form>
+    </section>
+    <section id="courses" class="courses">
+        <h1>Transforma tu futuro con nuestros cursos</h1>
+        <h3>Descubre cómo cambiar tu vida adquiriendo nuevas habilidades, ¡gratis!</h3>
+        <img src="../../images/cursos.png" alt="">
+        <a class="courses-button" href="">¡Aprender ya!</a>
+    </section>
+    <section id="events" class="events">
+        <div class="events-container">
+            <h2 class="team-title">Forma un equipo imparable</h2>
+            <h4 class="team-description">Compite contra otros equipos y muéstranos de qué están hechos.</h4>
+            <img class="team" src="../../images/equipo.png" alt="">
+            <h2 class="community-title">La comunidad tiene algo que decirte</h2>
+            <h4 class="community-description">Descubre qué es.</h4>
+            <img class="talk" src="../../images/charla.png" alt="">
+            <h2 class="match-title">¿Crees que eres el mejor?</h2>
+            <h4 class="match-description">Demuéstralo en nuestros concursos.</h4>
+            <img class="laderboard" src="../../images/laderboard.png" alt="">
+            <a href="">¡Comienza ahora!</a>
+        </div>
+    </section>
+    <section id="hire" class="hire">
+        <div class="talent">
+            <img src="../../images/dev.png" alt="">
+            <h3>Existe mucho talento <br> buscando impulsar tu empresa</h3>
+            <a href="">¡Descúbrelo!</a>
+        </div>
+        <div class="enterprise">
+            <img src="../../images/iman.png" alt="">
+            <h3>Atrae ese talento a tu empresa <br> en cualquier momento</h3>
+            <a href="">Registrándote</a>
+        </div>
+    </section>
+    {% include "players/mainFooter.html" %}
+    {% block footer %}
+    {% endblock %}
 </body>
-<script src="{%  static "scripts/scroll-out.js" %}"></script>
-<script type="text/javascript">
-    ScrollOut({
-        targets: 'div,h3,p,input'
-    });
-</script>
-<script src="{% static "scripts/indexSlideShow.js" %}"></script>
 </html>

@@ -23,7 +23,7 @@ def return_user(request):
 
 def return_login(request):
     if request.method == 'POST':
-        user = authenticate(
+        user = authenticate (
             username=request.POST['email'],
             password=request.POST['password']
         )
@@ -32,8 +32,8 @@ def return_login(request):
             login(request, user)
             return redirect('player')
         else:
-            return render(request, 'players/login.html', {'error': 'Invalid email or password'})
-    return render(request, 'players/login.html')
+            return render(request, 'players/index.html', {'error': 'Invalid email or password'})
+    return render(request, 'players/index.html')
 
 
 @login_required
@@ -74,7 +74,9 @@ def signup(request):
 
 
 def index(request):
-    return render(request, 'players/index.html')
+    days = [i for i in range(1, 31)]
+    years = [1960 + i for i in range(1, 46)]
+    return render(request, 'players/index.html', { "days": days, "years": years})
 
 @login_required
 def staff_panel(request):
