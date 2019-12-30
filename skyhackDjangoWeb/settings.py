@@ -25,7 +25,7 @@ SECRET_KEY = 'rfw-lq-_0t(qdrd__hq5_xv6q^)taa*6^*5s7b0!_1nfg*f@8*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -143,3 +143,11 @@ MEDIA_URL = os.path.join(BASE_DIR, '/images/')
 MEDIA_ROOT = 'images/'
 
 LOGIN_URL = 'login'
+
+# Mail configure settings
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'skyhackclub@gmail.com'
+EMAIL_HOST_PASSWORD = 'damqe4-fajsab-sijSaq'
+EMAIL_PORT = 587

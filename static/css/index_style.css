@@ -71,18 +71,14 @@ body {
     grid-row: 2;
 }
 
-.sign-up .field {
+.field {
     background-color: #D7D9DF;
     border: 1px solid #304366;
     border-radius: 5px;
     padding: 0 10px;
     font-size: 15px;
-    margin: 2.5px 0;
+    margin: 2.5px 5px;
     outline: none;
-}
-
-.field {
-    margin-right: 10px;
 }
 
 .sign-up .field::placeholder {
@@ -113,6 +109,7 @@ body {
     color: #304366;
     border: none;
     height: 30px;
+    margin: 0 5px;
 }
 
 .form-button {
@@ -125,6 +122,7 @@ body {
     cursor: pointer;
     border-radius: 5px;
     transition: 500ms;
+    margin: 0 5px;
 }
 
 .form-button:hover {
