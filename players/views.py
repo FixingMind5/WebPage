@@ -1,4 +1,5 @@
 # Django Utilities
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -8,7 +9,9 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.http import HttpResponse
 from .tokens import account_activation_token
 from django.template.loader import render_to_string
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, EmailMultiAlternatives
+from django.contrib import messages
+from django.contrib.auth.hashers import check_password
 
 # Django Models
 from django.contrib.auth.models import User
@@ -21,8 +24,10 @@ from django.db.utils import IntegrityError
 
 
 # Utilities
+from skyhackDjangoWeb.backend.backends import email_authentication
 from datetime import datetime, date
-
+from email.mime.image import MIMEImage
+import os
 
 
 @login_required
@@ -40,13 +45,18 @@ def return_user(request):
 
 def return_login(request):
     if request.method == 'POST':
-        user = authenticate (
-            username=request.POST['email'],
-            password=request.POST['password']
+        email = request.POST['email']
+        password = password=request.POST['password']
+        username = User.objects.get(email=email)
+        username = username.username
+        user = email_authentication.authenticate (
+            request,
+            username=email,
+            password=password
         )
-        # import pdb; pdb.set_trace()
+            
         if user is not None:
-            login(request, user)
+            login(request, user, backend='skyhackDjangoWeb.backend.backends.EmailAuthBackend')
             return redirect('player')
         else:
             return render(request, 'players/index.html', {'error': 'Invalid email or password'})
@@ -96,10 +106,14 @@ def signup(request):
         user.is_active = False
         user.save()
 
-        player = Player.objects.create(user=user, birth_date=birth_date, age=age)
-        player.save()
+        try:
+            player = Player.objects.create(user=user, birth_date=birth_date, age=age, email=email)
+            player.save()
+        except IntegrityError:
+            return render(request, 'players/index.html', {'error': 'User or email already taken'})
 
         # Creating email confirmation
+        email_confirmation_message = False
         current_site = get_current_site(request)
         mail_subject = 'Activa tu cuenta 💪'
         message = render_to_string('players/account_active_email.html', {
@@ -110,13 +124,30 @@ def signup(request):
             'token': account_activation_token.make_token(user),
         })
         user_email = user.email
-        email = EmailMessage(
+        email = EmailMultiAlternatives(
             mail_subject, message, to=[user_email]
         )
-        email.send()
-        print('Email sended')
+        email.attach_alternative(message, "text/html")
+        """
+        # Adding flavor
+        # This section is to attach images to an e-mail
+        kim_image_file = open(os.path.join("images", "this_gurl.png"), mode='rb')
+        sali_image_file = open(os.path.join("images", "something_alive_sali.png"), mode='rb')
+        msg_kim_image = MIMEImage(kim_image_file.read(), _subtype="png")
+        msg_sali_image = MIMEImage(sali_image_file.read(), _subtype="png")
+        kim_image_file.close()
+        sali_image_file.close()
 
-        return redirect('login')
+        msg_kim_image.add_header('Content-ID', '<kim_image>')
+        msg_sali_image.add_header('Content-ID', '<sali_image>')
+        email.attach(msg_kim_image)
+        email.attach(msg_sali_image)
+        """
+
+        email.send()
+        email_confirmation_message = True
+
+        return render(request, 'players/index.html', { "message": email_confirmation_message })
     return render(request, 'players/register.html')
 
 
@@ -124,17 +155,15 @@ def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid) # Obtaining user from primary key
-        # import pdb; pdb.set_trace()
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        print(f"{user.is_active} activo")
-        login(request, user)
-        return HttpResponse('Gracias por confirmar tu registro. Ahora puedes ingresar')
+        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+        return redirect('player')
     else:
-        return HttpResponse('El link de activación es ¡inválido!')
+        return render(request, 'players/index.html', { 'invalid_message': True})
 
 
 def index(request):
@@ -154,7 +183,7 @@ def index(request):
         11: "Noviembre",
         12: "Diciembre"
     }
-    return render(request, 'players/index.html', { "days": days, "months": months, "years": years })
+    return render(request, 'players/index.html', { "days": days, "months": months, "years": years})
 
 @login_required
 def staff_panel(request):

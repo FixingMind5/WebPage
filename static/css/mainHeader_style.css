@@ -75,13 +75,10 @@ header {
     text-decoration: none;
     color: white;
     margin-right: 50px;
-}
-
-.links p {
     transition: 500ms;
 }
 
-.links p:hover {
+.links a:hover {
     text-shadow: 0 0 2px white;
 }
 

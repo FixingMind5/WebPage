@@ -90,4 +90,32 @@
     {% block footer %}
     {% endblock %}
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+{% if message %}
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Bienvenido a bordo 💪',
+        text: 'Hemos enviado un correo de confirmación a tu email',
+    })
+</script>
+{% endif %}
+{% if invalid_message %}
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'El link es inválido 😞',
+        text: 'Puede que ya hayas utilizado este link'
+    })
+</script>
+{% endif %}
+{% if error %}
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Usuario inválido 😞',
+        text: 'Revisa tu correo o tu contraseña'
+    })
+</script>
+{% endif %}
 </html>
