@@ -24,7 +24,7 @@ from django.db.utils import IntegrityError
 
 
 # Utilities
-from skyhackDjangoWeb.backend.backends import email_authentication
+# from skyhackDjangoWeb.backends import email_authentication
 from datetime import datetime, date
 from email.mime.image import MIMEImage
 import os
@@ -47,26 +47,22 @@ def return_login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = password=request.POST['password']
-        username = User.objects.get(email=email)
-        username = username.username
-        user = email_authentication.authenticate (
-            request,
+        user = authenticate (
             username=email,
             password=password
         )
-            
         if user is not None:
-            login(request, user, backend='skyhackDjangoWeb.backend.backends.EmailAuthBackend')
+            login(request, user)
             return redirect('player')
         else:
-            return render(request, 'players/index.html', {'error': 'Invalid email or password'})
+            return render(request, 'players/index.html', {'error': True})
     return render(request, 'players/index.html')
 
 
 @login_required
 def log_out(request):
     logout(request)
-    return redirect('login')
+    return redirect('index')
 
 
 def signup(request):
