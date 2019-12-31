@@ -115,7 +115,6 @@ def signup(request):
         message = render_to_string('players/account_active_email.html', {
             'user': user,
             'domain': current_site.domain,
-            # 'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
             'token': account_activation_token.make_token(user),
         })
@@ -124,21 +123,6 @@ def signup(request):
             mail_subject, message, to=[user_email]
         )
         email.attach_alternative(message, "text/html")
-        """
-        # Adding flavor
-        # This section is to attach images to an e-mail
-        kim_image_file = open(os.path.join("images", "this_gurl.png"), mode='rb')
-        sali_image_file = open(os.path.join("images", "something_alive_sali.png"), mode='rb')
-        msg_kim_image = MIMEImage(kim_image_file.read(), _subtype="png")
-        msg_sali_image = MIMEImage(sali_image_file.read(), _subtype="png")
-        kim_image_file.close()
-        sali_image_file.close()
-
-        msg_kim_image.add_header('Content-ID', '<kim_image>')
-        msg_sali_image.add_header('Content-ID', '<sali_image>')
-        email.attach(msg_kim_image)
-        email.attach(msg_sali_image)
-        """
 
         email.send()
         email_confirmation_message = True
@@ -159,7 +143,65 @@ def activate(request, uidb64, token):
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         return redirect('player')
     else:
-        return render(request, 'players/index.html', { 'invalid_message': True})
+        return render(request, 'players/index.html', { 'invalid_message': True })
+
+
+def forgotten_password_page(request):
+    return render(request, "players/forgot_password.html")
+
+
+def send_email_retrieve_password(request):
+    if request.method == 'POST':
+        email = request.POST["user_email"]
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            return render(request, "players/index.html", { "is_retrieve_email_success": False })
+        current_site = get_current_site(request)
+        mail_subject = "Solicitud de cambio de contraseña"
+        email_message = render_to_string("players/retrieve_password_email.html", {
+            'user': user,
+            'domain': current_site.domain,
+            'user_id': urlsafe_base64_encode(force_bytes(user.pk)),
+            'token': account_activation_token.make_token(user)
+        })
+        email = EmailMultiAlternatives(
+            mail_subject,
+            email_message,
+            to = [email]
+        )
+        email.attach_alternative(email_message, "text/html")
+        email.send()
+
+        return render(request, "players/index.html", { "is_retrieve_email_success": True } )
+    return render(request, "players/index.html")
+    
+
+def retrieve_password_template(request, uidb64, token):
+    try:
+        user_id = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=user_id)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and account_activation_token.check_token(user, token):
+        return render(request, "players/retrieve_password_template.html", { 'user_id': uidb64 })
+    return render(request, "players/index.html", { 'retrieve_password_error': True })
+
+
+def retrieve_password(request, uidb64):
+    if request.method == 'POST':
+        user_id = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=user_id)
+        password = request.POST['new_password']
+        password_confirmation = request.POST['confirm_new_password']
+        success = password == password_confirmation
+        if success:
+            user.set_password(raw_password=password)
+            user.save()
+            return render(request, "players/index.html", { "is_password_changed": True })
+        else:
+            return render(request, "players/retrieve_password_template.html", { "is_password_changed": False, 'user_id': uidb64 })
 
 
 def index(request):

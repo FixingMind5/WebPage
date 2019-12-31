@@ -21,7 +21,7 @@
     {% csrf_token %}
     <input class="email" type="text" placeholder="Correo Electrónico" name="email">
     <input class="password" type="password" placeholder="Contraseña" name="password">
-    <a class="forgotten" href="">Olvidé mi correo y contraseña</a>
+    <a class="forgotten" href="{% url 'forgotten' %}">Olvidé mi correo y contraseña</a>
     <input type="submit" class="get-in" href="" value="Ingresar">
   </form>
 </header>

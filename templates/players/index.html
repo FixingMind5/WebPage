@@ -118,4 +118,39 @@
     })
 </script>
 {% endif %}
+{% if is_retrieve_email_success %}
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Correo enviado! 📭',
+        text: 'Revisa tu bandeja de entrada'
+    })
+</script>
+{% elif is_retrieve_email_success == False %}
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Algo salió mal 😞',
+        text: 'El correo que nos proporcionaste no existe.'
+    })
+</script>
+{% endif %}
+{% if retrieve_password_error %}
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Usuario o link inválido 🙃',
+        text: 'El usuario que nos proporcionaste es inválido o este link ya fue usado'
+    })
+</script>
+{% endif %}
+{% if is_password_changed %}
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Tu contraseña ha sido cambiada 😎',
+        text: 'Como lo solicitaste, hemos cambiado tu contraseña.'
+    })
+</script>
+{% endif %}
 </html>

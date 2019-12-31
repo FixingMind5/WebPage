@@ -17,5 +17,8 @@ urlpatterns = [
     path('staff/', players_app_views.staff_panel, name="staff"),
     path('add_course/', courses_app_views.add_course, name="add_course"),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', players_app_views.activate, name='activate'),
-    
+    path('forgotten/', players_app_views.forgotten_password_page, name="forgotten"),
+    path('email_retrieve_password/', players_app_views.send_email_retrieve_password, name="email_retrieve_password"),
+    url(r'^retrieve_password_template/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', players_app_views.retrieve_password_template, name="retrieve_password_template"),
+    url(r'retrieve_password/(?P<uidb64>[0-9A-Za-z_\-]+)/$', players_app_views.retrieve_password, name='retrieve_password')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
