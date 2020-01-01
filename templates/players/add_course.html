@@ -20,16 +20,20 @@
         </div>
         <h1>Agregar curso</h1>
     </section>
+    <form class="upload-course" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input name="upload-file-button" id="upload-file-button" type="file">
+        <label for="upload-file-button">
+            <img src="{% static 'images/upload.svg' %}" alt="">
+            <span>Sube tu archivo</span> 
+        </label>
+        <input class="upload-course-button" type="submit" value="¡Subir curso!">
+    </form>
     <section class="upload-course-help">
-        <iframe src="https://www.youtube.com/embed/MDvazVyFn8A" frameborder="0" width="420" height="315"></iframe>
+        <iframe src="https://www.youtube.com/embed/MDvazVyFn8A" frameborder="0" width="400" height="295" allowfullscreen>Tu navegador no soporta pantalla completa :(</iframe>
         <h3>¿Cómo subir un curso?</h3>
         <p>En este video te mostramos cómo subir un curso. Cualquier inconveniente repórtalo con los líderes.</p>
     </section>
-    <form class="upload-course">
-        {% csrf_token %}
-        <input type="file" placeholder="Sube aquí tu curso">
-        <input type="submit" value="¡Subir curso!">
-    </form>
 </body>
 {% for error in form.errors %}
 <script>
