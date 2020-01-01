@@ -1,6 +1,7 @@
 # Django imports
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Forms builded
 from courses.forms import CourseForm
@@ -10,6 +11,9 @@ from courses.models import Course
 
 @login_required
 def add_course(request):
+    email = request.user.email
+    user = User.objects.get(email=email)
+    player = user.player
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES)
         # import pdb; pdb.set_trace()
@@ -20,9 +24,7 @@ def add_course(request):
         form = CourseForm()
 
     data = {
-        'first_name': request.user.first_name,
-        'username': request.user.username,
-        'cluster': request.user.player.cluster,
+        'username': user.username,
         'form': form,
         # 'errors': form.errors,
     }

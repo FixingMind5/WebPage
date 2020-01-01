@@ -1,190 +1,57 @@
-@font-face {
-    font-family: 'icomoon';
-    src:  url('fonts/icomoon-back.eot?n6li6b');
-    src:  url('fonts/icomoon-back.eot?n6li6b#iefix') format('embedded-opentype'),
-      url('fonts/icomoon-back.ttf?n6li6b') format('truetype'),
-      url('fonts/icomoon-back.woff?n6li6b') format('woff'),
-      url('fonts/icomoon-back.svg?n6li6b#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
+* {
+    font-family: 'Open Sans', sans-serif;
 }
 
-[class^="icon-"], [class*=" icon-"] {
-    /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'icomoon' !important;
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.back-button {
-    font-size: 40px;
-    text-align: center;
+a {
     text-decoration: none;
-    color: white;
-    padding: 10px;
-    margin: 10px;
-    display: grid;
-    justify-self: flex-start;
-    width: 50px;
-    height: 50px;
-    transition: 500ms;
-    border-radius: 50%;
-    align-items: center;
-}
-
-.back-button:hover {
-    background-color: rgba(255, 255, 255, .7);
-}
-
-.icon-arrow-left:before {
-    content: "\ea40";
 }
 
 body {
-    font-family: 'Alegreya Sans SC', sans-serif;
-    text-align: center;
-    font-family: 'VT323', monospace;
     margin: 0;
-    color: white;
-    background-image: url("../../images/add_course.jpg");
-    background-repeat: no-repeat;
-    background-size: cover ;
-    background-attachment: fixed;
-    /* background-position-y: 50% ; */
+    background-color: #D7D9DF;
 }
 
-h1 {
-    margin: 0;
-    font-size: 60px;
-}
-
-h2 {
-    margin: 0;
-    font-size: 40px;
-}
-
-p {
-    font-size: 30px;
-}
-
-input {
-    outline: none;
-}
-
-form {
+.breadcrumb-container {
+    background-color: #808EA6;
     display: grid;
-    justify-content: center;
-    margin: 0;
-    background-color: rgba(0, 0, 0, .8);
-    margin: 25px 200px;
-    padding: 20px 0;
-    border-radius: 35px;
-}
-
-form input {
-    display: grid;
-    margin: 10px 0;
-    padding: 20px 20px 5px 20px;
-    border: none;
-    border-bottom: 3px solid gray;
-    font-size: 40px;
-    font-family: 'VT323', monospace;
-    text-align: center;
-    width: 400px;
-    justify-self: center;
-    align-content: center;
     grid-auto-flow: column;
-    background-color: transparent;
-    color: gray;
+    padding: 0 50px;
+    grid-template-columns: 300px 1fr;
+    text-align: right;
+    margin-top: 4px;
+    color: #D7D9DF;
 }
 
-form input:focus::-webkit-input-placeholder {
-    color: white;
+.breadcrumb-container h1 {
+    text-transform: uppercase;
+    margin: 5px;
 }
 
-form input:focus {
-    color: white;
-    border-bottom: 3px solid white;
-}
-
-form textarea {
-    border: 3px solid gray;
-    font-family: 'VT323', monospace;
-    font-size: 30px;
-    padding: 10px;
-    border-radius: 15px;
-    margin-top: 20px;
-    justify-self: flex-start;
-    outline: none;
-    background-color: transparent;
-    width: 800px;
-    color: gray;
-}
-
-form textarea:focus::-webkit-input-placeholder {
-    color: white;
-}
-
-form textarea:focus {
-    color: white;
-    border: 3px solid white;
-}
-
-.temary {
-    border-bottom: none;
-}
-
-.registerCourseButton {
-    height: 50px;
-    width: 300px;
-    justify-self: center;
-    margin-top: 30px;
-    padding: 10px;
-    font-size: 30px;
-    font-family: 'VT323', monospace;
-    background-color: white;
-    border-radius: 5px;
-    transition: 700ms;
-    background: linear-gradient(#02D40D 70%, #206623);
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.categoryContainer {
-    font-family: 'VT323', monospace;
-    width: 300px;
-    height: 60px;
-    justify-self: center;
-    font-size: 35px;
+.breadcrumb {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    grid-template-columns: 62px 3ch 13ch;
     text-align: center;
-    background-color: transparent;
-    color: gray;
-    margin: 20px 0;
-    outline: none;
-    padding: 5px 10px;
-    -webkit-appearance: none;
-    box-shadow: none;
-    border: 3.5px solid gray;
-    background-image: url("../../images/gray_arrow.png");
-    background-size: 10% 50%;
-    background-repeat: no-repeat;
-    background-position: 90% 50%;
-    border-radius: 15px;
 }
 
-.categoryContainer:focus {
+.breadcrumb a {
     color: white;
-    border: 3px solid white;
-    background-image: url("../../images/white_arrow.png");
-    background-size: 15% 55%;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.upload-course-help {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    padding: 50px 200px 20px 200px;
+}
+
+iframe {
+    grid-column: 1;
+    grid-row: 1/-1;
+    border-radius: 15px;
 }
