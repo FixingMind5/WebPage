@@ -1,189 +1,101 @@
 * {
-  font-family: 'VT323', monospace;
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
 
 body {
   margin: 0;
-  display: grid;
+  background-color: #D7D9DF;
 }
 
-.backgroundSlideShow {
-  position: relative;
+.player-info {
+  margin: 0;
+  padding: 20px 200px;
   display: grid;
+  grid-template-columns: 130px 1fr;
+  grid-template-rows: 30px 1fr 100px;
+  background-color: white;
+  box-shadow: 0 2px 8px black;
 }
 
-.slide {
-  display: none;
+.photo {
+  grid-column: 1;
+  grid-row: 1/-1;
+  text-align: center;
 }
 
-.main, .medals, .degrees, .pins{
-  display: grid;
-  justify-content: center;
-  background-image: url("../../images/playerStation.jpg");
-  background-size: 100vw 100vh;
-  width: 100vw;
-  height: 100vh;
+.profile-photo {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.photo a {
+  color: #B99F7C;
+  transition: 500ms;
+}
+
+.photo a:hover {
+  text-shadow: 0 0 4px #B99F7C;
+}
+
+.player-info h3 {
+  grid-column: 2;
+  margin: 0;
+  align-self: center;
+}
+
+.player-info p {
+  grid-column: 2;
   margin: 0;
 }
 
-.main h1, .medals h1, .degrees h1, .pins h1 {
-  animation: mainTitle 1s steps(9);
-  text-align: center;
-  font-family: 'VT323', monospace;
-  font-size: 75px;
-  margin: 10px 0 0 0;
-  color: white;
-  width: 9ch;
-  height: 75px;
-  border-right: 2px solid white;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.main h1 {
-  justify-self: center;
-}
-
-@keyframes mainTitle {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 9ch;
-  }
-}
-
-.profileData {
-  width: 80vw;
-  background-color: rgba(0, 0, 255, .7);
-  padding: 20px;
-  font-size: 50px;
+.user-social-media {
   display: grid;
-  grid-template-columns: 120px repeat(2, 500px);
-  grid-template-rows: repeat(2, 1fr);
-  align-items: center;
-  height: 220px;
-  color: yellow;
-  border-radius: 15px;
-  justify-content: space-evenly;
-  margin-top: -70px;
-  text-align: right;
-}
-
-.profileData p {
-  margin: 10px;
-}
-
-.profileImage {
-  background-image: url("../../images/avatarDefault.png");
-  background-size: cover;
-  width: 200px;
-  height: 200px;
-  grid-row: 1/-1;
-}
-
-.medals {
-  background-image: url("../../images/war.jpg");
-}
-
-.degrees {
-  background-image: url("../../images/degrees.jpg");
-}
-
-.pins {
-  background-image: url("../../images/pin.jpeg");
-}
-
-.pins h1 {
-  width: 6ch;
-  animation: pinsTitle 750ms steps(6);
-}
-
-@keyframes pinsTitle {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 6ch;
-  }
-}
-
-.previus, .next {
-  position: absolute;
-  top: 50%;
-  cursor: pointer;
-  width: auto;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  font-size: 58px;
-  transition: 600ms ease;
-  border-radius: 0 10px 10px 0;
-  user-select: none;
-  text-decoration: none;
-  margin-top: -32px;
-}
-
-.next {
-  right: 0;
-  border-radius: 10px 0 0 10px;
-}
-
-.previus:hover, .next:hover {
-  background-color: rgba(0, 0, 0, .6)
-}
-
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1500ms;
-  animation-name: fade;
-  animation-duration: 1500ms
-}
-
-@-webkit-keyframes fade {
-  from {
-    opacity: .4;
-  } to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade {
-  from {
-    opacity: .4;
-  } to {
-    opacity: 1;
-  }
-}
-
-.circles {
-  display: grid;
-  justify-content: center;
-  text-align: center;
   grid-auto-flow: column;
-  grid-template-columns: repeat(4, 45px);
-  width: 200px;
-  position: absolute;
-  z-index: 4;
-  justify-self: center;
-  bottom: 10px;
-  background-color: rgba(255, 255, 255, .6);
-  padding: 10px;
-  border-radius: 15px;
+  align-content: center;
+  justify-content: center;
+  justify-self: start;
 }
 
-.dot {
-  /* cursor: pointer; */
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  bottom: 10px;
-  background-color: #808EA6;
-  margin: 0 15px;
-  transition: 600ms;
-  border: 1px solid white;
+.social-media-image {
+  width: 30px;
+  height: 30px;
 }
 
-.active, .dot:hover {
-  background-color: #AE946F;
+.info-button {
+  background-color: #D7D9DF;
+  border-radius: 10px;
+  color: #2E4061;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  margin: 0 20px;
+  text-align: end;
+  padding: 2.5px 20px 2.5px 0;
+  grid-column: 50px 100px;
+  width: 150px;
+  transition: 500ms;
+}
+
+
+.info-button-image-background {
+  display: grid;
+  align-content: center;
+  background-color: #B99F7C;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  justify-content: center;
+  margin: 0;
+  height: 100%;
+  transform-origin: left;
+  padding: 2.5px 0;
+}
+
+.info-button:hover {
+  background-color: #B99F7C;
+  color: white;
 }

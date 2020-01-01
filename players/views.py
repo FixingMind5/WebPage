@@ -32,15 +32,25 @@ import os
 
 @login_required
 def return_user(request):
-    data = {
+    user_email = request.user.email
+    user = User.objects.get(email=user_email)
+    player = user.player
+    user_data = {
         'username': request.user.username,
-        'points': request.user.player.points,
-        'cluster': request.user.player.cluster,
-        'grade': request.user.player.grade,
+        'player_image': player.image,
+        'points': player.points,
+        'cluster': player.cluster,
+        'grade': player.grade,
         'staff': request.user.is_staff,
+        'description': player.description,
+        'facebook': player.facebook,
+        'twitter': player.twitter,
+        'instagram': player.instagram,
+        'youtube': player.youtube,
+        'website': player.website
     }
     # request.user.is_staff
-    return render(request, 'players/player.html', data)
+    return render(request, 'players/player.html', user_data)
 
 
 def return_login(request):

@@ -2,49 +2,63 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/player_style.css' %}">
-    <title>Profile</title>
+    <title>@{{ username }} | Profile</title>
   </head>
+  {% include "players/mainHeader.html" %}
+  {% block header %}
+  {% endblock %}
   <body>
-    <div class="backgroundSlideShow">
-      {% include "players/gameLogic.html" %}
-      {% block gameButtonsContainer %}
-      {% endblock %}
-      <div class="slide main fade">
-        <h1> > Profile</h1>
-        <div class="profileData">
-          <div class="profileImage"></div>
-          <p class="data">Hello {{ username }}</p> <!-- UserName -->
-          <p class="data">Cluster: {{ cluster }}</p> <!-- Cluster -->
-          <p class="data">Score: {{ points }}</p> <!-- Score -->
-          <p class="data">Grade: {{ grade }}</p> <!-- Grade -->
+    <section class="player-info">
+      <div class="photo">
+        {% if player_image %}
+          <img class="profile-photo" src="{{ player_image.url }}" alt="">
+        {% else %}
+          <img class="profile-photo" src="{% static 'images/user_photos/default_user.svg' %}" alt="">
+        {% endif %}
+        <a href="">Editar perfil</a>
+      </div>
+      <h3>{{ username }} | {{ points }} points</h3>
+      {% if description %}
+        <p>{{ description }}</p>
+      {% else %}
+        <p>El usuario no ha agregado ninguna descripción</p>
+      {% endif %}
+      <div class="user-social-media">
+        <div class="social-media-links">
+          {% if facebook %}
+            <a href="{{ facebook }}"><img class="social-media-image" src="{% static 'images/facebook.png' %}" alt=""></a>
+          {% endif %}
+          {% if twitter %}
+            <a href="{{ twitter }}"><img class="social-media-image" src="{% static 'images/twitter.png' %}" alt=""></a>
+          {% endif %}
+          {% if instagram %}
+            <a href="{{ instagram }}"><img class="social-media-image" src="{% static 'images/Instagram.png' %}"alt=""></a>
+          {% endif %}
+          {% if youtube %}
+            <a href="{{ youtube }}"><img class="social-media-image" src="{% static 'images/youtube.png' %}" alt=""></a>
+          {% endif %}
+          {% if website %}
+            <a href="{{ website }}">{{ website }}</a>
+          {% endif %}
         </div>
+        {% if grade == "Senior Cluster Manager" %}
+          <a class="upload info-button" href="">
+            <div class="info-button-image-background">
+              <img src="" alt="">
+            </div>
+            <p>Subir curso</p>
+          </a>
+        {% endif %}
+        <a class="play info-button" href="">
+          <div class="info-button-image-background">
+            <img src="{% static 'images/play-circle.svg' %}" alt="">
+          </div>
+          <p>Ejercicios </p>
+        </a>
       </div>
-
-      <div class="medals slide fade">
-        <h1> > Medals</h1>
-      </div>
-
-      <div class="degrees slide fade">
-        <h1> > Degrees</h1>
-      </div>
-
-      <div class="pins slide fade">
-        <h1> > Pins</h1>
-      </div>
-
-      <a class="previus" onclick="plusSlides(-1)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-      <div class="circles">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
-    </div>
+    </section>
   </body>
-  <script src="../../static/scripts/player_script.js" charset="utf-8"></script>
 </html>
