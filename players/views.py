@@ -231,7 +231,11 @@ def index(request):
         11: "Noviembre",
         12: "Diciembre"
     }
-    return render(request, 'players/index.html', { "days": days, "months": months, "years": years})
+    try:
+        user = User.objects.get(email=request.user.email)
+    except AttributeError:
+        user = None
+    return render(request, 'players/index.html', { "days": days, "months": months, "years": years, 'user': user })
 
 @login_required
 def staff_panel(request):

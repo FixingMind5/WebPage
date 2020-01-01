@@ -1,6 +1,6 @@
 <head>
     {% load static %}
-    <link rel="stylesheet" href="{% static "css/mainHeader_style.css" %}">
+    <link rel="stylesheet" href="{% static 'css/mainHeader_style.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <header id="header">
@@ -17,12 +17,24 @@
     <a href="#faq">FAQ</a>
   </div>
 
-  <form class="login" method="POST" action="{% url "login" %}">
-    {% csrf_token %}
-    <input class="email" type="text" placeholder="Correo Electrónico" name="email">
-    <input class="password" type="password" placeholder="Contraseña" name="password">
-    <a class="forgotten" href="{% url 'forgotten' %}">Olvidé mi correo y contraseña</a>
-    <input type="submit" class="get-in" href="" value="Ingresar">
-  </form>
+  {% if request.user.player %}
+    <div class="nav-user-section">
+      <div class="user-fast-nav">
+        <img class="nav-player-image" src="{{ request.user.player.image.url }}" alt="">
+        <p class="nav-player-points">{{ request.user.player.points }} pts</p>
+        <img class="arrow" src="{% static 'images/arrow-down.svg' %}" alt="">
+      </div>
+      <a class="bell" href=""><img src="{% static 'images/bell.svg' %}" alt=""></a>
+      <a class="message" href=""><img src="{% static 'images/message-circle.svg' %}" alt="" class="message"></a>
+      <a class="nav-logout-button" href="{% url 'logout' %}">Cerrar sesión</a>
+    </div>
+  {% else %}
+    <form class="login" method="POST" action="{% url "login" %}">
+      {% csrf_token %}
+      <input class="email" type="text" placeholder="Correo Electrónico" name="email">
+      <input class="password" type="password" placeholder="Contraseña" name="password">
+      <a class="forgotten" href="{% url 'forgotten' %}">Olvidé mi correo y contraseña</a>
+      <input type="submit" class="get-in" href="" value="Ingresar">
+    </form>
+  {% endif %}
 </header>
-<script src="{% static "scripts/mainHeader.js" %}"></script>

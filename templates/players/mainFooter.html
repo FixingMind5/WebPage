@@ -1,11 +1,11 @@
 <head>
     <meta charset="UTF-8">
     {% load static %}
-    <link rel="stylesheet" href="../../static/css/mainFooter_style.css">
+    <link rel="stylesheet" href="{% static 'css/mainFooter_style.css' %}">
 </head>
 <footer>
     <div class="start">
-        <img class="logo" src="../../images/SkyHack.png" alt="">
+        <img class="logo" src="{% static 'images/SkyHack.png' %}" alt="">
         <div class="bottom-links">
             <a href="">Documentos</a>
             <a href="">Inicio</a>
@@ -15,11 +15,11 @@
             <a href="">Acerca de nosotros</a>
         </div>
         <div class="social-media">
-            <a href=""><img src="../../images/Github.png" alt=""></a>
-            <a href=""><img src="../../images/Facebook.png" alt=""></a>
-            <a href=""><img src="../../images/Youtube.png" alt=""></a>
-            <a href=""><img src="../../images/Twitter.png" alt=""></a>
-            <a href=""><img src="../../images/Instagram.png" alt=""></a>
+            <a href=""><img src="{% static 'images/gitHub.png' %}" alt=""></a>
+            <a href=""><img src="{% static 'images/Facebook.png' %}" alt=""></a>
+            <a href=""><img src="{% static 'images/Youtube.png' %}" alt=""></a>
+            <a href=""><img src="{% static 'images/Twitter.png' %}" alt=""></a>
+            <a href=""><img src="{% static 'images/Instagram.png' %}" alt=""></a>
         </div>
     </div>
     <div class="email-me">
@@ -33,10 +33,10 @@
     <div class="end">
         <div class="powered-by">
             <p>Powered by</p>
-            <img class="logo-unam" src="../../images/logoUnam.png" alt="">
-            <img class="stakeholders-logos" src="../../images/logoAcatlan.png" alt="">
-            <a href=""><img class="stakeholders-logos" src="../../images/Github_blanco.png" alt=""></a>
-            <a href=""><img class="stakeholders-logos" src="../../images/hack_club.png" alt=""></a>
+            <img class="logo-unam" src="{% static 'images/logoUnam.png' %}" alt="">
+            <img class="stakeholders-logos" src="{% static 'images/logoAcatlan.png' %}" alt="">
+            <a href=""><img class="stakeholders-logos" src="{% static 'images/Github_blanco.png' %}" alt=""></a>
+            <a href=""><img class="stakeholders-logos" src="{% static 'images/hack_club.png' %}" alt=""></a>
         </div>
         <p>De MAC con 💙 para el mundo</p>
     </div>

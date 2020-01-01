@@ -45,9 +45,9 @@
           {% endif %}
         </div>
         {% if grade == "Senior Cluster Manager" %}
-          <a class="upload info-button" href="">
+          <a class="upload info-button" href="{% url 'add_course' %}">
             <div class="info-button-image-background">
-              <img src="" alt="">
+              <img src="{% static 'images/upload.svg' %}" alt="">
             </div>
             <p>Subir curso</p>
           </a>

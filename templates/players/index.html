@@ -15,73 +15,81 @@
         <div class="hero">
             <h1>Entrena tu talento en tecnología <br> con SkyHack</h1>
             <ul>
-                <li><img class="book" src="../../images/book.svg" alt=""><p>Domina nuevas tecnologias con un curso</p></li>
-                <li><img src="../../images/flag.svg" alt=""><p>Reta a tus amigos en un evento</p></li>
-                <li><img src="../../images/portfolio.svg" alt=""><p>Adquiere talento para tu empresa</p></li>
+                <li><img class="hero-image book" src="{% static 'images/book.svg' %}" alt=""><p>Domina nuevas tecnologias con un curso</p></li>
+                <li><img class="hero-image" src="{% static 'images/flag.svg' %}" alt=""><p>Reta a tus amigos en un evento</p></li>
+                <li><img class="hero-image" src="{% static 'images/portfolio.svg' %}" alt=""><p>Adquiere talento para tu empresa</p></li>
             </ul>
         </div>
-        <form class="sign-up" method="POST" action="{% url "signup" %}"">
-            <h1>Registrarme</h1>
-            <h3>Estás a unos pasos de una vida increíble</h3>
-            {% csrf_token %}
-            <input class="field" type="text" placeholder="Nombre" name="name">
-            <input class="field" type="text" placeholder="Apellidos" name="last_name">
-            <input class="field username" type="text" placeholder="Nombre de Usuario" name="username">
-            <input class="field signup-email" type="text" placeholder="Correo electrónico" name="email">
-            <input class="field" type="password" placeholder="Contraseña" name="password">
-            <input class="field" type="password" placeholder="Confirma contraseña" name="confirm_password">
-            <div class="birth-date-container">
-                <p class="birth-date">Fecha de nacimiento</p>
-                <select name="day">
-                    <option value="0">Day</option>
-                    {% for day in days %}
-                        <option value="{{ day }}">{{ day }}</option>
-                    {% endfor %}
-                </select>
-                <select name="month">
-                    <option value="0">Month</option>
-                    {% for key, value in months.items %}
-                        <option value="{{ key }}">{{ value }}</option>
-                    {% endfor %}
-                </select>
-                <select name="year">
-                    <option value="0">Year</option>
-                    {% for year in years %}
-                        <option value="{{ year }}">{{ year }}</option>
-                    {% endfor %}
-                </select>
+        {% if user %}
+            <div class="user-fast-access">
+                <img class="user-image" src="{{ user.player.image.url }}" alt="">
+                <h1>¡Hola {{ user.username }}!</h1>
+                <a href="{% url 'player' %}">Ver perfil</a>
             </div>
-            <input class="form-button" type="submit" value="¡Inscríbeme!">
-        </form>
+        {% else %}
+            <form class="sign-up" method="POST" action="{% url "signup" %}"">
+                <h1>Registrarme</h1>
+                <h3>Estás a unos pasos de una vida increíble</h3>
+                {% csrf_token %}
+                <input class="field" type="text" placeholder="Nombre" name="name">
+                <input class="field" type="text" placeholder="Apellidos" name="last_name">
+                <input class="field username" type="text" placeholder="Nombre de Usuario" name="username">
+                <input class="field signup-email" type="text" placeholder="Correo electrónico" name="email">
+                <input class="field" type="password" placeholder="Contraseña" name="password">
+                <input class="field" type="password" placeholder="Confirma contraseña" name="confirm_password">
+                <div class="birth-date-container">
+                    <p class="birth-date">Fecha de nacimiento</p>
+                    <select name="day">
+                        <option value="0">Day</option>
+                        {% for day in days %}
+                            <option value="{{ day }}">{{ day }}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="month">
+                        <option value="0">Month</option>
+                        {% for key, value in months.items %}
+                            <option value="{{ key }}">{{ value }}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="year">
+                        <option value="0">Year</option>
+                        {% for year in years %}
+                            <option value="{{ year }}">{{ year }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <input class="form-button" type="submit" value="¡Inscríbeme!">
+            </form>
+        {% endif %}
     </section>
     <section id="courses" class="courses">
         <h1>Transforma tu futuro con nuestros cursos</h1>
         <h3>Descubre cómo cambiar tu vida adquiriendo nuevas habilidades, ¡gratis!</h3>
-        <img src="../../images/cursos.png" alt="">
+        <img src="{% static 'images/cursos.png' %}" alt="">
         <a class="courses-button" href="">¡Aprender ya!</a>
     </section>
     <section id="events" class="events">
         <div class="events-container">
             <h2 class="team-title">Forma un equipo imparable</h2>
             <h4 class="team-description">Compite contra otros equipos y muéstranos de qué están hechos.</h4>
-            <img class="team" src="../../images/equipo.png" alt="">
+            <img class="team" src="{% static 'images/equipo.png' %}" alt="">
             <h2 class="community-title">La comunidad tiene algo que decirte</h2>
             <h4 class="community-description">Descubre qué es.</h4>
-            <img class="talk" src="../../images/charla.png" alt="">
+            <img class="talk" src="{% static 'images/charla.png' %}" alt="">
             <h2 class="match-title">¿Crees que eres el mejor?</h2>
             <h4 class="match-description">Demuéstralo en nuestros concursos.</h4>
-            <img class="laderboard" src="../../images/laderboard.png" alt="">
+            <img class="laderboard" src="{% static 'images/laderboard.png' %}" alt="">
             <a href="">¡Comienza ahora!</a>
         </div>
     </section>
     <section id="hire" class="hire">
         <div class="talent">
-            <img src="../../images/dev.png" alt="">
+            <img src="{% static 'images/dev.png' %}" alt="">
             <h3>Existe mucho talento <br> buscando impulsar tu empresa</h3>
             <a href="">¡Descúbrelo!</a>
         </div>
         <div class="enterprise">
-            <img src="../../images/iman.png" alt="">
+            <img src="{% static 'images/iman.png' %}" alt="">
             <h3>Atrae ese talento a tu empresa <br> en cualquier momento</h3>
             <a href="">Registrándote</a>
         </div>

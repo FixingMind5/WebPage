@@ -12,7 +12,7 @@ header {
 }
 
 .skyhack-logo {
-    background-image: url("../../images/SkyHack.png");
+    background-image: url("../images/SkyHack.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 0 50%;
@@ -80,6 +80,44 @@ header {
 
 .links a:hover {
     text-shadow: 0 0 2px white;
+}
+
+.nav-user-section {
+    color: white;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.user-fast-nav {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
+    grid-template-columns: 40px 1fr 30px;
+    cursor: pointer;
+}
+
+.nav-logout-button {
+    text-decoration: none;
+    color: white;
+    transition: 500ms;
+}
+
+.nav-logout-button:hover {
+    text-shadow: 0px 0px 4px white;
+}
+
+.nav-player-image {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.bell img, .message img {
+    width: 25px;
+    height: 25px;
 }
 
 .login {
