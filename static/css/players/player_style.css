@@ -12,7 +12,7 @@ body {
 }
 
 .player-info {
-  margin: 0;
+  margin: 4px 0;
   padding: 20px 200px;
   display: grid;
   grid-template-columns: 130px 1fr;

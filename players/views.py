@@ -49,6 +49,7 @@ def return_user(request):
         'youtube': player.youtube,
         'website': player.website
     }
+    print(player.image.url == True)
     # request.user.is_staff
     return render(request, 'players/player.html', user_data)
 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/courses/add_course_style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <title>@{{ request.user.username }} | add course</title>
+</head>
+{% include "players/mainHeader.html" %}
+{% block header %}
+{% endblock %}
+<body>
+    <section class="breadcrumb-container">
+        <div class="breadcrumb">
+            <a href="{% url 'player' %}">{{ request.user.username }}</a>
+            <p> / </p>
+            <p> Agregar curso </p>
+        </div>
+        <h1>Agregar curso</h1>
+    </section>
+    <form class="upload-course" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1>Información básica del curso</h1>
+        <h3>Título</h3><input class="form-field" type="text" name="course_title">
+        <h3>Profesor</h3><input class="form-field" type="email" name="teacher" id="">
+        <h3>Categoría</h3><select class="form-field course-category">
+            {% for key, value in categories.items %}
+                <option value="{{ key }}">{{ value }}</option>
+            {% endfor %}
+        </select>
+        <h1>Información del Proyecto</h1>
+        <h3>Título</h3><input type="text" name="project_title" id="">
+        <h3>Descripción</h3><input type="textarea" name="description" id="">
+        <div class="image-container" id="image-container">
+            <h3>Imagen</h3><input class="project-photo" type="file" name="image" id="image"><label for="image" id='image-label'>
+                <img src="{% static 'images/upload.svg' %}" alt="">
+                <span>Subir Foto</span>
+            </label>
+            <p class="hidden" id="ready">¡File Uploaded!</p>
+        </div>
+        <h1>Módulos y clases</h1>
+        <div class="lessons-container" id="lessons-container">
+            <div class="option">
+                <p>Agregar</p><select class="option" id="option">
+                    <option value="0">Clase</option>
+                    <option value="1">Módulo</option>
+                </select>
+                <input class="button" type="button" onclick="addElement()" value="+">
+            </div>
+        </div>
+    </form>
+    <section class="upload-course-help">
+        <iframe src="https://www.youtube.com/embed/MDvazVyFn8A" frameborder="0" width="400" height="295" allowfullscreen>Tu navegador no soporta pantalla completa :(</iframe>
+        <h3>¿Cómo subir un curso?</h3>
+        <p>En este video te mostramos cómo subir un curso. Cualquier inconveniente repórtalo con los líderes.</p>
+    </section>
+</body>
+<script src="{% static 'scripts/add_course_logic.js' %}"></script>
+</html>

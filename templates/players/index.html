@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>SkyHack | Main Page</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static "css/index_style.css" %}">
+    <link rel="stylesheet" href="{% static "css/players/index_style.css" %}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -20,9 +20,13 @@
                 <li><img class="hero-image" src="{% static 'images/portfolio.svg' %}" alt=""><p>Adquiere talento para tu empresa</p></li>
             </ul>
         </div>
-        {% if user %}
+        {% if user.username %}
             <div class="user-fast-access">
-                <img class="user-image" src="{{ user.player.image.url }}" alt="">
+                {% if request.user.player.image %}
+                    <img class="user-image" src="{{ user.player.image.url }}" alt="">
+                {% else %}
+                    <img class="user-image" src="{% static 'images/default_user.JPG' %}" alt="">
+                {% endif %}
                 <h1>¡Hola {{ user.username }}!</h1>
                 <a href="{% url 'player' %}">Ver perfil</a>
             </div>

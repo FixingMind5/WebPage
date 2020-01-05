@@ -25,4 +25,5 @@ urlpatterns = [
 
     # Courses
     path('add_course/', courses_app_views.add_course, name="add_course"),
+    path('upload_course', courses_app_views.upload_course, name="upload_course")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

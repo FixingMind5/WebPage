@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/player_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/players/player_style.css' %}">
     <title>@{{ username }} | Profile</title>
   </head>
   {% include "players/mainHeader.html" %}
@@ -13,10 +13,10 @@
   <body>
     <section class="player-info">
       <div class="photo">
-        {% if player_image %}
+        {% if player_image.url %}
           <img class="profile-photo" src="{{ player_image.url }}" alt="">
         {% else %}
-          <img class="profile-photo" src="{% static 'images/user_photos/default_user.svg' %}" alt="">
+          <img class="profile-photo" src="{% static 'images/default_user.JPG' %}" alt="">
         {% endif %}
         <a href="">Editar perfil</a>
       </div>

@@ -4,7 +4,7 @@ body {
 }
 
 .mainPage {
-    background-image: url("../images/Hero_Background.svg");
+    background-image: url("../../images/Hero_Background.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;

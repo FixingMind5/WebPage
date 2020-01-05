@@ -11,7 +11,7 @@ class Player(models.Model):
 
     birth_date = models.DateField()
     description = models.CharField(max_length=140, blank=True, null=True)
-    image = models.ImageField(null=True, upload_to="player/player_profile_images")
+    image = models.ImageField(null=True, upload_to="player_profile_images/")
     facebook = models.CharField(blank=True, null=True, max_length=200)
     twitter = models.CharField(blank=True, null=True, max_length=200)
     instagram = models.CharField(blank=True, null=True, max_length=200)

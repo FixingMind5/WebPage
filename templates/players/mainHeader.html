@@ -1,6 +1,6 @@
 <head>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/mainHeader_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/players/mainHeader_style.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <header id="header">
@@ -11,7 +11,7 @@
     <a href="">Buscar</a>
   </div>
   <div class="links">
-    <a href="{% url 'index' %}#main">Inicio</a>
+    <a href="{% url 'index' %}">Inicio</a>
     <a href="{% url 'index' %}#courses">Cursos</a>
     <a href="{% url 'index' %}#events">Eventos</a>
     <a href="#faq">FAQ</a>
@@ -20,7 +20,11 @@
   {% if request.user.player %}
     <div class="nav-user-section">
       <div class="user-fast-nav">
-        <img class="nav-player-image" src="{{ request.user.player.image.url }}" alt="">
+        {% if request.user.player.image %}
+          <img class="nav-player-image" src="{{ request.user.player.image.url }}" alt="">
+        {% else %}
+          <img class="nav-player-image" src="{% static 'images/default_user.svg' %}" alt="">
+        {% endif %}
         <p class="nav-player-points">{{ request.user.player.points }} pts</p>
         <img class="arrow" src="{% static 'images/arrow-down.svg' %}" alt="">
       </div>

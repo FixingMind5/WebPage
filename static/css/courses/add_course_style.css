@@ -1,0 +1,219 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+    background-color: #D7D9DF;
+}
+
+.breadcrumb-container {
+    background-color: #808EA6;
+    display: grid;
+    grid-auto-flow: column;
+    padding: 0 50px;
+    grid-template-columns: 300px 1fr;
+    text-align: right;
+    margin-top: 4px;
+    color: #D7D9DF;
+}
+
+.breadcrumb-container h1 {
+    text-transform: uppercase;
+    margin: 5px;
+}
+
+.breadcrumb {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    grid-template-columns: 62px 3ch 13ch;
+    text-align: center;
+}
+
+.breadcrumb a {
+    color: white;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.upload-course-help {
+    display: grid;
+    grid-template-columns: repeat(2, 420px);
+    grid-template-rows: repeat(2, 160px);
+    padding: 30px 50px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    margin: 0 200px 50px 200px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 4px black;
+    color: #2c2d2e;
+}
+
+.upload-course-help * {
+    margin: 0;
+}
+
+.upload-course-help h3 {
+    font-size: 40px;
+    margin: 0;
+    align-self: flex-end;
+}
+
+.upload-course-help p {
+    font-size: 20px;
+    margin: 0;
+    align-self: flex-start;
+}
+
+iframe {
+    grid-column: 1;
+    grid-row: 1/-1;
+    border-radius: 15px;
+}
+
+form {
+    display: grid;
+    background-color: white;
+    color: #2c2d2e;
+    margin: 0 200px 20px 200px;
+    padding: 50px;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: repeat(9, 75px) 1fr;
+    align-items: center;
+}
+
+input[type="text"], input[type="email"], input[type="textarea"], select {
+    height: 49%;
+    border: 1px solid #2c2d2e;
+    background-color: #D7D9DF;
+    color: #2c2d2e;
+    border-radius: 5px;
+    padding: 5px 15px;
+    font-size: 17.5px;
+    outline: none;
+}
+
+form h1 {
+    grid-column: 1/-1;
+}
+
+input[type="file"] {
+    position: absolute;
+    overflow: hidden;
+    z-index: -1;
+    width: 0.1px;
+    height: 0.1px;
+}
+
+label {
+    background-color: #B99F7C;
+    color: white;
+    border-radius: 5px;
+    width: fit-content;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 15px;
+    transition: 500ms;
+}
+
+label:hover {
+    background-color: #D2B58E;
+}
+
+.hidden {
+    display: none;
+}
+
+.image-container {
+    grid-column: 1/-1;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 150px 300px 1fr;
+}
+
+.image-container p {
+    justify-self: end;
+    color: #466124;
+}
+
+.lessons-container {
+    grid-column: 1/-1;
+}
+
+.option {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 65px 200px 1fr;
+    align-items: center;
+}
+
+.button {
+    background-color: #A8E05E;
+    border-radius: 50%;
+    border: none;
+    justify-self: end;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    font-size: 20px;
+    color: #466124;
+}
+
+.module {
+    background-color: #304366;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 30px 155px 35vw 70px 40px;
+    justify-content: space-around;
+    align-items: center;
+    border-color: #304366;
+    color: white;
+    margin: 0;
+    padding: 0px 35px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 10px;
+}
+
+.lesson {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 30px 150px 30vw 10px 10vw;
+    justify-content: space-around;
+    padding: 15px;
+    border-bottom: 1px solid #304366;
+    border-left: 1px solid #304366;
+    border-right: 1px solid #304366;
+}
+
+.remove {
+    width: 30px;
+    height: 30px;
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    align-self: center;
+}
+
+.lessons-container input {
+    outline: none;
+}
