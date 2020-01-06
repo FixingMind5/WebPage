@@ -11,6 +11,16 @@
     {% include "players/mainHeader.html" %}
     {% block header %}
     {% endblock %}
+    {% for error in form.first_name.errors %}<p id="invalid-feedback" class="invalid-feedback">{{ error }}</p>{% endfor %}
+    {% for error in form.last_name.errors %}<p id="invalid-feedback" class="invalid-feedback">{{ error }}</p>{% endfor %}
+    {% for error in form.username.errors %}<p id="invalid-feedback" class="invalid-feedback">{{ error }}</p>{% endfor %}
+    {% for error in form.email.errors %}<p id="invalid-feedback" class="invalid-feedback">{{ error }}</p>{% endfor %}
+    {% for error in form.password.errors %}<p id="invalid-feedback" class="invalid-feedback">{{ error }}</p>{% endfor %}
+    {% for error in form.month.errors %}
+    <script>
+        alert("{{error}}")
+    </script>
+    {% endfor %}
     <section id="main" class="mainPage">
         <div class="hero">
             <h1>Entrena tu talento en tecnología <br> con SkyHack</h1>
@@ -28,35 +38,79 @@
                     <img class="user-image" src="{% static 'images/default_user.JPG' %}" alt="">
                 {% endif %}
                 <h1>¡Hola {{ user.username }}!</h1>
-                <a href="{% url 'player' %}">Ver perfil</a>
+                <a href="{% url 'players:player' request.user.username %}">Ver Perfil</a>
             </div>
         {% else %}
-            <form class="sign-up" method="POST" action="{% url "signup" %}"">
+            <form class="sign-up" method="POST" action="{% url 'players:signup' %}">
                 <h1>Registrarme</h1>
                 <h3>Estás a unos pasos de una vida increíble</h3>
                 {% csrf_token %}
-                <input class="field" type="text" placeholder="Nombre" name="name">
-                <input class="field" type="text" placeholder="Apellidos" name="last_name">
-                <input class="field username" type="text" placeholder="Nombre de Usuario" name="username">
-                <input class="field signup-email" type="text" placeholder="Correo electrónico" name="email">
-                <input class="field" type="password" placeholder="Contraseña" name="password">
-                <input class="field" type="password" placeholder="Confirma contraseña" name="confirm_password">
+                <input 
+                    class="{% if form.first_name.errors %}is-invalid{% else %}field{% endif %}" 
+                    type="text" 
+                    placeholder="Nombre" 
+                    name="first_name"
+                    value="{% if form.errors %}{{ form.first_name.value }}{% endif %}"
+                >
+                <input 
+                    class="{% if form.last_name.errors %}is-invalid{% else %}field{% endif %}" 
+                    type="text" 
+                    placeholder="Apellidos" 
+                    name="last_name"
+                    value="{% if form.errors %}{{ form.last_name.value }}{% endif %}"
+                >
+                <input 
+                    class="{% if form.username.errors %}is-invalid{% else %}field{% endif %} username" 
+                    type="text" 
+                    placeholder="Nombre de Usuario" 
+                    name="username"
+                >
+                <input 
+                    class="{% if form.email.errors %}is-invalid{% else %}field{% endif %} signup-email" 
+                    type="text" 
+                    placeholder="Correo electrónico" 
+                    name="email"
+                >
+                <input 
+                    class="{% if form.password.errors %}is-invalid{% else %}field{% endif %}" 
+                    type="password" 
+                    placeholder="Contraseña" 
+                    name="password"
+                >
+                <input 
+                    class="{% if form.confirm_password.errors %}is-invalid{% else %}field{% endif %}" 
+                    type="password" 
+                    placeholder="Confirma contraseña" 
+                    name="confirm_password"
+                >
                 <div class="birth-date-container">
                     <p class="birth-date">Fecha de nacimiento</p>
                     <select name="day">
-                        <option value="0">Day</option>
+                        {% if form.errors %}
+                            <option value="{{ form.day.value }}">{{ form.day.value }}</option>
+                        {% else %}
+                            <option value="0">Día</option>
+                        {% endif %}
                         {% for day in days %}
                             <option value="{{ day }}">{{ day }}</option>
                         {% endfor %}
                     </select>
                     <select name="month">
-                        <option value="0">Month</option>
+                        {% if form.errors %}
+                            <option value="{{ form.month.value }}">{{ months.form.month.value }}</option>
+                        {% else %}
+                            <option value="0">Mes</option>
+                        {% endif %}
                         {% for key, value in months.items %}
                             <option value="{{ key }}">{{ value }}</option>
                         {% endfor %}
                     </select>
                     <select name="year">
-                        <option value="0">Year</option>
+                        {% if form.errors %}
+                            <option value="{{ form.year.value }}">{{ form.year.value }}</option>
+                        {% else %}
+                            <option value="0">Año</option>
+                        {% endif %}
                         {% for year in years %}
                             <option value="{{ year }}">{{ year }}</option>
                         {% endfor %}
@@ -103,6 +157,16 @@
     {% endblock %}
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+{% if form.errors %}
+<script>
+    var invalidFeedback = document.getElementsByClassName("invalid-feedback")
+    for (let i = 0; i < invalidFeedback.length ; i++) {
+        setTimeout(() => {
+            invalidFeedback[i].classList.add('hidde')
+        }, 10000);
+    }
+</script>
+{% endif %}
 {% if message %}
 <script>
     Swal.fire({

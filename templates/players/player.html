@@ -5,7 +5,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/players/player_style.css' %}">
-    <title>@{{ username }} | Profile</title>
+    <title>@{{ user.username }} | Profile</title>
   </head>
   {% include "players/mainHeader.html" %}
   {% block header %}
@@ -13,51 +13,55 @@
   <body>
     <section class="player-info">
       <div class="photo">
-        {% if player_image.url %}
-          <img class="profile-photo" src="{{ player_image.url }}" alt="">
+        {% if user.player.image.url %}
+          <img class="profile-photo" src="{{ user.player.image.url }}" alt="">
         {% else %}
           <img class="profile-photo" src="{% static 'images/default_user.JPG' %}" alt="">
         {% endif %}
-        <a href="">Editar perfil</a>
+        {% if user == request.user %}
+          <a href="">Editar perfil</a>
+        {% endif %}
       </div>
-      <h3>{{ username }} | {{ points }} points</h3>
-      {% if description %}
-        <p>{{ description }}</p>
+      <h3>{{ user.username }} | {{ user.player.points }} points</h3>
+      {% if user.player.description %}
+        <p>{{ user.player.description }}</p>
       {% else %}
         <p>El usuario no ha agregado ninguna descripción</p>
       {% endif %}
       <div class="user-social-media">
         <div class="social-media-links">
-          {% if facebook %}
-            <a href="{{ facebook }}"><img class="social-media-image" src="{% static 'images/facebook.png' %}" alt=""></a>
+          {% if user.player.facebook %}
+            <a href="{{ user.player.facebook }}"><img class="social-media-image" src="{% static 'images/facebook.png' %}" alt=""></a>
           {% endif %}
-          {% if twitter %}
-            <a href="{{ twitter }}"><img class="social-media-image" src="{% static 'images/twitter.png' %}" alt=""></a>
+          {% if user.player.twitter %}
+            <a href="{{ user.player.twitter }}"><img class="social-media-image" src="{% static 'images/twitter.png' %}" alt=""></a>
           {% endif %}
-          {% if instagram %}
-            <a href="{{ instagram }}"><img class="social-media-image" src="{% static 'images/Instagram.png' %}"alt=""></a>
+          {% if user.player.instagram %}
+            <a href="{{ user.player.instagram }}"><img class="social-media-image" src="{% static 'images/Instagram.png' %}"alt=""></a>
           {% endif %}
-          {% if youtube %}
-            <a href="{{ youtube }}"><img class="social-media-image" src="{% static 'images/youtube.png' %}" alt=""></a>
+          {% if user.player.youtube %}
+            <a href="{{ user.player.youtube }}"><img class="social-media-image" src="{% static 'images/youtube.png' %}" alt=""></a>
           {% endif %}
-          {% if website %}
-            <a href="{{ website }}">{{ website }}</a>
+          {% if user.player.website %}
+            <a href="{{ user.player.website }}">{{ website }}</a>
           {% endif %}
         </div>
-        {% if grade == "Senior Cluster Manager" %}
-          <a class="upload info-button" href="{% url 'add_course' %}">
+        {% if user.player.grade == "Senior Cluster Manager" and user == request.user %}
+          <a class="upload info-button" href="{% url 'courses:add_course' %}">
             <div class="info-button-image-background">
               <img src="{% static 'images/upload.svg' %}" alt="">
             </div>
             <p>Subir curso</p>
           </a>
         {% endif %}
-        <a class="play info-button" href="">
-          <div class="info-button-image-background">
-            <img src="{% static 'images/play-circle.svg' %}" alt="">
-          </div>
-          <p>Ejercicios </p>
-        </a>
+        {% if user == request.user %}
+          <a class="play info-button" href="">
+            <div class="info-button-image-background">
+              <img src="{% static 'images/play-circle.svg' %}" alt="">
+            </div>
+            <p>Ejercicios </p>
+          </a>
+        {% endif %}
       </div>
     </section>
   </body>

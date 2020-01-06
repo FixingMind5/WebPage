@@ -14,7 +14,7 @@
 <body>
     <section class="breadcrumb-container">
         <div class="breadcrumb">
-            <a href="{% url 'player' %}">{{ request.user.username }}</a>
+            <a href="{% url 'players:player' request.user.username %}">{{ request.user.username }}</a>
             <p> / </p>
             <p> Agregar curso </p>
         </div>

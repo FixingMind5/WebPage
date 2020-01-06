@@ -3,12 +3,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import QueryDict
+from django.views.generic import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 
 # Forms builded
-from courses.forms import CourseModel, ProjectModel, LessonModel, ModuleModel
-
-# Utilities
-import csv
+from courses.forms import CourseForm, ProjectForm, LessonForm, ModuleForm
 
 
 @login_required
@@ -18,14 +18,20 @@ def add_course(request):
         2: "Matemáticas",
         3: "Diseño"
     }
-    return render(request, 'courses/add_course.html', { "categories": category_course_dictionary})
+
+    return render(
+        request=request, 
+        template_name='courses/add_course.html', 
+        context={ 
+            "categories": category_course_dictionary,
+        },
+    )
 
 
-@login_required
-def upload_course(request):
-    """Register a course form a csv, pdf and photo file"""
-    if request.method == 'POST':
-        pass
+class CreateCourseView(LoginRequiredMixin, CreateView):
+    pass
+
+
 
 
 

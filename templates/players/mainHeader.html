@@ -11,9 +11,9 @@
     <a href="">Buscar</a>
   </div>
   <div class="links">
-    <a href="{% url 'index' %}">Inicio</a>
-    <a href="{% url 'index' %}#courses">Cursos</a>
-    <a href="{% url 'index' %}#events">Eventos</a>
+    <a href="{% url 'players:index' %}">Inicio</a>
+    <a href="{% url 'players:index' %}#courses">Cursos</a>
+    <a href="{% url 'players:index' %}#events">Eventos</a>
     <a href="#faq">FAQ</a>
   </div>
 
@@ -30,14 +30,14 @@
       </div>
       <a class="bell" href=""><img src="{% static 'images/bell.svg' %}" alt=""></a>
       <a class="message" href=""><img src="{% static 'images/message-circle.svg' %}" alt="" class="message"></a>
-      <a class="nav-logout-button" href="{% url 'logout' %}">Cerrar sesión</a>
+      <a class="nav-logout-button" href="{% url 'players:logout' %}">Cerrar sesión</a>
     </div>
   {% else %}
-    <form class="login" method="POST" action="{% url "login" %}">
+    <form class="login" method="POST" action="{% url 'players:login' %}">
       {% csrf_token %}
       <input class="email" type="text" placeholder="Correo Electrónico" name="email">
       <input class="password" type="password" placeholder="Contraseña" name="password">
-      <a class="forgotten" href="{% url 'forgotten' %}">Olvidé mi correo y contraseña</a>
+      <a class="forgotten" href="">Olvidé mi correo y contraseña</a>
       <input type="submit" class="get-in" href="" value="Ingresar">
     </form>
   {% endif %}

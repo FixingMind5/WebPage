@@ -1,6 +1,8 @@
+"""Player views"""
+
 # Django Utilities
 from django.conf import settings
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
@@ -12,6 +14,9 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
+from django.views.generic import DetailView, FormView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 
 # Django Models
 from django.contrib.auth.models import User
@@ -22,36 +27,27 @@ from players.models import Player
 # Exceptions
 from django.db.utils import IntegrityError
 
+# Forms
+from players.forms import PlayerForm
 
 # Utilities
-# from skyhackDjangoWeb.backends import email_authentication
 from datetime import datetime, date
 from email.mime.image import MIMEImage
 import os
 
 
+class UserDetailView(LoginRequiredMixin, DetailView):
+    template_name = 'players/player.html'
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+    # Query set, a partir de qué lugar traerá los datos
+    queryset = User.objects.all()
+    context_object_name = 'user'
+
+
 @login_required
 def return_user(request):
-    user_email = request.user.email
-    user = User.objects.get(email=user_email)
-    player = user.player
-    user_data = {
-        'username': request.user.username,
-        'player_image': player.image,
-        'points': player.points,
-        'cluster': player.cluster,
-        'grade': player.grade,
-        'staff': request.user.is_staff,
-        'description': player.description,
-        'facebook': player.facebook,
-        'twitter': player.twitter,
-        'instagram': player.instagram,
-        'youtube': player.youtube,
-        'website': player.website
-    }
-    print(player.image.url == True)
-    # request.user.is_staff
-    return render(request, 'players/player.html', user_data)
+    return render(request, 'players/player.html')
 
 
 def return_login(request):
@@ -64,82 +60,88 @@ def return_login(request):
         )
         if user is not None:
             login(request, user)
-            return redirect('player')
+            url = reverse('players:player', kwargs={'username': user.username})
+            return redirect(url)
         else:
-            return render(request, 'players/index.html', {'error': True})
+            return render(request, 'players/index.html', { 'error': True })
     return render(request, 'players/index.html')
 
 
 @login_required
 def log_out(request):
     logout(request)
-    return redirect('index')
+    return redirect('players:index')
+
+
+def send_email(request):
+    # Creating email confirmation
+    pass
+
+
+class SignupView(FormView):
+    model = Player
+    template_name = 'players/index.html'
+    form_class = PlayerForm
+    fields = [
+        'frist_name',
+        'last_name', 
+        'username', 
+        'email', 
+        'password', 
+        'confirm_password', 
+        'day',
+        'month',
+        'year'
+    ]
+    success_url = reverse_lazy('players:login')
+
+    def get_object(self, queryset=None):
+        return self.request.user.profile
+
+    def get_success_url(self):
+        username = self.object.user.username
+        return reverse_lazy('players:player', kwargs={ 'username': username })
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
 
 
 def signup(request):
+    months = {
+        1: "Enero",
+        2: "Febrero",
+        3: "Marzo",
+        4: "Abril",
+        5: "Mayo",
+        6: "Junio",
+        7: "Julio",
+        8: "Agosto",
+        9: "Septiembre",
+        10: "Octubre",
+        11: "Noviembre",
+        12: "Diciembre"
+    }
     if request.method == 'POST':
         """User registration"""
-        # Obtaining basic user information
-        name = request.POST['name']
-        lastname = request.POST['last_name']
-        username = request.POST['username']
-        email = request.POST['email'] # email for validation
-        password = request.POST['password']
-        passwordConfirmation = request.POST['confirm_password']
-
-        # Obtaining user age
-        current_year = date.year.__get__(date.today())
-        birth_year = request.POST['year']
-        age = int(current_year) - int(birth_year)
+        player_form = PlayerForm(request.POST)
         
-        birth_date_str = request.POST['day'] + "/" + request.POST['month'] + "/" + request.POST['year']
-        birth_date = datetime.strptime(birth_date_str, "%d/%m/%Y")
+        if player_form.is_valid():
+            player_form.save()
+            return render(request, 'players/index.html')
 
-        #Checking if password matches
-        if password != passwordConfirmation:
-            # If no then return an error message
-            return render(request, 'players/index.html', {'error': 'Passwords does not match'})
-        try:
-            # Creating a user and adding his password
-            user = User.objects.create(username=username)
-            user.set_password(raw_password=password)
-        except IntegrityError:
-            # Checking if another user with the same username is already registered
-            return render(request, 'players/index.html', {'error': 'Username is already taken :('})
-        # Adding last information 
-        user.first_name = name
-        user.last_name = lastname
-        user.email = email
-        user.is_active = False
-        user.save()
+    else:
+        player_form = PlayerForm()
 
-        try:
-            player = Player.objects.create(user=user, birth_date=birth_date, age=age, email=email)
-            player.save()
-        except IntegrityError:
-            return render(request, 'players/index.html', {'error': 'User or email already taken'})
-
-        # Creating email confirmation
-        email_confirmation_message = False
-        current_site = get_current_site(request)
-        mail_subject = 'Activa tu cuenta 💪'
-        message = render_to_string('players/account_active_email.html', {
-            'user': user,
-            'domain': current_site.domain,
-            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-            'token': account_activation_token.make_token(user),
+    return render(
+        request=request,
+        template_name='players/index.html',
+        context={
+            'player_form': player_form,
+            'days': [i for i in range(1, 31)],
+            'years': [2005 - i for i in range(1, 46)],
+            'months': months
         })
-        user_email = user.email
-        email = EmailMultiAlternatives(
-            mail_subject, message, to=[user_email]
-        )
-        email.attach_alternative(message, "text/html")
-
-        email.send()
-        email_confirmation_message = True
-
-        return render(request, 'players/index.html', { "message": email_confirmation_message })
-    return render(request, 'players/register.html')
 
 
 def activate(request, uidb64, token):
