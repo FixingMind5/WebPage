@@ -8,7 +8,7 @@ from players import views as players_app_views
 from courses import views as courses_app_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
     # Players
     path('', include(('players.urls', 'players'), namespace='players')),
     # Courses

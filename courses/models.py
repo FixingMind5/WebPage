@@ -63,8 +63,8 @@ class Answer(models.Model):
     likes = models.IntegerField(null=False, blank=False, default=0)
     date = models.DateTimeField(auto_now_add=True)
 
-    commentary_id = models.ForeignKey(Commentary, on_delete=models.CASCADE)
-    player_id = models.ForeignKey(Player, on_delete=models.CASCADE)
+    commentary = models.ForeignKey(Commentary, on_delete=models.CASCADE)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Answer published on {self.date}"
