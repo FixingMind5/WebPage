@@ -27,8 +27,8 @@ class Lesson(models.Model):
     url = models.CharField(max_length=22, blank=False, null=True)
     description = models.TextField(null=True, blank=True)
 
-    module_id = models.ForeignKey(Module, on_delete=models.CASCADE)
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     def __str__(self):
         return "Lesson %s" % (self.title)
@@ -39,7 +39,7 @@ class Project(models.Model):
     description = models.TextField(null=True, blank=True)
     photo = models.ImageField(null=True, upload_to = 'projects/')
 
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     def __str__(self):
         return "Project %s" % self.title
@@ -51,8 +51,8 @@ class Commentary(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     is_question = models.BooleanField(null=False, blank=False, default=False)
 
-    lesson_id = models.ForeignKey(Lesson, on_delete=models.CASCADE)
-    player_id = models.ForeignKey(Player, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Commentary with {self.likes} likes published on {self.date}"
