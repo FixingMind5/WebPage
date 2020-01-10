@@ -1,5 +1,6 @@
 """Course models"""
 from django.db import models
+from django.contrib.auth.models import User
 
 # My models
 from players.models import Player
@@ -8,10 +9,11 @@ from players.models import Player
 class Course(models.Model):
     title = models.CharField(max_length=70, blank=True, null=True, default="No Title")
     category = models.CharField(max_length=100, blank=True, null=True, default="Any")
-    teacher = models.ForeignKey(Player, on_delete=models.CASCADE)
+    abreviation = models.CharField(max_length=15, blank=True, null=True)
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "%s by %s" % (self.title, self.teache.__str__())
+        return "%s by %s" % (self.title, self.teacher.__str__())
 
 
 class Module(models.Model):
@@ -26,6 +28,7 @@ class Lesson(models.Model):
     title = models.CharField(max_length=70, blank=True, null=True)
     url = models.CharField(max_length=22, blank=False, null=True)
     description = models.TextField(null=True, blank=True)
+    views = models.IntegerField(blank=False, null=False, default=0)
 
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
@@ -37,7 +40,7 @@ class Lesson(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=70, blank=True, null=True)
     description = models.TextField(null=True, blank=True)
-    photo = models.ImageField(null=True, upload_to = 'projects/')
+    image = models.ImageField(null=True, upload_to='projects/')
 
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
