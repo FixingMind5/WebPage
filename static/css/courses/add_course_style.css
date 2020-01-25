@@ -79,7 +79,7 @@ iframe {
     border-radius: 15px;
 }
 
-form {
+.form-container {
     display: grid;
     background-color: white;
     color: #2c2d2e;
@@ -87,6 +87,19 @@ form {
     padding: 50px;
     grid-template-columns: 150px 1fr;
     align-items: center;
+}
+
+.project-container {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+}
+
+.error {
+    grid-column: 1/-1;
+}
+
+.form-container h1 {
+    grid-column: 1/-1;
 }
 
 .is-invalid {
@@ -104,7 +117,7 @@ form {
     color: #F00;
 }
 
-.form-field {
+.form-field, input[type="text"], textarea {
     height: 49%;
     border: 1px solid #2c2d2e;
     background-color: #D7D9DF;
@@ -131,7 +144,7 @@ input[type="file"] {
     height: 0.1px;
 }
 
-label {
+.image-label {
     background-color: #B99F7C;
     color: white;
     border-radius: 5px;
@@ -147,7 +160,7 @@ label {
     transition: 500ms;
 }
 
-label:hover {
+.image-label:hover {
     background-color: #D2B58E;
 }
 
@@ -156,7 +169,7 @@ label:hover {
 }
 
 .submit-form-button {
-    border-radius: 15px;
+    border-radius: 5px;
     background-color: #B99F7C;
     cursor: pointer;
     outline: none;
@@ -169,6 +182,8 @@ label:hover {
     color: white;
     align-items: center;
     text-transform: uppercase;
+    width: 950px;
+    margin-top: 20px;
 }
 
 .submit-form-button:hover {
@@ -197,6 +212,13 @@ label:hover {
 
 .lessons-container {
     grid-column: 1/-1;
+    /* display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 60px 80px 1fr; */
+}
+
+.lessons-container select {
+    outline: none;
 }
 
 .option {
@@ -237,6 +259,17 @@ label:hover {
     margin-top: 10px;
 }
 
+.module input[type="text"] {
+    border: none;
+    padding: 5px 15px;
+    border-bottom: 1px solid #808EA6;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: bold;
+    color: #808EA6;
+    background-color: #304366;
+}
+
 .lesson {
     display: grid;
     grid-auto-flow: column;
@@ -258,6 +291,18 @@ label:hover {
     cursor: pointer;
     font-size: 20px;
     align-self: center;
+}
+
+.lessons-container button {
+    justify-self: end;
+    padding: 5px 15px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: #4a934a;
+    height: 36px;
 }
 
 .lessons-container input {
@@ -288,4 +333,71 @@ label:hover {
 
 .hide {
     display: none;
+}
+
+.lesson-field {
+    border: none;
+}
+
+.lesson-field legend {
+    text-transform: uppercase;
+    color: #304366;
+    font-size: 35px;
+}
+
+.lesson-field table tbody {
+    display: grid;
+    align-items: center;
+}
+
+.lesson-field table tbody tr {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    text-transform: uppercase;
+    grid-template-columns: 1fr 1fr 50px;
+}
+
+.lesson-field table {
+    width: 900px;
+}
+
+.control-group {
+    display: grid;
+    grid-auto-flow: column;
+    text-transform: uppercase;
+}
+
+.control-label {
+    margin-right: 30px;
+    align-self: center;
+}
+
+.textInput {
+    padding: 5px 15px;
+    border-radius: 1.5px;
+    border: .5px solid;
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.delete-row {
+    text-transform: uppercase;
+    color: #F00;
+    justify-self: center;
+}
+
+.add-row {
+    text-transform: uppercase;
+    color: white;
+    font-weight: 900;
+    background-color: #4a934a;
+    padding: 5px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    transition: 500ms;
+}
+
+.add-row:hover {
+    background-color: #5cb85c;
 }
