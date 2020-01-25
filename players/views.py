@@ -99,7 +99,7 @@ class SignupView(FormView):
         return self.request.user.profile
 
     def get_success_url(self):
-        username = self.object.user.username
+        username = self.objects.user.username
         return reverse_lazy('players:player', kwargs={ 'username': username })
 
     def form_valid(self, form):
