@@ -1,0 +1,203 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+input {
+    outline: none;
+}
+
+select {
+    outline: none;
+}
+
+body {
+    background-color: #D7D9DF;
+}
+
+form {
+    display: grid;
+}
+
+label {
+    align-self: center;
+}
+
+.breadcrumb{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 85px 20px 105px 20px 1fr 1fr;
+    background-color: #808EA6;
+    color: #D7D9DF;
+    padding: 5px 30px;
+}
+
+.breadcrumb p {
+    margin: 0;
+}
+
+.breadcrumb a {
+    color: white;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb h3 {
+    margin: 0;
+    justify-self: end;
+}
+
+.form-section {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 180px 540px 0px 40px;
+    grid-template-rows: 1fr 40px;
+    margin: 0 200px 20px 200px;
+    justify-content: space-around;
+    align-content: center;
+    background-color: white;
+    padding: 25px 0;
+    align-items: center;
+}
+
+.form-section h1 {
+    grid-row: 1;
+    grid-column: 1/-1;
+    margin: 0;
+}
+
+.form-section h3, .form-section input, select {
+    margin: 0;
+    grid-row: 2;
+}
+
+.form-course {
+    display: grid;
+    grid-auto-flow: column;
+    margin: 0 200px 20px 200px;
+    padding: 20px 35px;
+    background-color: white;
+    grid-template-columns: 110px 1fr;
+    align-items: center;
+}
+
+.form-course input {
+    border: none;
+    font-size: 25px;
+    padding: 9px 0;
+}
+
+.form-course h1 {
+    margin: 0;
+}
+
+.lesson-section {
+    display: grid;
+    margin: 0 200px 20px 200px;
+    align-content: center;
+    background-color: white;
+    padding: 25px 35px;
+    align-items: center;
+}
+
+.lesson-section h1 {
+    grid-row: 1;
+    margin: 5px;
+}
+
+.lesson-section .add-lesson-button {
+    background-color: yellowgreen;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 20px;
+    border-radius: 14px;
+    padding: 10px;
+    text-transform: uppercase;
+    transition: 500ms;
+}
+
+.add-lesson-button:hover {
+    background-color: #AAD068;
+}
+
+.delete-lesson-button {
+    color: red;
+    font-weight: bolder;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin: 0;
+    align-self: center;
+}
+
+.lesson {
+    display: grid;
+    grid-auto-flow: column;
+}
+
+.lesson p input {
+    font-size: 20px;
+    color: rgb(70, 90, 148);
+}
+
+.lesson p input#id_title {
+    width: 500px;
+}
+
+input[type="text"], .field {
+    border: 1px solid rgb(70, 90, 148);
+    background-color: #D7D9Df;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 5px 5px;
+}
+
+input[name="title"] {
+    height: 70%;
+    font-size: 20px;
+}
+
+input[placeholder="Título de la clase"] {
+    width: 500px;
+    padding: 5px;
+    height: 30px;
+    /* margin: 10px 0px; */
+}
+
+.submit-lessons {
+    justify-self: center;
+    /* margin: 20px 300px; */
+    width: 72.5%;
+    border: none;
+    padding: 15px;
+    font-size: 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #B99F7C;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bolder;
+    transition: 500ms;
+}
+
+.submit-lessons:hover {
+    background-color: #D2B58E;
+}
+
+.errorlist li {
+    list-style: none;
+    font-size: 12px;
+    color: red;
+    text-align: center;
+}
+
+.errorlist {
+    padding: 0;
+    margin: 0 2px;
+    display: grid;
+    align-items: center;
+}

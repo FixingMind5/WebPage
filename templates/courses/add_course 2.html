@@ -1,0 +1,138 @@
+{% if request.user.player.grade == "Senior Cluster Manager" %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/courses/add_course_style.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+        <title>@{{ request.user.username }} | add course</title>
+    </head>
+    {% include "players/mainHeader.html" %}
+    {% block header %}
+    {% endblock %}
+    <body>
+        <!-- <button class="move-arrow right" onclick="goNextSlide()">></button>
+        <button class="move-arrow left" onclick="goPreviousSlide()"><</button> -->
+        {% for error in project_form.course.errors %}{{ error }}{% endfor %}
+        <section class="breadcrumb">
+            <a href="{% url 'players:player' request.user.username %}">{{ request.user.username }}</a>
+            <p> / </p>
+            <a href="{% url 'players:admin_panel' request.user.username %}">Admin panel</a>
+            <p> / </p>
+            <p> Agregar Curso </p>
+            <h3 style="text-transform: uppercase; justify-self: end;">Agregar curso</h3>
+        </section>
+        <form method="POST" class="form-container" enctype="multipart/form-data" action=".">
+            {% csrf_token %}
+            <h1>Información básica del curso</h1>
+            <h3>Título</h3><input 
+                class="{% if form.title.errors %}is-invalid{% else %}form-field{% endif %}" 
+                type="text" 
+                name="title"
+                value="{% if form.errors or project_form.errors %}{{ form.title.value }}{% endif %}"
+            >
+            {% for error in form.title.errors %}<p class="error" style="color: red;">{{ error }}</p>{% endfor %}
+            <h3>Abreviación</h3><input 
+                class="{% if form.abreviation.errors %}is-invalid{% else %}form-field{% endif %}" 
+                type="text" 
+                name="abreviation"
+                value="{% if form.errors or project_form.errors %}{{  form.abreviation.value  }}{% endif %}"
+            >
+            {% for error in form.abreviation.errors %}<p class="error" style="color: red;">{{ error }}</p>{% endfor %}
+            <h3>Profesor</h3><input 
+                class="{% if form.teacher.errors %}is-invalid{% else %}form-field{% endif %}" 
+                type="email" 
+                name="teacher"
+                value="{% if form.errors or project_form.errors %}{{  form.teacher.value  }}{% endif %}"
+            >
+            {% for error in form.teacher.errors %}<p class="error" style="color: red;">{{ error }}</p>{% endfor %}
+            <h3>Categoría</h3><select 
+                class="{% if form.category.errors %}is-invalid{% else %}form-field{% endif %} course-category" 
+                name="category"
+                value="{% if form.errors %}{{  form.category.value  }}{% endif %}"
+            >
+                <option value="programación">programación</option>
+                <option value="matemáticas">matemáticas</option>
+                <option value="diseño">diseño</option>
+            </select>
+            <!-- <input class="submit-form-button" type="submit" value="enviar"> -->
+            {{ project_form.management_form }}
+            <h1>Información del Proyecto</h1>
+            <h3>Título</h3><input 
+                type="text" 
+                name="project_title"
+                class="{% if project_form.title.errors %}is-invalid{% else %}form-field{% endif %}"
+                value="{% if project_form.errors or form.errors %}{{ project_form.title.value }}{% endif %}"
+                required
+            >
+            {% for error in project_form.title.errors %}<p class="error" style="color: red;">{{ error }}</p>{% endfor %}
+            <h3>Descripción</h3><input 
+                type="textarea" 
+                name="description"
+                class="{% if project_form.description.errors %}is-invalid{% else %}form-field{% endif %}"
+                value="{% if project_form.errors or form.errors %}{{ project_form.description.value }}{% endif %}"
+            >
+            {% for error in project_form.description.errors %}<p class="error" style="color: red;">{{ error }}</p>{% endfor %}
+            <div class="image-container" id="image-container">
+                <h3>Imagen</h3><input class="project-photo" type="file" name="image" id="image"><label class="image-label" for="image" id='image-label'>
+                    <img src="{% static 'images/upload.svg' %}" alt="">
+                    <span>Subir Foto</span>
+                </label>
+                {% for error in project_form.image.errors %}
+                    <p style="color: red; align-self: center;">{{ error }}</p>
+                {% endfor %}
+                <p class="hidden" id="ready">¡File Uploaded!</p>
+            </div>
+            <input type="submit" value="Enviar" class="submit-form-button">
+        </form>
+        <section class="upload-course-help">
+            <iframe src="https://www.youtube.com/embed/MDvazVyFn8A" frameborder="0" width="400" height="295" allowfullscreen>Tu navegador no soporta pantalla completa :(</iframe>
+            <h3>¿Cómo subir un curso?</h3>
+            <p>En este video te mostramos cómo subir un curso. Cualquier inconveniente repórtalo con los líderes.</p>
+        </section>
+    </body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="{% static 'scripts/django-dynamic-formset/jquery.formset.js' %}"></script>
+    <script src="{% static 'scripts/add_course_logic.js' %}"></script>
+    <script src="{% static 'scripts/course-slide-show.js' %}"></script>
+    <script>
+        $('.moduleFormSet_row-{{ module_form.prefix }}').formset({
+            addText: 'agregar módulo',
+            deleteText: 'eliminar módulo',
+            prefix: '{{ module_form.prefix }}',
+        });
+        $('.lessonFormSet_row-{{ lesson_form.prefix }}').formset({
+            addText: 'agregar curso',
+            deleteText: 'eliminar curso',
+            prefix: '{{ module_form.prefix }}',
+        });
+    </script>
+    {% if form.errors %}
+    <script>
+        var errorContainers = document.getElementsByClassName("invalid-feedback");
+
+        for (let i = 0 ; i < errorContainers.length ; i++ ){
+            setTimeout(() => {
+                errorContainers[i].classList.add('hide')
+            }, 10000);
+        }
+    </script>
+    {% endif %}
+    </html>
+{% else %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>¡Increíble, lo encontraste! Lamentablemente no puedo darte acceso 😞</h1>
+        <p>{{ request.player.grade }}</p>
+    </body>
+    </html>
+{% endif %}

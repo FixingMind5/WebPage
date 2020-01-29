@@ -1,0 +1,181 @@
+* {
+  font-family: 'VT323', monospace;
+}
+
+a {
+  text-decoration: none;
+  font-family: 'VT323', monospace;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?l5sgwg');
+  src:  url('fonts/icomoon.eot?l5sgwg#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?l5sgwg') format('truetype'),
+    url('fonts/icomoon.woff?l5sgwg') format('woff'),
+    url('fonts/icomoon.svg?l5sgwg#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon-admin.eot?u8bcog');
+  src:  url('fonts/icomoon-admin.eot?u8bcog#iefix') format('embedded-opentype'),
+    url('fonts/icomoon-admin.ttf?u8bcog') format('truetype'),
+    url('fonts/icomoon-admin.woff?u8bcog') format('woff'),
+    url('fonts/icomoon-admin.svg?u8bcog#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon-add.eot?muilzb');
+  src:  url('fonts/icomoon-add.eot?muilzb#iefix') format('embedded-opentype'),
+    url('fonts/icomoon-add.ttf?muilzb') format('truetype'),
+    url('fonts/icomoon-add.woff?muilzb') format('woff'),
+    url('fonts/icomoon-add.svg?muilzb#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-play:before {
+  content: "\e901";
+}
+.icon-log-out:before {
+  content: "\e900";
+}
+
+.icon-pacman:before {
+  content: "\e916";
+}
+
+.icon-plus:before {
+  content: "\ea0a";
+}
+
+.logout-button, .play-button {
+  font-size: 40px;
+  text-align: right;
+  display: block;
+  width: 40px;
+  height: 40px;
+  color: white;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: 1s;
+  border-radius: 15px;
+  padding: 15px;
+  top: 10px;
+  position: fixed;
+  z-index: 3;
+  /* box-shadow: -5px 5px 30px black; */
+}
+
+.logout-button {
+  background-color: transparent;
+  right: 15px;
+  border: 3px solid red;
+  transition: 500ms;
+  color: red;
+}
+
+.play-button {
+  /* background: linear-gradient(#02D40D 70%, #206623); */
+  background-color: transparent;
+  border: 3px solid #02D40D;
+  right: 100px;
+  transition: 500ms;
+  color: #02D40D;
+  border-radius: 50%;
+}
+
+.play-button:hover {
+  background-color: #02D40D;
+  color: white;
+}
+
+.logout-button:hover {
+  background-color: red;
+  color: white
+}
+
+.gameButtonsContainer {
+  position: fixed;
+  z-index: 3;
+  display: grid;
+  grid-auto-flow: column;
+
+}
+
+.logOut, .play {
+  color: white;
+  z-index: 4;
+  font-size: 45px;
+  margin: 0;
+  position: fixed;
+  top: 25px;
+  text-decoration: none;
+}
+
+.logOut {
+  right: 40px;
+}
+
+.play {
+  right: 255px;
+}
+
+.admin-button {
+  display: grid;
+  color: yellow;
+  padding: 0 20px 20px 20px;
+  border: 3px solid yellow;
+  border-radius: 20px;
+  margin: 10px;
+  transition: 500ms;
+  font-size: 40px;
+  text-align: left;
+  font-family: 'VT323', monospace;
+  align-items: center;
+  grid-auto-flow: column;
+  padding: 10px;
+}
+
+.admin-button:hover {
+  background-color: yellow;
+  color: black;
+}
+
+.add-course-button {
+  color: #02D40D;
+  padding: 15px;
+  font-size: 40px;
+  margin: 5px;
+  transition: 500ms;
+  border-radius: 50%;
+}
+
+.add-course-button:hover {
+  color: white;
+  background-color: #02D40D;
+}
