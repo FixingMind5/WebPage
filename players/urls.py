@@ -25,6 +25,11 @@ urlpatterns = [
         name='logout'
     ),
     path(
+        route='admin_panel/<str:username>',
+        view=views.AdminPanelView.as_view(),
+        name="admin_panel"
+    ),
+    path(
         route='<str:username>', 
         view=views.UserDetailView.as_view(), 
         name='player'

@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import QueryDict
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.db import transaction
@@ -11,10 +11,10 @@ from django.forms import ValidationError
 from django.http import HttpResponse
 
 # Forms builded
-from courses.forms import CourseForm, ModuleFormSet, ProjectForm, LessonFormSet
+from courses.forms import CourseForm, ModuleForm, ProjectForm, LessonFormSet
 
 # My models
-from .models import Project, Module, Course
+from .models import Project, Module, Course, Lesson
 
 
 class CreateCourseView(LoginRequiredMixin, CreateView):
@@ -49,6 +49,7 @@ class CreateCourseView(LoginRequiredMixin, CreateView):
             form.save()
             if project_form.is_valid():
                 project_form.save()
+                # Pendiente: Crear una vista bonita de logrado
                 return HttpResponse('Done!')
             else:
                 return self.form_invalid(form, project_form)
@@ -63,50 +64,32 @@ class CreateCourseView(LoginRequiredMixin, CreateView):
             )
         )
 
-
-# class CreateProjectView(LoginRequiredMixin, CreateView):
-#     template_name = "courses/add_course.html"
-#     success_url = reverse_lazy("courses:add_course")
-#     form_class = ProjectForm
-#     model = Project
-
-#     def get_context_data(self, **kwargs):
-#         context_data = super().get_context_data(**kwargs)
-#         context_data['user'] = self.request.user.player
-#         context_data['player'] = self.request.user.player
-#         return context_data
-
-
-# class CreateModuleView(LoginRequiredMixin, CreateView):
-#     template_name = "courses/add_course.html"
-#     success_url = None
-#     form_class = ModuleForm
-#     model = Module
-
-#     def get_context_data(self, **kwargs):
-#         data = super(CreateModuleView, self).get_context_data(**kwargs)
-#         if self.request.POST:
-#             data['lessons'] = LessonFormSet(self.request.POST)
-#         else:
-#             data['lessons'] = LessonFormSet()
-#         return data
-
-#     def form_valid(self, form):
-#         context = self.get_context_data()
-#         lessons = context['lessons']
-#         with transaction.atomic():
-#             form.instance.created_by = self.request.user
-#             self.object = self.save()
-#             if lessons.is_valid():
-#                 lessons.instance = self.object
-#                 lessons.save()
-#         return super(CreateModuleView, self).form_valid(form)
-
-#     def get_success_url(self):
-#         return reverse_lazy('courses:add_course')
-
-
-# class CreateLessonView(LoginRequiredMixin, CreateView):
-#     template_name = "courses/add_course.html"
-#     success_url = reverse_lazy("courses:add_course")
-#     form_class = LessonForm
+@login_required
+def add_lesson(request):
+    template_name = 'courses/add_lesson.html'
+    if request.method == 'GET':
+        lesson_formset = LessonFormSet(queryset=Module.objects.none())
+        form = ModuleForm(request.GET or None)
+    elif request.method == 'POST':
+        form = ModuleForm(request.POST)
+        lesson_formset = LessonFormSet(request.POST)
+        if form.is_valid() and lesson_formset.is_valid():
+            module = form.save()
+            for form in lesson_formset:
+                lesson = form.save(commit=False)
+                lesson.module = module
+                lesson.course = module.course
+                lesson.save()
+            return redirect('courses:add_lesson')
+    return render(
+        request=request,
+        template_name=template_name,
+        context={
+            'form': form,
+            'lesson_formset': lesson_formset
+        }
+    )
+ 
+ 
+class AdminCourseView(LoginRequiredMixin, DetailView):
+    template_name = 'courses/admin_course_detail.html'

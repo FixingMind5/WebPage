@@ -45,6 +45,14 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'user'
 
 
+class AdminPanelView(LoginRequiredMixin, DetailView):
+    template_name = 'players/admin_panel.html'
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+    queryset = User.objects.all()
+    context_object_name = 'user'
+
+
 @login_required
 def return_user(request):
     return render(request, 'players/player.html')
@@ -71,11 +79,6 @@ def return_login(request):
 def log_out(request):
     logout(request)
     return redirect('players:index')
-
-
-def send_email(request):
-    # Creating email confirmation
-    pass
 
 
 class SignupView(FormView):
@@ -107,116 +110,6 @@ class SignupView(FormView):
         return super().form_valid(form)
 
 
-def signup(request):
-    months = {
-        1: "Enero",
-        2: "Febrero",
-        3: "Marzo",
-        4: "Abril",
-        5: "Mayo",
-        6: "Junio",
-        7: "Julio",
-        8: "Agosto",
-        9: "Septiembre",
-        10: "Octubre",
-        11: "Noviembre",
-        12: "Diciembre"
-    }
-    if request.method == 'POST':
-        """User registration"""
-        player_form = PlayerForm(request.POST)
-        
-        if player_form.is_valid():
-            player_form.save()
-            return render(request, 'players/index.html')
-
-    else:
-        player_form = PlayerForm()
-
-    return render(
-        request=request,
-        template_name='players/index.html',
-        context={
-            'player_form': player_form,
-            'days': [i for i in range(1, 31)],
-            'years': [2005 - i for i in range(1, 46)],
-            'months': months
-        })
-
-
-def activate(request, uidb64, token):
-    try:
-        uid = force_text(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid) # Obtaining user from primary key
-    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
-        user = None
-    if user is not None and account_activation_token.check_token(user, token):
-        user.is_active = True
-        user.save()
-        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-        return redirect('player')
-    else:
-        return render(request, 'players/index.html', { 'invalid_message': True })
-
-
-def forgotten_password_page(request):
-    return render(request, "players/forgot_password.html")
-
-
-def send_email_retrieve_password(request):
-    if request.method == 'POST':
-        email = request.POST["user_email"]
-        try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            return render(request, "players/index.html", { "is_retrieve_email_success": False })
-        current_site = get_current_site(request)
-        mail_subject = "Solicitud de cambio de contraseña"
-        email_message = render_to_string("players/retrieve_password_email.html", {
-            'user': user,
-            'domain': current_site.domain,
-            'user_id': urlsafe_base64_encode(force_bytes(user.pk)),
-            'token': account_activation_token.make_token(user)
-        })
-        email = EmailMultiAlternatives(
-            mail_subject,
-            email_message,
-            to = [email]
-        )
-        email.attach_alternative(email_message, "text/html")
-        email.send()
-
-        return render(request, "players/index.html", { "is_retrieve_email_success": True } )
-    return render(request, "players/index.html")
-    
-
-def retrieve_password_template(request, uidb64, token):
-    try:
-        user_id = force_text(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=user_id)
-    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
-        user = None
-
-    if user is not None and account_activation_token.check_token(user, token):
-        return render(request, "players/retrieve_password_template.html", { 'user_id': uidb64 })
-    return render(request, "players/index.html", { 'retrieve_password_error': True })
-
-
-def retrieve_password(request, uidb64):
-    if request.method == 'POST':
-        user_id = force_text(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=user_id)
-        password = request.POST['new_password']
-        password_confirmation = request.POST['confirm_new_password']
-        success = password == password_confirmation
-        if success:
-            user.set_password(raw_password=password)
-            user.save()
-            return render(request, "players/index.html", { "is_password_changed": True })
-        else:
-            return render(request, "players/retrieve_password_template.html", { "is_password_changed": False, 'user_id': uidb64 })
-
-
 def index(request):
     days = [i for i in range(1, 31)]
     years = [2005 - i for i in range(1, 46)]
@@ -239,7 +132,3 @@ def index(request):
     except AttributeError:
         user = None
     return render(request, 'players/index.html', { "days": days, "months": months, "years": years, 'user': user })
-
-@login_required
-def staff_panel(request):
-    return render(request, 'players/staff_panel.html')

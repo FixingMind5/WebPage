@@ -17,8 +17,14 @@ class ProjectAdmin(admin.ModelAdmin):
     list_editable = ['description', 'image']
 
 
+@admin.register(Module)
+class ModuleAdmin(admin.ModelAdmin):
+    list_display = ['pk', 'title', 'level', 'course']
+    list_display_link = ['pk', 'title']
+
+
 @admin.register(Lesson)
 class LessonAdmin(admin.ModelAdmin):
-    list_display = ['pk', 'title', 'url']
+    list_display = ['pk', 'title', 'url', 'module', 'course']
     list_display_link = ['pk', 'title']
     list_editable = ['url']

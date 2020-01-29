@@ -27,7 +27,7 @@ class Module(models.Model):
 
 
 class Lesson(models.Model):
-    title = models.CharField(max_length=70, blank=True, null=True)
+    title = models.CharField(max_length=70, blank=False, null=True)
     url = models.CharField(max_length=22, blank=False, null=True)
     description = models.TextField(null=True, blank=True)
     views = models.IntegerField(blank=False, null=False, default=0)

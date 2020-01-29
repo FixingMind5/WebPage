@@ -15,8 +15,8 @@ body {
     background-color: #808EA6;
     display: grid;
     grid-auto-flow: column;
-    padding: 0 50px;
-    grid-template-columns: 300px 1fr;
+    padding: 5px 30px;
+    grid-template-columns: 340px 1fr;
     text-align: right;
     margin-top: 4px;
     color: #D7D9DF;
@@ -30,9 +30,18 @@ body {
 .breadcrumb {
     display: grid;
     grid-auto-flow: column;
-    align-items: center;
-    grid-template-columns: 62px 3ch 13ch;
-    text-align: center;
+    grid-template-columns: 85px 20px 105px 20px 1fr 1fr;
+    background-color: #808EA6;
+    color: #D7D9DF;
+    padding: 5px 30px;
+}
+
+.breadcrumb p {
+    margin: 0;
+}
+
+.breadcrumb h3 {
+    margin: 0;
 }
 
 .breadcrumb a {

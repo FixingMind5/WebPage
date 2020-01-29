@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/players/admin_panel_style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <title>@{{ user.username }} | Admin panel</title>
+</head>
+<body>
+    {% include "players/mainHeader.html" %}
+    {% block header %}{% endblock %}
+    <section class="breadcrumb">
+        <a href="{% url 'players:player' request.user.username %}">{{  user.username  }}</a>
+        <p style="color: white;"> / </p>
+        <p> Admin panel </p>
+        <p style="text-transform:uppercase; justify-self: end;"> Admin Panel </p>
+    </section>
+    <section class="panel-container">
+        <a href="{% url 'courses:add_course' %}" class="panel-tab">
+            <div></div>
+            <h3>¡Agregar curso!</h3>
+        </a>
+        <a href="{% url 'courses:add_lesson' %}" class="panel-tab">
+            <div></div>
+            <h3>¡Agregar clases!</h3>
+        </a>
+    </section>
+</body>
+</html>

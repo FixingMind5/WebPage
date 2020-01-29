@@ -9,7 +9,8 @@ from crispy_forms.layout import Layout, Field, Fieldset, Div, HTML, ButtonHolder
 from .custom_layout_object import Formset
 
 # Django models
-from django.forms.models import inlineformset_factory
+from django.forms.models import BaseModelFormSet
+from django.forms import modelformset_factory
 
 # My models
 from .models import Course, Module, Project, Lesson, Commentary, Answer
@@ -59,16 +60,51 @@ class ProjectForm(ModelForm):
 
 
 class ModuleForm(ModelForm):
+    course = forms.CharField(max_length=70, required=True)
     class Meta:
         model = Module
-        exclude = ()
+        fields = (
+            'course',
+            'title',
+            'level'
+        )
+        labels = {
+            'title': 'Module Title'
+        }
+        widgets = {
+            'title': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'título del módulo'
+                }
+            )
+        }
 
+    def clean_course(self):
+        try:
+            course = Course.objects.get(abreviation=self.data['course'])
+        except Course.DoesNotExist:
+            raise ValidationError(f"El curso con la abreviación {self.data['course']} no existe 💥")
+        return course
 
-class LessonForm(ModelForm):
-    class Meta:
-        model = Lesson
-        exclude = ()
-
-ProjectFormSet = inlineformset_factory(Course, Project, form=ProjectForm, fields=["title", "description", "image"], can_delete=False,extra=1)
-ModuleFormSet = inlineformset_factory(Course, Module, fields=["title", "level"], form=ModuleForm, can_delete=True, extra=1)
-LessonFormSet = inlineformset_factory(Course, Lesson, fields=['title', 'url'], form=LessonForm, can_delete=True, extra=1)
+LessonFormSet = modelformset_factory(
+    Lesson,
+    fields=('title', 'url'),
+    extra=1,
+    widgets={
+        'title': forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Título de la clase',
+                'required': True
+            }
+        ),
+        'url': forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'YouTube url',
+                'required': True
+            }
+        )
+    },
+)

@@ -16,13 +16,13 @@
         <!-- <button class="move-arrow right" onclick="goNextSlide()">></button>
         <button class="move-arrow left" onclick="goPreviousSlide()"><</button> -->
         {% for error in project_form.course.errors %}{{ error }}{% endfor %}
-        <section class="breadcrumb-container">
-            <div class="breadcrumb">
-                <a href="{% url 'players:player' request.user.username %}">{{ request.user.username }}</a>
-                <p> / </p>
-                <p> Agregar curso </p>
-            </div>
-            <h1>Agregar curso</h1>
+        <section class="breadcrumb">
+            <a href="{% url 'players:player' request.user.username %}">{{ request.user.username }}</a>
+            <p> / </p>
+            <a href="{% url 'players:admin_panel' request.user.username %}">Admin panel</a>
+            <p> / </p>
+            <p> Agregar Curso </p>
+            <h3 style="text-transform: uppercase; justify-self: end;">Agregar curso</h3>
         </section>
         <form method="POST" class="form-container" enctype="multipart/form-data" action=".">
             {% csrf_token %}

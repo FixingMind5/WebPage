@@ -47,11 +47,11 @@
           {% endif %}
         </div>
         {% if user.player.grade == "Senior Cluster Manager" and user == request.user %}
-          <a class="upload info-button" href="{% url 'courses:add_course' %}">
+          <a class="upload info-button" href="{% url 'players:admin_panel' request.user.username %}">
             <div class="info-button-image-background">
               <img src="{% static 'images/upload.svg' %}" alt="">
             </div>
-            <p>Subir curso</p>
+            <p>Admin panel</p>
           </a>
         {% endif %}
         {% if user == request.user %}
@@ -59,7 +59,7 @@
             <div class="info-button-image-background">
               <img src="{% static 'images/play-circle.svg' %}" alt="">
             </div>
-            <p>Ejercicios </p>
+            <p>Ejercicios</p>
           </a>
         {% endif %}
       </div>
