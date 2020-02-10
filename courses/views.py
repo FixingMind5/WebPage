@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import QueryDict
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.db import transaction
@@ -90,6 +90,12 @@ def add_lesson(request):
         }
     )
  
- 
+
+class CourseCatalogView(ListView):
+    template_name = 'courses/course_catalog.html'
+    model = Course
+    queryset = Course.objects.all()
+
+
 class AdminCourseView(LoginRequiredMixin, DetailView):
     template_name = 'courses/admin_course_detail.html'

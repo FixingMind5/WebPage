@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@{{ username }} | Catálogo de cursos</title>
+</head>
+<body>
+    {% include 'players/mainHeader.html' %}
+    {% block 'header' %}
+    {% endblock %}
+    <section class="breadcrumb">
+        <a href="{% url 'players:index' %}">Inicio</a>
+        <p> / </p>
+        <p> Cursos </p>
+        <h3 style="text-transform: uppercase;"> Ver Cursos </h3>
+    </section>
+</body>
+</html>

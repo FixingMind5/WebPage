@@ -15,8 +15,13 @@ urlpatterns = [
         name="add_lesson"
     ),
     path(
+        route='catalog',
+        view=views.CourseCatalogView.as_view(),
+        name='catalog',
+    ),
+    path(
         route='admin_course_detail/<str:course>',
         view=views.AdminCourseView.as_view(),
         name='admin_course_detail'
-    )
+    ),
 ]
