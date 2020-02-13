@@ -1,18 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>@{{ username }} | Catálogo de cursos</title>
-</head>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_content %}
+<title>SkyHack | Catálogo de cursos</title>
+<link rel="stylesheet" href="{% static 'css/courses/course_catalog_style.css' %}">
+{% endblock %}
+
+{% block content %}
 <body>
-    {% include 'players/mainHeader.html' %}
-    {% block 'header' %}
-    {% endblock %}
     <section class="breadcrumb">
-        <a href="{% url 'players:index' %}">Inicio</a>
-        <p> / </p>
+        <a href="{% url 'players:index' %}" style="text-align: center;">Inicio</a>
+        <p style="text-align: center;"> / </p>
         <p> Cursos </p>
         <h3 style="text-transform: uppercase;"> Ver Cursos </h3>
     </section>
+    <section class="courses">
+        <div class="course-category programming-courses">
+            <h3>Programación</h3>
+            {% for course in courses %}
+                {% if course.category == "programación" %}
+                    <a class="course" href="{% url 'courses:course' course.abreviation %}">
+                        {{ course.title }}
+                        <p style="text-transform: uppercase;">ver</p>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
 </body>
+{% endblock %}
+
 </html>

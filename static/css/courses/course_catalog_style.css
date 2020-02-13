@@ -1,0 +1,81 @@
+.breadcrumb {
+    display: grid;
+    grid-auto-flow: column;
+    padding: 5px 30px;
+    grid-template-columns: 50px 20px 1fr 1fr;
+    align-content: center;
+    background-color: #808EA6;
+    color: #D7D9DF;
+}
+
+.breadcrumb p {
+    margin: 0;
+}
+
+.breadcrumb h3 {
+    margin: 0;
+    justify-self: end;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: white;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.courses {
+    margin: 0 200px;
+}
+
+.course-category {
+    display: grid;
+    width: 500px;
+    background-color: white;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    margin: 20px 10px;
+}
+
+.course-category h3 {
+    margin: 0;
+}
+
+.programming-courses {
+    color: white;
+}
+
+.programming-courses h3 {
+    background-image: linear-gradient(to right, #147AD2, #1A8FF5);
+    text-align: center;
+    padding: 10px 0;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.course {
+    align-items: center;
+    display: grid;
+    grid-auto-flow: column;
+    color: rgb(70, 90, 144);
+    text-decoration: none;
+    border-bottom: 1px solid #465A90;
+    padding: 15px;
+}
+
+.course:hover {
+    background-color: #D7D9DF;
+}
+
+.course p {
+    margin: 0;
+    justify-self: end;
+}
+
+.course-category a:last-child {
+    border: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}

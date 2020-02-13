@@ -6,11 +6,22 @@ from django.contrib.auth.models import User
 from players.models import Player
 
 
+class Project(models.Model):
+    title = models.CharField(max_length=70, blank=True, null=True)
+    description = models.TextField(null=True, blank=True)
+    image = models.ImageField(null=True, upload_to='projects/')
+
+    def __str__(self):
+        return "Project %s" % self.title
+
+
 class Course(models.Model):
     title = models.CharField(max_length=70, blank=True, null=True, default="No Title")
     category = models.CharField(max_length=100, blank=True, null=True, default="Any")
     abreviation = models.CharField(max_length=15, blank=True, null=True)
     teacher = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
     def __str__(self):
         return "%s by %s" % (self.title, self.teacher.__str__())
@@ -37,17 +48,6 @@ class Lesson(models.Model):
 
     def __str__(self):
         return "Lesson %s" % (self.title)
-
-
-class Project(models.Model):
-    title = models.CharField(max_length=70, blank=True, null=True)
-    description = models.TextField(null=True, blank=True)
-    image = models.ImageField(null=True, upload_to='projects/')
-
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return "Project %s" % self.title
 
 
 class Commentary(models.Model):

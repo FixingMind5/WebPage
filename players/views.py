@@ -98,13 +98,6 @@ class SignupView(FormView):
     ]
     success_url = reverse_lazy('players:login')
 
-    def get_object(self, queryset=None):
-        return self.request.user.profile
-
-    def get_success_url(self):
-        username = self.objects.user.username
-        return reverse_lazy('players:player', kwargs={ 'username': username })
-
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)

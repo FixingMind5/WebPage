@@ -38,6 +38,25 @@ class CourseForm(ModelForm):
             raise ValidationError("El usuario no existe 😢")
         return teacher
 
+    def save(self):
+        cleaned_data = self.cleaned_data
+        project_title = self.data['project_title']
+        print(self.data['project_title'])
+        print(Project.objects.get(title=project_title))
+        try:
+            project = Project.objects.get(title=project_title)
+        except Project.DoesNotExist:
+            raise ValidationError("El proyecto no existe 😨")
+        data = {
+            'title': cleaned_data['title'],
+            'abreviation': cleaned_data['abreviation'],
+            'category': cleaned_data['category'],
+            'teacher': cleaned_data['teacher'],
+            'project': project
+        }
+        course = Course.objects.create(**data)
+        course.save()
+
 
 class ProjectForm(ModelForm):
     description = forms.CharField(required=True)
@@ -48,9 +67,7 @@ class ProjectForm(ModelForm):
     def save(self):
         old_data = self.data
         cleaned_data = self.cleaned_data
-        course = Course.objects.get(title=old_data['title'])
         data = {
-            'course': course,
             'title': old_data['project_title'],
             'description': old_data['description'],
             'image': cleaned_data['image']

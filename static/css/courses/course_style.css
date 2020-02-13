@@ -1,0 +1,90 @@
+.breadcrumb {
+    background-color: #808EA6;
+    display: grid;
+    grid-auto-flow: column;
+    color: #D7D9DF;
+    padding: 5px 30px;
+    grid-template-columns: 50px 20px 55px 20px 1fr 1fr;
+}
+
+.breadcrumb p {
+    margin: 0;
+}
+
+.breadcrumb h3 {
+    margin: 0;
+}
+
+.breadcrumb a {
+    color: white;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.project {
+    background-color: white;
+    padding: 20px 200px;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    grid-template-rows: 30px 60px 1fr;
+    height: 200px;
+    align-items: center;
+}
+
+.project img {
+    width: 300px;
+    grid-row: 1/-1;
+    align-self: auto;
+}
+
+.project h3 {
+    margin: 0;
+    align-self: center;
+}
+
+.project p {
+    margin: 0;
+    text-align: justify;
+    align-self: center;
+}
+
+.lessons {
+    margin: 20px 350px;
+    display: grid;
+}
+
+.lessons h3 {
+    color: white;
+    background-color: #395078;
+    margin: 0;
+    padding: 5px 15px;
+    text-align: center;
+    height: 40px;
+    align-items: center;
+    display: grid;
+}
+
+.lessons a {
+    background-color: white;
+    color: #395078;
+    text-decoration: none;
+    padding: 7px 15px;
+    font-size: 18px;
+}
+
+.lessons a:hover {
+    background-color: #D7D9DF;
+}
+
+.lessons a:nth-last-child(1) {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.lessons h3:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}

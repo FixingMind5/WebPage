@@ -24,4 +24,9 @@ urlpatterns = [
         view=views.AdminCourseView.as_view(),
         name='admin_course_detail'
     ),
+    path(
+        route='<str:abreviation>',
+        view=views.CourseDetailView.as_view(),
+        name='course'
+    )
 ]

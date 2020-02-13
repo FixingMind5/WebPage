@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_content %}
+<title>SkyHack | {{ course.title }}</title>
+<link rel="stylesheet" href="{% static 'css/courses/course_style.css' %}">
+{% endblock %}
+{% block content %}
+<section class="breadcrumb">
+    <a href="{% url 'players:index' %}" style="text-align: center;">Inicio</a>
+    <p style="text-align: center;"> / </p>
+    <a href="{% url 'courses:catalog' %}">Cursos</a>
+    <p style="text-align: center;"> / </p>
+    <p> {{ course.title }} </p>
+    <h3 style="text-transform: uppercase; justify-self: end;">{{ course.title }}</h3>
+</section>
+<section class="project">
+    <img src="../images/{{ project.image }}" alt="">
+    <h3>{{ project.title }}</h3>
+    <p>{{ project.description }}</p>
+    <a href="{% url 'players:player' teacher.username %}">Tu profesor {{ teacher.first_name }} {{ teacher.last_name }}</a>
+</section>
+
+<section class="lessons">
+    {% for module in modules %}
+        <h3>{{ module.title }}</h3>
+        {% for lesson in lessons %}
+            {% if lesson.module == module %}
+                <a href="">{{ lesson.title }}</a>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</section>
+
+{% endblock %}

@@ -45,10 +45,10 @@ class CreateCourseView(LoginRequiredMixin, CreateView):
         self.object = None
         form = CourseForm(self.request.POST)
         project_form = ProjectForm(self.request.POST, self.request.FILES)
-        if form.is_valid():
-            form.save()
-            if project_form.is_valid():
-                project_form.save()
+        if project_form.is_valid():
+            project_form.save()
+            if form.is_valid():
+                form.save()
                 # Pendiente: Crear una vista bonita de logrado
                 return HttpResponse('Done!')
             else:
@@ -63,6 +63,7 @@ class CreateCourseView(LoginRequiredMixin, CreateView):
                 project_form=project_form
             )
         )
+
 
 @login_required
 def add_lesson(request):
@@ -95,6 +96,33 @@ class CourseCatalogView(ListView):
     template_name = 'courses/course_catalog.html'
     model = Course
     queryset = Course.objects.all()
+    context_object_name = 'courses'
+
+    def get_context_data(self, **kwargs):
+        context_data = super(CourseCatalogView, self).get_context_data(**kwargs)
+        context_data['user'] = self.request.user
+
+        return context_data
+
+
+class CourseDetailView(LoginRequiredMixin, ListView):
+    template_name = 'courses/course.html'
+    slug_url_kwarg = 'abreviation'
+    slug_field = 'abreviation'
+    queryset = Course.objects.all()
+    context_object_name = 'course'
+
+    def get_context_data(self, **kwargs):
+        context_data = super(CourseDetailView, self).get_context_data(**kwargs)
+        context_data['user'] = self.request.user
+        context_data['project'] = context_data['object_list'][0].project
+        context_data['teacher'] = context_data['object_list'][0].teacher
+        course = context_data['object_list'][0]
+        context_data['course'] = course
+        context_data['modules'] = Module.objects.filter(course=course)
+        context_data['lessons'] = Lesson.objects.filter(course=course)
+
+        return context_data
 
 
 class AdminCourseView(LoginRequiredMixin, DetailView):
