@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Course Models
-from .models import Course, Project, Lesson, Module, Comentary
+from .models import Course, Project, Lesson, Module, Comentary, Answer
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
@@ -32,5 +32,11 @@ class LessonAdmin(admin.ModelAdmin):
 
 @admin.register(Comentary)
 class ComentaryAdmin(admin.ModelAdmin):
-    list_display = ['text', 'is_question', 'likes', 'lesson', 'player']
-    list_display_link = ['text', 'is_question', 'likes', 'lesson', 'player']
+    list_display = ['pk', 'text', 'is_question', 'likes', 'lesson', 'player']
+    list_display_link = ['pk', 'text', 'is_question', 'likes', 'lesson', 'player']
+
+
+@admin.register(Answer)
+class AnswerAdmin(admin.ModelAdmin):
+    list_display = ['pk', 'text', 'comentary', 'player', 'date', 'lesson']
+    list_display_link = ['pk', 'text', 'comentary', 'player', 'date', 'lesson']

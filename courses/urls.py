@@ -35,8 +35,18 @@ urlpatterns = [
         name='lesson'
     ),
     path(
-        route='<str:abreviation>/<int:pk>/add_comentary',
+        route='<str:abreviation>/<int:lesson_pk>/add_comentary',
         view=views.AddComentaryView.as_view(),
         name='comentary'
+    ),
+    path(
+        route='<str:abreviation>/<int:lesson_pk>/add_answer',
+        view=views.AddAnswerView.as_view(),
+        name='answer'
+    ),
+    path(
+        route='<int:pk>/delete_comentary',
+        view=views.AnswerDelete.as_view(),
+        name='delete_comentary'
     )
 ]

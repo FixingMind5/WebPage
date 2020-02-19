@@ -136,6 +136,94 @@
 
 .comentary-date {
     grid-row: 3;
+    grid-column: 2;
     margin: 0;
     margin-top: 10px;
+}
+
+.button-answer {
+    grid-row: 3;
+    grid-column: 3;
+    border: none;
+    background-color: white;
+    font-size: 16;
+    color: rgb(70, 90, 149);
+    cursor: pointer;
+    width: 110px;
+}
+
+.answer {
+    grid-row: 4;
+    grid-column: 1/-1;
+    background-color: white;
+    margin: 0 0 0 41px;
+    display: grid;
+    padding: 10px 15px;
+}
+
+.answer textarea {
+    border: none;
+    padding: 15px;
+    font-size: 18px;
+    outline: none;
+}
+
+.answer input[type='submit'] {
+    border: none;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    background: #B99F7C;
+    padding: 5px;
+    text-transform: uppercase;
+    transition: 500ms;
+}
+
+.answer input[type='submit']:hover {
+    background-color: #D2B58E;
+}
+
+.answer img {
+    width: 30px;
+    border-radius: 50%;
+}
+
+.user-answer {
+    display: grid;
+    align-items: center;
+    grid-auto-flow: column;
+    grid-template-columns: 40px 1fr;
+}
+
+.delete-answer-button {
+    border: none;
+    background: white;
+    font-weight: bolder;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: red;
+}
+
+.registered-answer {
+    background-color: white;
+    width: 50%;
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    padding: 7.5px;
+    border-top: 1px solid #D7D9DF;
+    grid-template-columns: 140px 1fr 50px;
+}
+
+.registered-answer p {
+    margin: 0px;
+}
+
+.registered-answer button {
+    border: 1px solid #D7D9DF;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 55px;
+    font-size: 18px;
+    background-color: white;
 }

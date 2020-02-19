@@ -128,6 +128,30 @@ class ComentaryForm(ModelForm):
         comentary.save()
 
 
+class AnswerForm(ModelForm):
+    class Meta:
+        model = Answer
+        fields = ('text',)
+
+    def save(self):
+        old_data = self.data
+        pk = old_data['comentary_pk']
+        comentary = Comentary.objects.get(pk=pk)
+        username = old_data['username']
+        lesson_pk = old_data['pk']
+        lesson = Lesson.objects.get(pk=lesson_pk)
+        user = User.objects.get(username=username)
+        data = {
+            'text': old_data['text'],
+            'comentary': comentary,
+            'player': user.player,
+            'lesson': lesson
+        }
+        answer = Answer.objects.create(**data)
+        answer.save()
+
+
+
 LessonFormSet = modelformset_factory(
     Lesson,
     fields=('title', 'url'),

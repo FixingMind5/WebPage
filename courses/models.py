@@ -68,7 +68,8 @@ class Answer(models.Model):
     likes = models.IntegerField(null=False, blank=False, default=0)
     date = models.DateTimeField(auto_now_add=True)
 
-    commentary = models.ForeignKey(Comentary, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    comentary = models.ForeignKey(Comentary, on_delete=models.CASCADE)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
 
     def __str__(self):

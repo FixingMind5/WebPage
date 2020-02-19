@@ -1,9 +1,10 @@
 # Django imports
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import QueryDict
+from django.http import QueryDict, Http404
 from django.views.generic import CreateView, DetailView, ListView, FormView
+from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.db import transaction
@@ -11,10 +12,10 @@ from django.forms import ValidationError
 from django.http import HttpResponse
 
 # Forms builded
-from courses.forms import CourseForm, ModuleForm, ProjectForm, LessonFormSet, ComentaryForm
+from courses.forms import CourseForm, ModuleForm, ProjectForm, LessonFormSet, ComentaryForm, AnswerForm
 
 # My models
-from .models import Project, Module, Course, Lesson, Comentary
+from .models import Project, Module, Course, Lesson, Comentary, Answer
 
 
 class CreateCourseView(LoginRequiredMixin, CreateView):
@@ -136,6 +137,7 @@ class LessonDetaiView(LoginRequiredMixin, DetailView):
         context_data = super(LessonDetaiView, self).get_context_data(**kwargs)
         lesson = context_data['lesson']
         context_data["comentaries"] = Comentary.objects.filter(lesson=lesson)
+        context_data['answers'] = Answer.objects.filter(lesson=lesson)
 
         return context_data
 
@@ -163,6 +165,51 @@ class AddComentaryView(LoginRequiredMixin, FormView):
 
     def get_success_url(self):
         return reverse('courses:lesson', kwargs={'abreviation': self.abreviation, 'pk': self.pk}) 
+
+class AddAnswerView(LoginRequiredMixin, FormView):
+    template_name = 'courses/lesson.html'
+    form_class = AnswerForm
+    abreviation = None
+    pk = None
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form = AnswerForm(self.request.POST)
+        self.abreviation = self.request.POST['abreviation']
+        self.pk = self.request.POST['pk']
+        print(form.errors)
+        print(form.is_valid())
+        if form.is_valid():
+            form.save()
+            return redirect(self.get_success_url())
+        else:
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        url = reverse('courses:lesson', kwargs={'abreviation': self.abreviation, 'pk': self.pk})
+        return redirect(url)
+
+    def get_success_url(self):
+        return reverse('courses:lesson', kwargs={'abreviation': self.abreviation, 'pk': self.pk}) 
+
+class AnswerDelete(LoginRequiredMixin, DeleteView):
+    model = Answer
+    abreviation = None
+    lesson_pk = None
+
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(Comentary, id=pk)
+
+    def get_success_url(self):
+        if self.success_url:
+            return self.success_url
+        else:
+            print(self.request.POST)
+            self.abreviation = self.request.POST['abreviation']
+            self.lesson_pk = self.request.POST['lesson_pk']
+            url = reverse('courses:lesson', kwargs={'abreviation': self.abreviation, 'pk': self.lesson_pk})
+            return url
 
 
 class AdminCourseView(LoginRequiredMixin, DetailView):

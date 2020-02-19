@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block head_content %}
+<title>Borrar comentario</title>
+    <style>
+        form {
+            display: grid;
+        }
+
+        form h3 {
+            justify-self: center;
+        }
+
+        form input, form a {
+            text-decoration: none;
+            justify-self: center;
+            border: none;
+            background: #F00;
+            color: white;
+            font-size: 17px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            width: 450px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: 500ms;
+            text-align: center;
+        }
+
+        form input {
+            font-size: 20px;
+        }
+
+        form a {
+            background: green;
+        }
+
+        form input:hover {
+            background-color: rgb(248, 67, 67);
+        }
+
+        form a:hover {
+            background-color: rgb(32, 146, 32);
+        }
+
+        .comentary {
+            background: white;
+            display: grid;
+            padding: 15px;
+            grid-template-columns: 40px 1fr;
+            justify-self: center;
+        }
+
+        .comentary img {
+            border-radius: 50%;
+            width: 30px;
+        }
+        .comentary p {
+            margin: 5px 0;
+        }
+
+        .text {
+            grid-row: 2;
+            grid-column: 1/-1;
+        }
+
+        .likes {
+            grid-row: 3;
+            grid-column: 1/-1;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <h3>¿Seguro que quieres borrar tu comentario?</h3>
+    <div class="comentary">
+        <img src="../../images/{{ object.player.image }}" alt="user_image">
+        <strong>{{ object.player }}{% if object.is_question %} · Pregunta{% endif %} · Creado el {{ object.date }}</strong>
+        <p class="text">{{ object.text }}</p>
+        <p class="likes">{{ object.likes }} likes </p>
+    </div>
+    <input type="hidden" name="abreviation" value="{{ object.lesson.course.abreviation }}">
+    <input type="hidden" name="lesson_pk" value="{{ object.lesson.pk }}">
+    <p style="justify-self: center;">
+        <a href="{% url 'courses:lesson' object.lesson.course.abreviation object.lesson.pk %}">Regresar</a>
+        <input type="submit" value="Eliminar">
+    </p>
+</form>
+{% endblock %}

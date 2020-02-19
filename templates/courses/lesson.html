@@ -43,16 +43,66 @@
         <input class="submit-coment" type="submit" value="Enviar">
     </form>
     {% for comentary in comentaries %}
-        <div class="comentary">
+        <div class="comentary" id="comentary-{{ comentary.pk }}">
             {% if request.user.player == comentary.player %}
-                <button class="button-delete">🗑Borrar comentario</button>
+                <a class="button-delete" href="{% url 'courses:delete_comentary' comentary.pk %}">🗑Borrar comentario</a>
             {% endif %}
             <img src="../../images/{{ comentary.player.image }}" alt="">
             <strong>{{ comentary.player.user.username }}{% if comentary.is_question %} · Pregunta{% endif %}</strong>
             <p class="comentary-text">{{ comentary.text }}</p>
             <button class="button-like">👍 {{ comentary.likes }}</button>
             <p class="comentary-date">{{ comentary.date }}</p>
+            <button class="button-answer" id="button-answer-{{ comentary.pk }}">🔝Responder</button>
         </div>
+        {% for answer in answers %}
+            {% if answer.comentary == comentary %}
+            <div class="registered-answer">
+                <strong>{{ answer.player }} dice: </strong>
+                <p>{{ answer.text }}</p>
+                <button>👍{{ answer.likes }}</button>
+            </div>
+            {% endif %}
+        {% endfor %}
     {% endfor %}
 </section>
+{% endblock %}
+
+{% block scripts_content %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+    var count = 0
+    $(document).on('click', ".button-answer", e => {
+        e.preventDefault()
+        if (count === 0) {
+            id = e.currentTarget.id.split('-')[2]
+            $(`#comentary-${id}`).append(`
+                <form class="answer" id="answer-${id}" method="POST" enctype="multipart/form-data" action="{% url 'courses:answer' lesson.course.abreviation lesson.pk %}">
+                    {% csrf_token %}
+                    <div class="user-answer">
+                        <img src="../../images/{{ request.user.player.image }}">
+                        <strong>{{ request.user.username }}</strong>
+                        <button class="delete-answer-button" id="delete-answer-button-${id}" >X cerrar</button>
+                    </div>
+                    <input type="hidden" name="comentary_pk" value="${id}">
+                    <input type="hidden" name="username" value="{{ request.user.username }}">
+                    <input type="hidden" name="abreviation" value="{{ lesson.course.abreviation }}">
+                    <input type="hidden" name="pk" value="{{ lesson.pk }}">
+                    <textarea name="text" cols="30" rows="3" placeholder="Escribe tu respuesta"></textarea>
+                    <input type="submit" value="Responder">
+                </form>
+            `)
+            count++;
+        }
+    });
+
+    $(document).on('click', '.delete-answer-button', e => {
+        e.preventDefault()
+        if (count === 1) {
+            id = e.currentTarget.id.split('-')[3]
+            console.log(`#answer-${id}`);
+            $(`#answer-${id}`).remove()
+            count--;
+        }
+    });
+</script>
 {% endblock %}
