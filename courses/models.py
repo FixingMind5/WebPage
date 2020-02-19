@@ -50,8 +50,8 @@ class Lesson(models.Model):
         return "Lesson %s" % (self.title)
 
 
-class Commentary(models.Model):
-    body = models.TextField(null=True, blank=False)
+class Comentary(models.Model):
+    text = models.TextField(null=False, blank=False, default='No text')
     likes = models.IntegerField(null=False, blank=False, default=0)
     date = models.DateTimeField(auto_now_add=True)
     is_question = models.BooleanField(null=False, blank=False, default=False)
@@ -64,11 +64,11 @@ class Commentary(models.Model):
 
 
 class Answer(models.Model):
-    body = models.TextField(null=True, blank=False)
+    text = models.TextField(null=False, blank=False)
     likes = models.IntegerField(null=False, blank=False, default=0)
     date = models.DateTimeField(auto_now_add=True)
 
-    commentary = models.ForeignKey(Commentary, on_delete=models.CASCADE)
+    commentary = models.ForeignKey(Comentary, on_delete=models.CASCADE)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
 
     def __str__(self):

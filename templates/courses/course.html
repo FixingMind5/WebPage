@@ -27,7 +27,7 @@
         <h3>{{ module.title }}</h3>
         {% for lesson in lessons %}
             {% if lesson.module == module %}
-                <a href="">{{ lesson.title }}</a>
+                <a href="{% url 'courses:lesson' course.abreviation lesson.pk %}">{{ lesson.title }}</a>
             {% endif %}
         {% endfor %}
     {% endfor %}

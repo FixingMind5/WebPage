@@ -28,5 +28,15 @@ urlpatterns = [
         route='<str:abreviation>',
         view=views.CourseDetailView.as_view(),
         name='course'
+    ),
+    path(
+        route='<str:abreviation>/<int:pk>',
+        view=views.LessonDetaiView.as_view(),
+        name='lesson'
+    ),
+    path(
+        route='<str:abreviation>/<int:pk>/add_comentary',
+        view=views.AddComentaryView.as_view(),
+        name='comentary'
     )
 ]

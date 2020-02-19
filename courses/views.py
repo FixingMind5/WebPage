@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import QueryDict
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.db import transaction
@@ -11,10 +11,10 @@ from django.forms import ValidationError
 from django.http import HttpResponse
 
 # Forms builded
-from courses.forms import CourseForm, ModuleForm, ProjectForm, LessonFormSet
+from courses.forms import CourseForm, ModuleForm, ProjectForm, LessonFormSet, ComentaryForm
 
 # My models
-from .models import Project, Module, Course, Lesson
+from .models import Project, Module, Course, Lesson, Comentary
 
 
 class CreateCourseView(LoginRequiredMixin, CreateView):
@@ -123,6 +123,46 @@ class CourseDetailView(LoginRequiredMixin, ListView):
         context_data['lessons'] = Lesson.objects.filter(course=course)
 
         return context_data
+
+
+class LessonDetaiView(LoginRequiredMixin, DetailView):
+    template_name = 'courses/lesson.html'
+    slug_url_kwarg = 'pk'
+    slug_field = 'pk'
+    queryset = Lesson.objects.all()
+    context_object_name = 'lesson'
+
+    def get_context_data(self, **kwargs):
+        context_data = super(LessonDetaiView, self).get_context_data(**kwargs)
+        lesson = context_data['lesson']
+        context_data["comentaries"] = Comentary.objects.filter(lesson=lesson)
+
+        return context_data
+
+
+class AddComentaryView(LoginRequiredMixin, FormView):
+    template_name = 'courses/lesson.html'
+    form_class = ComentaryForm
+    abreviation = None
+    pk = None
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form = ComentaryForm(self.request.POST)
+        self.abreviation = self.request.POST['abreviation']
+        self.pk = self.request.POST['pk']
+        if form.is_valid():
+            form.save()
+            return redirect(self.get_success_url())
+        else:
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        url = reverse('courses:lesson', kwargs={'abreviation': self.abreviation, 'pk': self.pk})
+        return redirect(url)
+
+    def get_success_url(self):
+        return reverse('courses:lesson', kwargs={'abreviation': self.abreviation, 'pk': self.pk}) 
 
 
 class AdminCourseView(LoginRequiredMixin, DetailView):

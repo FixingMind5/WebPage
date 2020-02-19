@@ -1,0 +1,141 @@
+.breadcrumb {
+    display: grid;
+    grid-auto-flow: column;
+    background-color: #808EA6;
+    color: #D7D9DF;
+    padding: 5px 30px;
+    grid-template-columns: 50px 20px 55px 20px 125px 20px 1fr 1fr;
+}
+
+.breadcrumb p {
+    margin: 0;
+}
+
+.breadcrumb h3 {
+    margin: 0;
+}
+
+.breadcrumb a {
+    color: white;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.lesson-video {
+    background-color: white;
+    display: grid;
+    padding: 15px 15px 15px 30px;
+}
+
+.lesson-video h2 {
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.lesson-video strong {
+    margin-top: 10px;
+}
+
+.comentaries {
+    padding: 15px;
+    padding-left: 30px;
+}
+
+.text-area {
+    outline: none;
+    border: none;
+    width: 50%;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    grid-row: 1;
+    grid-column: 1/-1;
+}
+
+.write-commentary  {
+    display: grid;
+    grid-template-columns: 20px 110px 1fr;
+    grid-template-rows: 1fr 30px 60px;
+}
+
+.write-commentary p {
+    margin: 0;
+}
+
+.submit-coment {
+    font-size: 22px;
+    color: white;
+    background-color: #B99F7C;
+    border-radius: 5px;
+    width: 50%;
+    border: none;
+    cursor: pointer;
+    grid-row: 3;
+    grid-column: 1/-1;
+    transition: 500ms;
+}
+
+.submit-coment:hover {
+    background-color: #D2B58E;
+}
+
+.write-commentary input[type="checkbox"], .write-commentary p {
+    align-self: center;
+}
+
+.comentary {
+    width: 50%;
+    background-color: white;
+    grid-template-columns: 55px 1fr 180px;
+    display: grid;
+    padding: 15px 0 15px 15px;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.comentary img {
+    width: 35px;
+    border-radius: 50%;
+}
+
+.comentary-text {
+    grid-row: 2;
+    grid-column: 1/-1;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.button-like {
+    grid-row: 3;
+    grid-column: 1;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    font-size: 15px;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.button-delete {
+    grid-column: 3;
+    grid-row: 1;
+    width: 165px;
+    font-size: 15px;
+    border: none;
+    background-color: white;
+    color: rgb(70, 90, 149);
+    cursor: pointer;
+}
+
+.button-delete:hover {
+    text-decoration: underline;
+}
+
+.comentary-date {
+    grid-row: 3;
+    margin: 0;
+    margin-top: 10px;
+}

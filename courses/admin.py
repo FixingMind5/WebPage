@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Course Models
-from .models import Course, Project, Lesson, Module
+from .models import Course, Project, Lesson, Module, Comentary
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
@@ -28,3 +28,9 @@ class LessonAdmin(admin.ModelAdmin):
     list_display = ['pk', 'title', 'url', 'module', 'course']
     list_display_link = ['pk', 'title']
     list_editable = ['url']
+
+
+@admin.register(Comentary)
+class ComentaryAdmin(admin.ModelAdmin):
+    list_display = ['text', 'is_question', 'likes', 'lesson', 'player']
+    list_display_link = ['text', 'is_question', 'likes', 'lesson', 'player']

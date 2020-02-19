@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_content %}
+<title>{{ lesson.course.title }} | {{ lesson.title }}</title>
+<link rel="stylesheet" href="{% static 'css/courses/lesson_style.css' %}">
+{% endblock %}
+
+{% block content %}
+{% for error in form.errors %}{{ error }}{% endfor %}
+<section class="breadcrumb">
+    <a href="{% url 'players:index' %}" style="text-align: center;">Inicio</a>
+    <p style="text-align: center;"> / </p>
+    <a href="{% url 'courses:catalog' %}">Cursos</a>
+    <p style="text-align: center;"> / </p>
+    <a href="{% url 'courses:course' lesson.course.abreviation %}">{{ lesson.course.title }}</a>
+    <p style="text-align: center;"> / </p>
+    <p>{{ lesson.title }}</p>
+    <h3 style="text-transform: uppercase; justify-self: end;">{{ lesson.title }}</h3>
+</section>
+{% for error in form.errors %}{{ error }}{% endfor %}
+<section class="lesson-video">
+    <h2>{{ lesson.title }}</h2>
+    <iframe 
+        width="704" 
+        height="396" 
+        src="https://www.youtube.com/embed/{{ lesson.url }}" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>El video no está disponible 😔</iframe>
+    <strong>Por: {{ lesson.course.teacher.username }}</strong>
+</section>
+<section class="comentaries">
+    <h1>Comentarios</h1>
+    <form class="write-commentary" enctype="multipart/form-data" method="POST" action="{% url 'courses:comentary' lesson.course.abreviation lesson.pk %}">
+        {% csrf_token %}
+        <input type="hidden" name="player" value="{{ request.user.player }}">
+        <input type="hidden" name="lesson" value="{{ lesson }}">
+        <input type="hidden" name="abreviation" value="{{ lesson.course.abreviation }}">
+        <input type="hidden" name="pk" value="{{ lesson.pk }}">
+        <textarea class="text-area" name="text" cols="30" rows="3" placeholder="Escribe tu aporte o pregunta"></textarea>
+        <input type="checkbox" name="is_question"><p>¿Es pregunta?</p>
+        <input class="submit-coment" type="submit" value="Enviar">
+    </form>
+    {% for comentary in comentaries %}
+        <div class="comentary">
+            {% if request.user.player == comentary.player %}
+                <button class="button-delete">🗑Borrar comentario</button>
+            {% endif %}
+            <img src="../../images/{{ comentary.player.image }}" alt="">
+            <strong>{{ comentary.player.user.username }}{% if comentary.is_question %} · Pregunta{% endif %}</strong>
+            <p class="comentary-text">{{ comentary.text }}</p>
+            <button class="button-like">👍 {{ comentary.likes }}</button>
+            <p class="comentary-date">{{ comentary.date }}</p>
+        </div>
+    {% endfor %}
+</section>
+{% endblock %}

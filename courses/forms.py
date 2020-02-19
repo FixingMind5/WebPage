@@ -13,7 +13,8 @@ from django.forms.models import BaseModelFormSet
 from django.forms import modelformset_factory
 
 # My models
-from .models import Course, Module, Project, Lesson, Commentary, Answer
+from .models import Course, Module, Project, Lesson, Comentary, Answer
+from players.models import Player
 
 
 class CourseForm(ModelForm):
@@ -103,6 +104,29 @@ class ModuleForm(ModelForm):
         except Course.DoesNotExist:
             raise ValidationError(f"El curso con la abreviación {self.data['course']} no existe 💥")
         return course
+
+
+class ComentaryForm(ModelForm):
+    class Meta:
+        model = Comentary
+        fields = ("text",)
+    
+    def save(self):
+        old_data = self.data
+        is_question = True if 'is_question' in old_data else False
+        lesson_pk = old_data['pk']
+        lesson = Lesson.objects.get(pk=lesson_pk)
+        username = old_data['player']
+        user = User.objects.get(username=username)
+        data = {
+            'player': user.player,
+            'lesson': lesson,
+            'text': old_data['text'],
+            'is_question': is_question,
+        }
+        comentary = Comentary.objects.create(**data)
+        comentary.save()
+
 
 LessonFormSet = modelformset_factory(
     Lesson,
