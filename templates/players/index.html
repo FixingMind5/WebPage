@@ -13,9 +13,9 @@
     {% endblock %}
     {% for error in form.first_name.errors %}<p id="invalid-feedback" class="invalid-feedback">{{ error }}</p>{% endfor %}
     {% for error in form.last_name.errors %}<p id="invalid-feedback" class="invalid-feedback">{{ error }}</p>{% endfor %}
-    {% for error in form.username.errors %}<p id="invalid-feedback" class="invalid-feedback">{{ error }}</p>{% endfor %}
+    {% for error in signup_form.username.errors %}<p id="invalid-feedback" class="invalid-feedback">{{ error }}</p>{% endfor %}
     {% for error in form.email.errors %}<p id="invalid-feedback" class="invalid-feedback">{{ error }}</p>{% endfor %}
-    {% for error in form.password.errors %}<p id="invalid-feedback" class="invalid-feedback">{{ error }}</p>{% endfor %}
+    {% for error in signup_form.password.errors %}<p id="invalid-feedback" class="invalid-feedback">{{ error }}</p>{% endfor %}
     {% for error in form.month.errors %}
     {% endfor %}
     <section id="main" class="mainPage">
@@ -27,14 +27,14 @@
                 <li><img class="hero-image" src="{% static 'images/portfolio.svg' %}" alt=""><p>Adquiere talento para tu empresa</p></li>
             </ul>
         </div>
-        {% if user.username %}
+        {% if request.user.username %}
             <div class="user-fast-access">
                 {% if request.user.player.image %}
-                    <img class="user-image" src="{{ user.player.image.url }}" alt="">
+                    <img class="user-image" src="{{ request.user.player.image.url }}" alt="">
                 {% else %}
                     <img class="user-image" src="{% static 'images/default_user.JPG' %}" alt="">
                 {% endif %}
-                <h1>¡Hola {{ user.username }}!</h1>
+                <h1>¡Hola {{ request.user.username }}!</h1>
                 <a href="{% url 'players:player' request.user.username %}">Ver Perfil</a>
             </div>
         {% else %}
@@ -57,10 +57,10 @@
                     value="{% if form.errors %}{{ form.last_name.value }}{% endif %}"
                 >
                 <input 
-                    class="{% if form.username.errors %}is-invalid{% else %}field{% endif %} username" 
+                    class="{% if signup_form.username.errors %}is-invalid{% else %}field{% endif %} username" 
                     type="text" 
                     placeholder="Nombre de Usuario" 
-                    name="username"
+                    name="signup_username"
                 >
                 <input 
                     class="{% if form.email.errors %}is-invalid{% else %}field{% endif %} signup-email" 
@@ -69,10 +69,10 @@
                     name="email"
                 >
                 <input 
-                    class="{% if form.password.errors %}is-invalid{% else %}field{% endif %}" 
+                    class="{% if signup_form.password.errors %}is-invalid{% else %}field{% endif %}" 
                     type="password" 
                     placeholder="Contraseña" 
-                    name="password"
+                    name="signup_password"
                 >
                 <input 
                     class="{% if form.confirm_password.errors %}is-invalid{% else %}field{% endif %}" 

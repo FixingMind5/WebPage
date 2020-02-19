@@ -13,6 +13,7 @@ from .tokens import account_activation_token
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.contrib import messages
+from django.contrib.auth import views as auth_views
 from django.contrib.auth.hashers import check_password
 from django.views.generic import DetailView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -53,32 +54,19 @@ class AdminPanelView(LoginRequiredMixin, DetailView):
     context_object_name = 'user'
 
 
-@login_required
-def return_user(request):
-    return render(request, 'players/player.html')
+class LoginView(auth_views.LoginView):
+    template_name = 'players/index.html'
 
-
-def return_login(request):
-    if request.method == 'POST':
-        email = request.POST['email']
-        password = password=request.POST['password']
-        user = authenticate (
-            username=email,
-            password=password
+    def form_invalid(self, login_form):
+        return self.render_to_response(
+            self.get_context_data(
+                login_form=login_form
+            )
         )
-        if user is not None:
-            login(request, user)
-            url = reverse('players:player', kwargs={'username': user.username})
-            return redirect(url)
-        else:
-            return render(request, 'players/index.html', { 'error': True })
-    return render(request, 'players/index.html')
 
 
-@login_required
-def log_out(request):
-    logout(request)
-    return redirect('players:index')
+class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
+    template_name = 'players/index.html'
 
 
 class SignupView(FormView):
@@ -96,11 +84,29 @@ class SignupView(FormView):
         'month',
         'year'
     ]
-    success_url = reverse_lazy('players:login')
+    username = None
 
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
+    def post(self, request, *args, **kwargs):
+        signup_form = PlayerForm(self.request.POST)
+        if signup_form.is_valid():
+            return self.form_valid(signup_form)
+        else:
+            return self.form_invalid(signup_form)
+
+    def form_valid(self, signup_form):
+        signup_form.save()
+        self.username = signup_form.cleaned_data['username']
+        return super().form_valid(signup_form)
+
+    def form_invalid(self, signup_form):
+        return self.render_to_response(
+            self.get_context_data(
+                signup_form=signup_form
+            )
+        )
+
+    def get_success_url(self):
+        return reverse_lazy('players:login')
 
 
 def index(request):

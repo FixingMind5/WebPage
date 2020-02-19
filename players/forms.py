@@ -16,16 +16,16 @@ from datetime import datetime
 class PlayerForm(forms.Form):
     first_name = forms.CharField(min_length=2, max_length=30, required=True)
     last_name = forms.CharField(min_length=2, max_length=50, required=True)
-    username = forms.CharField(min_length=3, max_length=30, required=True)
+    signup_username = forms.CharField(min_length=3, max_length=30, required=True)
     email = forms.CharField(min_length=4, max_length=70, widget=forms.EmailInput(), required=True)
-    password = forms.CharField(min_length=2, max_length=30, widget=forms.PasswordInput(), required=True)
+    signup_password = forms.CharField(min_length=2, max_length=30, widget=forms.PasswordInput(), required=True)
     confirm_password = forms.CharField(min_length=2, max_length=30, widget=forms.PasswordInput(), required=True)
     day = forms.IntegerField(required=True)
     month = forms.IntegerField(required=True)
     year = forms.IntegerField(required=True)
 
-    def clean_username(self):
-        username = self.cleaned_data['username']
+    def clean_signup_username(self):
+        username = self.cleaned_data['signup_username']
         is_username_taken = User.objects.filter(username=username).exists()
         if is_username_taken:
             raise forms.ValidationError("El nombre de usuario ya está en uso 😮")
@@ -40,11 +40,15 @@ class PlayerForm(forms.Form):
     
     def clean(self):
         cleaned_data = super().clean()
-        password = cleaned_data.get('password')
+        old_data = self.data
+        password = old_data.get('signup_password')
         confirm_password = cleaned_data.get('confirm_password')
+        cleaned_data['username'] = old_data.get('signup_username')
 
         if password != confirm_password:
             raise forms.ValidationError("Las contraseñas no coinciden 😞")
+
+        cleaned_data['password'] = password
 
         return cleaned_data
     
@@ -62,6 +66,11 @@ class PlayerForm(forms.Form):
         cleaned_data.pop('day')
         cleaned_data.pop('month')
         cleaned_data.pop('year')
+
+        cleaned_data['username'] = cleaned_data.pop('signup_username')
+        cleaned_data['password'] = cleaned_data.pop('signup_password')
+
+        print(cleaned_data)
 
         user = User.objects.create_user(**cleaned_data)
         player = Player(user=user, birth_date=birth_date)

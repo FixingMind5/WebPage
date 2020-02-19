@@ -8,8 +8,8 @@
         <img class="logo" src="{% static 'images/SkyHack.png' %}" alt="">
         <div class="bottom-links">
             <a href="">Documentos</a>
-            <a href="">Inicio</a>
-            <a href="">Cursos</a>
+            <a href="{% url 'players:index' %}">Inicio</a>
+            <a href="{% url 'courses:catalog' %}">Cursos</a>
             <a href="">Eventos</a>
             <a href="">FAQ</a>
             <a href="">Acerca de nosotros</a>
@@ -35,8 +35,8 @@
             <p>Powered by</p>
             <img class="logo-unam" src="{% static 'images/logoUnam.png' %}" alt="">
             <img class="stakeholders-logos" src="{% static 'images/logoAcatlan.png' %}" alt="">
-            <a href=""><img class="stakeholders-logos" src="{% static 'images/Github_blanco.png' %}" alt=""></a>
-            <a href=""><img class="stakeholders-logos" src="{% static 'images/hack_club.png' %}" alt=""></a>
+            <a target="_blank" rel="noopener noreferrer" href="https://education.github.com"><img class="stakeholders-logos" src="{% static 'images/Github_blanco.png' %}" alt=""></a>
+            <a target="_blank" rel="noopener noreferrer" href="https://hackclub.com"><img class="stakeholders-logos" src="{% static 'images/hack_club.png' %}" alt=""></a>
         </div>
         <p>De MAC con 💙 para el mundo</p>
     </div>

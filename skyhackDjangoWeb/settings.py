@@ -145,7 +145,9 @@ MEDIA_URL = os.path.join(BASE_DIR, '/images/')
 
 MEDIA_ROOT = 'images/'
 
-LOGIN_URL = 'login'
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = 'courses:catalog'
+LOGOUT_REDIRECT_URL = LOGIN_URL
 
 # Mail configure settings
 
