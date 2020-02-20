@@ -15,7 +15,7 @@ from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.contrib import messages
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.hashers import check_password
-from django.views.generic import DetailView, FormView
+from django.views.generic import DetailView, FormView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
@@ -44,6 +44,33 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     # Query set, a partir de qué lugar traerá los datos
     queryset = User.objects.all()
     context_object_name = 'user'
+
+
+class UpdateUserView(LoginRequiredMixin, UpdateView):
+    template_name = 'players/update_profile.html'
+    model = Player
+    fields = [
+        'image',
+        'description', 
+        'facebook', 
+        'twitter', 
+        'instagram', 
+        'youtube', 
+        'website'
+    ]
+
+    def form_valid(self, form):
+        print("Form is valid")
+        self.object = form.save()
+        return super().form_valid(form)
+
+    def get_object(self):
+        return self.request.user.player
+
+    def get_success_url(self):
+        username = self.object.user.username
+        url = reverse('players:player', kwargs={ 'username': username })
+        return url
 
 
 class AdminPanelView(LoginRequiredMixin, DetailView):

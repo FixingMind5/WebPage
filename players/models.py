@@ -20,8 +20,8 @@ class Player(models.Model):
     points = models.IntegerField(default=0, null=True)
 
     # Game Logic
-    cluster = models.CharField(max_length=30)
-    grade = models.CharField(max_length=40)
+    cluster = models.CharField(max_length=30, default='Starter')
+    grade = models.CharField(max_length=40, default="Thinker")
 
     def __str__(self):
         return self.user.username

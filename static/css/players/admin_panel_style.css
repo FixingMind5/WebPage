@@ -12,14 +12,10 @@ body {
 }
 
 .breadcrumb {
-    display: grid;
     background-color: #808EA6;
-    width: 96vw;
-    padding: 5px 30px;
-    /* font-size: 20px; */
     color: #D7D9DF;
-    grid-auto-flow: column;
-    grid-template-columns: 80px 10px;
+    padding: 5px 30px;
+    display: flex;
 }
 
 .breadcrumb a {

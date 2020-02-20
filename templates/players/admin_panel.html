@@ -11,10 +11,9 @@
     {% include "players/mainHeader.html" %}
     {% block header %}{% endblock %}
     <section class="breadcrumb">
-        <a href="{% url 'players:player' request.user.username %}">{{  user.username  }}</a>
+        <a href="{% url 'players:player' request.user.username %}" style="margin-right: 5px">{{  user.username  }}</a>
         <p style="color: white;"> / </p>
-        <p> Admin panel </p>
-        <p style="text-transform:uppercase; justify-self: end;"> Admin Panel </p>
+        <p style="margin: 0 5px;"> Admin panel </p>
     </section>
     <section class="panel-container">
         <a href="{% url 'courses:add_course' %}" class="panel-tab">

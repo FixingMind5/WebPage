@@ -19,7 +19,7 @@
           <img class="profile-photo" src="{% static 'images/default_user.JPG' %}" alt="">
         {% endif %}
         {% if user == request.user %}
-          <a href="">Editar perfil</a>
+          <a href="{% url 'players:edit_player' %}">Editar perfil</a>
         {% endif %}
       </div>
       <h3>{{ user.username }} | {{ user.player.points }} points</h3>
@@ -31,19 +31,19 @@
       <div class="user-social-media">
         <div class="social-media-links">
           {% if user.player.facebook %}
-            <a href="{{ user.player.facebook }}"><img class="social-media-image" src="{% static 'images/facebook.png' %}" alt=""></a>
+            <a href="{{ user.player.facebook }}" target="_blank" rel="noopener noreferrer"><img class="social-media-image" src="{% static 'images/facebook.png' %}" alt=""></a>
           {% endif %}
           {% if user.player.twitter %}
-            <a href="{{ user.player.twitter }}"><img class="social-media-image" src="{% static 'images/twitter.png' %}" alt=""></a>
+            <a href="{{ user.player.twitter }}" target="_blank" rel="noopener noreferrer"><img class="social-media-image" src="{% static 'images/twitter.png' %}" alt=""></a>
           {% endif %}
           {% if user.player.instagram %}
-            <a href="{{ user.player.instagram }}"><img class="social-media-image" src="{% static 'images/Instagram.png' %}"alt=""></a>
+            <a href="{{ user.player.instagram }}" target="_blank" rel="noopener noreferrer"><img class="social-media-image" src="{% static 'images/Instagram.png' %}"alt=""></a>
           {% endif %}
           {% if user.player.youtube %}
-            <a href="{{ user.player.youtube }}"><img class="social-media-image" src="{% static 'images/youtube.png' %}" alt=""></a>
+            <a href="{{ user.player.youtube }}" target="_blank" rel="noopener noreferrer"><img class="social-media-image" src="{% static 'images/youtube.png' %}" alt=""></a>
           {% endif %}
           {% if user.player.website %}
-            <a href="{{ user.player.website }}">{{ website }}</a>
+            <a href="{{ user.player.website }}" target="_blank" rel="noopener noreferrer">{{ website }}</a>
           {% endif %}
         </div>
         {% if user.player.grade == "Senior Cluster Manager" and user == request.user %}

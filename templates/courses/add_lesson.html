@@ -17,7 +17,6 @@
         <a href="{% url 'players:admin_panel' request.user.username %}">Admin Panel</a>
         <p> / </p>
         <p> Agregar Clases </p>
-        <h3 style="text-transform: uppercase;"> Agregar clases </h3>
     </section>
     {% for error in form.errors %}{{ error }}{% endfor %}
     <form method="POST" enctype="multipart/form-data" action=".">

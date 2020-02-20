@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_content %}
+<title>@{{ request.user.username }} | Editar perfil</title>
+<link rel="stylesheet" href="{% static 'css/players/update_profile_style.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="breadcrumb">
+    <a href="{% url 'players:player' request.user.username %}">{{ request.user.username }}</a>
+    <p> / </p>
+    <p> Editar perfil </p>
+</section>
+<form action="{% url 'players:edit_player' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <img src="../../images/{{ request.user.player.image }}" alt="">
+    <input 
+        type="file" 
+        name="image"
+    >
+    <p>Descripción:</p>
+    <textarea
+        class="{% if form.description.errors %}error{% else %}field{% endif %}"
+        rows="4" 
+        type="text" 
+        name="description"
+        value="{% if request.user.player.description %}{{ request.user.player.description }}{% else %}{% endif %}"
+        placeholder="Agrega una descripción 😃"
+    ></textarea>
+    <p>Facebook:</p>
+    <input
+        class="{% if form.facebook.errors %}error{% else %}field{% endif %}" 
+        type="text" 
+        name="facebook"
+        value="{% if request.user.player.facebook %}{{ request.user.player.facebook }}{% else %}{% endif %}"
+        placeholder="Facebook"
+    >
+    <p>Twitter:</p>
+    <input
+        class="{% if form.twitter.errors %}error{% else %}field{% endif %}" 
+        type="text" 
+        name="twitter"
+        value="{% if request.user.player.twitter %}{{ request.user.player.twitter }}{% else %}{% endif %}"
+        placeholder="Twitter"
+    >
+    <p>Instagram:</p>
+    <input
+        class="{% if form.instagram.errors %}error{% else %}field{% endif %}" 
+        type="text" 
+        name="instagram"
+        value="{% if request.user.player.instagram %}{{ request.user.player.instagram }}{% else %}{% endif %}"
+        placeholder="Instagram"
+    >
+    <p>YouTube:</p>
+    <input
+        class="{% if form.youtube.errors %}error{% else %}field{% endif %}" 
+        type="text" 
+        name="youtube"
+        value="{% if request.user.player.youtube %}{{ request.user.player.youtube }}{% else %}{% endif %}"
+        placeholder="YouTube"
+    >
+    <p>Website:</p>
+    <input
+        class="{% if form.website.errors %}error{% else %}field{% endif %}" 
+        type="text" 
+        name="website"
+        value="{% if request.user.player.website %}{{ request.user.player.website }}{% else %}{% endif %}"
+        placeholder="Website"
+    >
+    <input type="submit" value="Guardar">
+</form>
+{% endblock %}

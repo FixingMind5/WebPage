@@ -22,7 +22,6 @@
             <a href="{% url 'players:admin_panel' request.user.username %}">Admin panel</a>
             <p> / </p>
             <p> Agregar Curso </p>
-            <h3 style="text-transform: uppercase; justify-self: end;">Agregar curso</h3>
         </section>
         <form method="POST" class="form-container" enctype="multipart/form-data" action=".">
             {% csrf_token %}

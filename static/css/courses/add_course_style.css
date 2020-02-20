@@ -28,9 +28,7 @@ body {
 }
 
 .breadcrumb {
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: 85px 20px 105px 20px 1fr 1fr;
+    display: flex;
     background-color: #808EA6;
     color: #D7D9DF;
     padding: 5px 30px;

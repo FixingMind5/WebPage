@@ -30,6 +30,11 @@ urlpatterns = [
         name="admin_panel"
     ),
     path(
+        route='me/profile/',
+        view=views.UpdateUserView.as_view(),
+        name='edit_player'
+    ),
+    path(
         route='<str:username>', 
         view=views.UserDetailView.as_view(), 
         name='player'
