@@ -3,7 +3,8 @@ from django.db import models
 
 # Utilities
 
-# My models from achievements
+# My models
+
 
 class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

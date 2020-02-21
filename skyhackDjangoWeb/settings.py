@@ -42,9 +42,6 @@ INSTALLED_APPS = [
     'players',
     'achievements',
     'courses',
-
-    # Other usable apps
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [

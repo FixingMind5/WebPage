@@ -22,6 +22,7 @@ class Course(models.Model):
     teacher = models.ForeignKey(User, on_delete=models.CASCADE)
 
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    player = models.ManyToManyField(Player)
 
     def __str__(self):
         return "%s by %s" % (self.title, self.teacher.__str__())
