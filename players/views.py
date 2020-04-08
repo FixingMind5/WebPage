@@ -60,7 +60,6 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
     ]
 
     def form_valid(self, form):
-        print("Form is valid")
         self.object = form.save()
         return super().form_valid(form)
 
