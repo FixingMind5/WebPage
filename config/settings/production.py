@@ -14,7 +14,7 @@ DATABASES = {
         'NAME': env('POSTGES_DB'),
         'USER': env('POSTGRES_USER'),
         'PASSWORD': env('POSTGRES_PASSWORD'),
-        'HOST': env('CLOUD_SQL_INSTANCE_IP'),
+        'HOST': '/cloudsql/skyhack-273701:us-central1:skyhack-psql'
         'PORT': 5432
     }
 }
