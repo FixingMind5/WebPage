@@ -3,7 +3,7 @@
 from pathlib import Path
 import environ
 
-ROOT_DIR = Path(__file__).parents[3]
+ROOT_DIR = Path(__file__).parents[2]
 
 APPS_DIR = ROOT_DIR / "skyhackDjangoWeb"
 env = environ.Env()
@@ -114,11 +114,11 @@ MIDDLEWARE = [
 
 # STATIC
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
-# STATIC_ROOT = str(APPS_DIR / "static")
+STATIC_ROOT = str(APPS_DIR / "static")
 STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [str(APPS_DIR / "static")]
-
+print(APPS_DIR)
 
 # MEDIA
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-root

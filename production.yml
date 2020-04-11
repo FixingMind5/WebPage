@@ -4,6 +4,7 @@ volumes:
     production_postgres_data: {}
     production_postgres_data_backups: {}
     production_traefik: {}
+    production_caddy: {}
 
 services:
     django: &django
@@ -44,21 +45,6 @@ services:
         ports:
             - "0.0.0.0:80:80"
             - "0.0.0.0:443:443"
-    
-        
-    traefik:
-        build:
-            context: .
-            dockerfile: ./compose/production/traefik/Dockerfile
-        image: skyhack_production_traefik
-        depends_on:
-            - django
-        volumes:
-            - production_traefik:/etc/traefik/acme
-        ports:
-            - "0.0.0.0:80:80"
-            - "0.0.0.0:443:443"
-            - "0.0.0.0:5555:5555"
     
     redis:
         image: redis:5.0
