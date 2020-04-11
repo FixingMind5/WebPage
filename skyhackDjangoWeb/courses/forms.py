@@ -14,7 +14,7 @@ from django.forms import modelformset_factory
 
 # My models
 from .models import Course, Module, Project, Lesson, Comentary, Answer
-from players.models import Player
+from skyhackDjangoWeb.players.models import Player
 
 
 class CourseForm(ModelForm):

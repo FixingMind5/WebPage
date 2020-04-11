@@ -1,7 +1,7 @@
 # Django utilities
 from django.urls import path
 
-from courses import views
+from skyhackDjangoWeb.courses import views
 
 urlpatterns = [
     path(

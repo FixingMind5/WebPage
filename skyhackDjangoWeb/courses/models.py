@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # My models
-from players.models import Player
+from skyhackDjangoWeb.players.models import Player
 
 
 class Project(models.Model):

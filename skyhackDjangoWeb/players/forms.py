@@ -7,7 +7,7 @@ from django import forms
 from django.contrib.auth.models import User
 
 # My models
-from players.models import Player
+from skyhackDjangoWeb.players.models import Player
 
 # Utilities
 from datetime import datetime

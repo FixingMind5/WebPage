@@ -1,6 +1,8 @@
 from django.apps import AppConfig
 
 
-class PlayersConfig(AppConfig):
-    name = 'players'
+class PlayersAppConfig(AppConfig):
+    """Players app config"""
+    
+    name = 'skyhackDjangoWeb.players'
     verbose_name = 'Players'

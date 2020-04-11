@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import admin
 
 # Importing my models
-from players.models import Player
+from skyhackDjangoWeb.players.models import Player
 
 
 @admin.register(Player)

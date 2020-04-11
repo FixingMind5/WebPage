@@ -12,7 +12,7 @@ from django.forms import ValidationError
 from django.http import HttpResponse
 
 # Forms builded
-from courses.forms import CourseForm, ModuleForm, ProjectForm, LessonFormSet, ComentaryForm, AnswerForm
+from skyhackDjangoWeb.courses.forms import CourseForm, ModuleForm, ProjectForm, LessonFormSet, ComentaryForm, AnswerForm
 
 # My models
 from .models import Project, Module, Course, Lesson, Comentary, Answer

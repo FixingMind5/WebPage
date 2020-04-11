@@ -21,7 +21,7 @@ import sys
 
 # -- Project information -----------------------------------------------------
 
-project = "QRClothes"
+project = "SkyHack"
 copyright = """2020, Manuel Aguilar"""
 author = "Manuel Aguilar"
 

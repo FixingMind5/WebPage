@@ -23,13 +23,13 @@ from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 
 # My models
-from players.models import Player
+from skyhackDjangoWeb.players.models import Player
 
 # Exceptions
 from django.db.utils import IntegrityError
 
 # Forms
-from players.forms import PlayerForm
+from skyhackDjangoWeb.players.forms import PlayerForm
 
 # Utilities
 from datetime import datetime, date

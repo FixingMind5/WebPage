@@ -1,0 +1,10 @@
+runtime: python37
+
+handlers:
+- url: ./skyhackDjangoWeb/static
+  static_dir: ./skyhackDjangoWeb/static
+- url: /.*
+  script: auto
+
+env_variables:
+  DJANGO_SETTINGS_MODULE: webpage.config.settings.production

@@ -2,7 +2,7 @@
 in the bussiness model, this things will represent the progress of our
 players"""
 from django.db import models
-from players.models import Player
+from skyhackDjangoWeb.players.models import Player
 
 
 class Achievement(models.Model):

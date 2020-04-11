@@ -1,7 +1,7 @@
 from django.urls import path
 from django.views.generic import TemplateView
 
-from players import views
+from skyhackDjangoWeb.players import views
 
 urlpatterns = [
     path(

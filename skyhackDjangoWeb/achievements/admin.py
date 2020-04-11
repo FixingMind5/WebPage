@@ -2,7 +2,7 @@
 from django.contrib import admin
 
 # My modules
-from achievements.models import Achievement
+from skyhackDjangoWeb.achievements.models import Achievement
 
 @admin.register(Achievement)
 class AchievementAdmin(admin.ModelAdmin):
