@@ -8,8 +8,16 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=['skyhack.team'])
 
 # DATABASES
-DATABASES["default"] = env.db("DATABASE_URL") # noqa F405
-DATABASES["default"]["HOST"] = '/cloud_sql/skyhack-273701:us-central1:skyhack'
+DATABASES = {
+    'default': {
+        'engine': 'django.db.backends.postgresql',
+        'NAME': env('POSTGES_DB'),
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
+        'HOST': env('CLOUD_SQL_INSTANCE_IP'),
+        'PORT': 5432
+    }
+}
 DATABASES["default"]["ATOMIC_REQUESTS"] = True # noqa F405
 DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60) # noqa F405
 
